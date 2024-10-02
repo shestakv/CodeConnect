@@ -4,10 +4,13 @@ import {
   NotificationOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import styles from "./NavBar.module.css";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import { logout } from "@/entities/user";
+import { UserCard } from "@/entities/user/ui";
+import { ROUTES } from "@/app/router/routes";
 // import { logout } from "@/entities/user";
 
 const { Header } = Layout;
@@ -23,7 +26,11 @@ export const NavBar: React.FC = () => {
     <Header style={{ display: "flex", alignItems: "center" }}>
       <Flex justify="center" align="center">
         <div className="demo-logo">
-          <img src="logo.jpg" style={{ height: "60px", marginTop: "30px", marginRight: "30px" }} alt="" />
+          <img
+            src="logo.jpg"
+            style={{ height: "60px", marginTop: "30px", marginRight: "30px" }}
+            alt=""
+          />
         </div>
       </Flex>
 
@@ -38,6 +45,11 @@ export const NavBar: React.FC = () => {
         </Menu.Item>
         {user ? (
           <>
+            <div className={styles.avatarContainer}>
+              <Link to={ROUTES.PROFILE}>
+                <img src={user.avatar} />
+              </Link>
+            </div>
             <Menu.Item key="/game">
               <Link to="/game">Игра</Link>
             </Menu.Item>
