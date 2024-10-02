@@ -7,6 +7,7 @@ import {
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
+import { logout } from "@/entities/user";
 // import { logout } from "@/entities/user";
 
 const { Header } = Layout;

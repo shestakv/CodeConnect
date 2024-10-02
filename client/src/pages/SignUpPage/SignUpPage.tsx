@@ -1,9 +1,10 @@
-import { SignUpPage } from "@/features/auth/ui/SignUpPage";
+import { SignUpForm } from "@/features/auth/SignUpForm";
+
 
 export function SignUpPage() {
   return (
     <div>
-      <SignUpPage />
+      <SignUpForm />
     </div>
   );
 }
