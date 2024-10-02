@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.TEXT,
       },
       avatar: {
-        defaultValue: "defAvatar.png",
+        defaultValue: "/images/defAvatar.png",
         type: Sequelize.TEXT,
       },
       surname: {
