@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
-import { useAppDispatch } from '@/shared/hooks/reduxHooks';
-import { refreshAccessToken } from '@/entities/user';
-import { FooterComponent } from '@/widgets/Footer';
-import { NavBar } from '@/widgets/NavBar';
+import React, { useEffect } from "react";
+import { Outlet } from "react-router-dom";
+import { useAppDispatch } from "@/shared/hooks/reduxHooks";
+import { refreshAccessToken } from "@/entities/user";
+import { FooterComponent } from "@/widgets/Footer";
+import { NavBar } from "@/widgets/NavBar";
 
 const Layout: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -14,7 +14,6 @@ const Layout: React.FC = () => {
 
   return (
     <>
-
       <NavBar />
       <main>
         <Outlet />

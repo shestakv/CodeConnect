@@ -1,7 +1,7 @@
 import { useAppSelector } from "@/shared/hooks/reduxHooks";
 import { Flex, Button } from "antd";
 import React from "react";
-import "./MainPage.module.css";
+// import "./MainPage.module.css";
 import { Link } from "react-router-dom";
 
 type MainPageProps = {};
