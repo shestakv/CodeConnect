@@ -47,9 +47,6 @@ module.exports = {
       bio: {
         type: Sequelize.TEXT,
       },
-      companyId: {
-        type: Sequelize.INTEGER,
-      },
       createdAt: {
         defaultValue: new Date(),
         allowNull: false,

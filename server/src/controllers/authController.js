@@ -1,6 +1,6 @@
 const UserServices = require("../services/UserServices");
 const bcrypt = require("bcrypt");
-const generateTokens = require("../utils/authUtils");
+const generateTokens = require("../../src/utils/generateTokens");
 const jwtConfig = require("../config/jwtConfig");
 
 exports.signUp = async (req, res) => {
@@ -8,6 +8,7 @@ exports.signUp = async (req, res) => {
     const {
       firstname,
       surname,
+      patronymic,
       phone,
       email,
       password,
@@ -23,6 +24,7 @@ exports.signUp = async (req, res) => {
         firstname,
         surname,
         phone,
+        patronymic,
         email,
         password: await bcrypt.hash(password, 8),
         cookingExp,

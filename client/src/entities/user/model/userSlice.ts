@@ -1,0 +1,111 @@
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { User } from ".";
+import { refreshAccessToken, signUp, logout, signIn } from "./userThunks";
+import { message } from "antd";
+
+//FIX Что такое слайс?
+//? Слайс в Redux Toolkit — это объект, который объединяет состояние, редукторы и действия, относящиеся к одной функциональной области приложения (например, юзеры).
+
+//? Определение типа состояния юзера:
+type UserState = {
+  user: User | null;
+  loading: boolean;
+  error: string | null;
+  points: number;
+  answeredQuestions: number[]; // массив ID отвеченных вопросов
+};
+
+//? Инициализация начального состояния юзера:
+const initialState: UserState = {
+  user: null,
+  loading: false,
+  error: null,
+  points: 0,
+  answeredQuestions: [],
+};
+
+const userSlice = createSlice({
+  name: "user", //? Строка, определяющая имя слайса
+  initialState, //? Начальное состояние для данной части состояния Redux
+  reducers: {
+    updatePoints: (state, action: PayloadAction<number>) => {
+      state.points += action.payload;
+    },
+    addAnsweredQuestion: (state, action: PayloadAction<number>) => {
+      state.answeredQuestions.push(action.payload);
+    },
+  }, //?  reducers - объект, содержащий ТОЛЬКО синхронные функции-редукторы для обновления состояния
+
+  //? extraReducers -  Объект или функция, используемая для обработки асинхронных действий
+
+  //? builder: это параметр функции extraReducers. Он используется для настройки реакций на асинхронные действия. Builder позволяет добавить обработчики для различных состояний асинхронного действия.
+
+  //? addCase: метод builder'а, который добавляет обработчик для конкретного действия. Он принимает два аргумента:
+  //?   1. Тип действия (например, `fetchUser.fulfilled`).
+  //?   2. Функцию редуктора, которая обновляет состояние на основе действия.
+
+  //* fulfilled: состояние успешно завершенного асинхронного действия. Обрабатывает успешное выполнение санки, обновляя состояние на основании полученных данных.
+  //! rejected: состояние неудачно завершенного асинхронного действия. Обрабатывает ошибку, возникшую при выполнении санки, обновляя состояние на основании ошибки.
+  //? pending: состояние текущего асинхронного действия. Используется для сохранения статуса загрузки данных
+
+  extraReducers: (builder) => {
+    builder
+      .addCase(refreshAccessToken.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(refreshAccessToken.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload.user;
+        state.error = null;
+      })
+      .addCase(refreshAccessToken.rejected, (state) => {
+        state.loading = false;
+      })
+      //!----------------------------------------------------------------
+      .addCase(signIn.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(signIn.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload.user;
+        state.error = null;
+      })
+      .addCase(signIn.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload?.message || "Failed to sign in";
+        message.warning(action.payload?.message || "Failed to sign in");
+      })
+
+      //!----------------------------------------------------------------
+      .addCase(signUp.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(signUp.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload.user;
+        state.error = null;
+      })
+      .addCase(signUp.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload?.message || "Failed to sign up";
+        message.error(action.payload?.message || "Failed to sign up");
+      })
+
+      //!----------------------------------------------------------------
+      .addCase(logout.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.loading = false;
+        state.user = null;
+        state.error = null;
+      })
+      .addCase(logout.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload?.message || "Failed to logout";
+        message.error(action.payload?.message || "Failed to logout");
+      });
+  },
+});
+
+export default userSlice.reducer;
