@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       phone: {
         unique: true,
         allowNull: false,
-        type: DataTypes.BIGINT,
+        type: DataTypes.TEXT,
       },
       patronymic: {
         type: DataTypes.TEXT,

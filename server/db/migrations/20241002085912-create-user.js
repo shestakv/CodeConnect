@@ -33,7 +33,7 @@ module.exports = {
       phone: {
         unique: true,
         allowNull: false,
-        type: Sequelize.BIGINT,
+        type: Sequelize.TEXT,
       },
       patronymic: {
         type: Sequelize.TEXT,
