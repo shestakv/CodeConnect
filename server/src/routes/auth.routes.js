@@ -2,7 +2,7 @@ const {
   signUp,
   signIn,
   logout,
-} = require("../controllers/userController");
+} = require("../controllers/authController");
 
 const authRouter = require("express").Router();
 
