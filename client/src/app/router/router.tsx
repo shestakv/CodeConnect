@@ -3,7 +3,7 @@ import { ROUTES } from "./routes";
 import Layout from "./Layout/Layout";
 import { ProtectedRoute } from "@/shared/ui/ProtectedRoute";
 import { PublicRoute } from "@/shared/ui/PublicRoute";
-import { GamePage, MainPage, SignInPage, SignUpPage } from "@/pages";
+import { MainPage, SignInPage, SignUpPage } from "@/pages";
 import { ErrorPage } from "@/pages/ErrorPage";
 
 export const router = createBrowserRouter([
@@ -36,13 +36,13 @@ export const router = createBrowserRouter([
         path: ROUTES.ERROR,
         element: <ErrorPage />,
       },
-      {
-        path: "test",
-        // async lazy() {
-        //   const { GamePage } = await import("@/pages/GamePage");
-        //   return { Component: GamePage };
-        // },
-      },
+      // {
+      //   path: "test",
+      //   async lazy() {
+      //     const { GamePage } = await import("@/pages/GamePage");
+      //     return { Component: GamePage };
+      //   },
+      // },
     ],
   },
 ]);
