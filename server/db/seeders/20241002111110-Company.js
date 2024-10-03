@@ -1,4 +1,5 @@
 'use strict';
+
 const bcrypt = require("bcrypt");
 const user = require("../models/user");
 
@@ -9,10 +10,11 @@ module.exports = {
       "Companies",
       [
         {
+          userId: 1,
           name: "Elbrus",
           userId: 1,
           email: "elbrus@gmail.vom",
-          phone: 84999386824,
+          phone: '84999386824',
           description: 'Топ место',
           logo: "/images/defAvatar.png",
         },
