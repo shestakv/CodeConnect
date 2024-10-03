@@ -12,7 +12,6 @@ export type User = {
   education: string;
   cookingExp: number;
   password: string;
-  id: number;
   createdAt: Date;
   updatedAt: Date;
 };

@@ -40,6 +40,19 @@ class UserServices {
       throw new Error(error);
     }
   }
+
+  static async updateUser(userId, updateData) {
+    try {
+      console.log(userId);
+      
+      const [updatedRowsCount, [updateUser]] = await User.update(updatedData, {
+        where: { id: userId },
+        returning: true,})
+        return updatedRowsCount > 0 ? updateUser.get() : null;
+      } catch (error) {
+        throw new Error(error);
+      }
+  }
 }
 
 module.exports = UserServices;

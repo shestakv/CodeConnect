@@ -1,5 +1,6 @@
 import { axiosInstance, setAccessToken } from "@/shared/lib/axiosInstance";
 import { User } from "../model";
+import axios from "axios";
 
 export class UserServices {
   // * Метод для получения текущего пользователя
@@ -50,5 +51,36 @@ export class UserServices {
   static async logout(): Promise<void> {
     await axiosInstance.delete("/auth/logout");
     setAccessToken("");
+  }
+
+  static async updateUser(
+    id: number,
+    firstname: string,
+    surname: string,
+    patronymic: string,
+    phone: string,
+    email: string,
+    avatar: string,
+    location: string,
+    bio: string): Promise<{ accessToken: string; user: User }> {
+      try {
+        const response = await axiosInstance.put(`/user/${id}`, {
+          firstname,
+          surname,
+          patronymic,
+          phone,
+          email,
+          avatar,
+          location,
+          bio,
+        })
+        return response.data
+      } catch (error) {
+        console.error("Error updating user:", error);
+        throw new Error("Failed to update user");
+      }
+    
+    const response = await axiosInstance.put(`/user/${id}`);
+    return response.data;
   }
 }

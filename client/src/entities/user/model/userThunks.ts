@@ -83,3 +83,23 @@ export const logout = createAsyncThunk<
     });
   }
 });
+
+export const updateUserOnServer = createAsyncThunk<AuthResponse, {userData: any}, { rejectValue: RejectValue }>("user/updateUserOnServer", async ({userData}, { rejectWithValue }) => {
+  try {
+    return await UserServices.updateUser(    
+    id,
+    firstname,
+    surname,
+    patronymic,
+    phone,
+    email,
+    avatar,
+    location,
+    bio);
+  } catch (error) {
+    const err = error as AxiosError<{ message: string }>;
+    return rejectWithValue({
+      message: err.response?.data.message || err.message,
+    });
+  }
+})

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from ".";
-import { refreshAccessToken, signUp, logout, signIn } from "./userThunks";
+import { refreshAccessToken, signUp, logout, signIn, updateUserOnServer } from "./userThunks";
 import { message } from "antd";
 
 //FIX Что такое слайс?
@@ -33,6 +33,9 @@ const userSlice = createSlice({
     },
     addAnsweredQuestion: (state, action: PayloadAction<number>) => {
       state.answeredQuestions.push(action.payload);
+    },
+    updateUser: (state, action: PayloadAction<User>) => {
+      state.user = { ...state.user, ...action.payload };
     },
   }, //?  reducers - объект, содержащий ТОЛЬКО синхронные функции-редукторы для обновления состояния
 
@@ -104,8 +107,14 @@ const userSlice = createSlice({
         state.loading = false;
         state.error = action.payload?.message || "Failed to logout";
         message.error(action.payload?.message || "Failed to logout");
-      });
+      })
+
+      //!----------------------------------------------------------------
+      .addCase(updateUserOnServer.fulfilled, (state, action) => {
+        state.user = { ...state.user, ...action.payload };
+      })
   },
 });
 
+export const { updateUser } = userSlice.actions;
 export default userSlice.reducer;
