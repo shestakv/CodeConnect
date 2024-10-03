@@ -6,6 +6,79 @@
     width: 100vw;
 }
 
+.secondContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.secondTitle {
+    margin-left: 120px;
+    margin-bottom: 10px;
+}
+
+.settingIcon {
+    display: flex;
+    font-size: 20px;
+    margin: 15px;
+    align-items: start;
+
+}
+
+
+.settingIconImg {
+    display: none;
+    position: absolute;
+    font-size: 30px;
+    margin: 110px 0px 0px 120px;
+}
+
+.settingIcon,
+.settingIconImg {
+    display: none;
+    /* Скрываем элементы по умолчанию */
+}
+
+.avatarContainer:hover .settingIconImg,
+.secondContainer:hover .settingIcon {
+    display: block;
+    /* Показываем элементы при наведении */
+}
+
+.avatarContainer {
+    position: relative;
+    /* Чтобы иконка могла позиционироваться относительно аватара */
+}
+
+.settingIconImg {
+    position: absolute;
+    /* Подкорректируйте по желанию */
+    right: 15px;
+    /* Подкорректируйте по желанию */
+    font-size: 30px;
+    /* Размер иконки */
+}
+
+.settingIcon {
+    margin-left: 10px;
+    /* Отступ между текстом и иконкой */
+}
+
+
+.avatarContainer {
+    display: flex;
+}
+
+.avatar {
+    position: relative;
+    margin-right: 10px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
 .titleHeader {
     display: flex;
     justify-content: space-around;
@@ -20,19 +93,13 @@
 }
 
 .title {
-    margin: 25px 10px 10px 10px;
+    margin: 25px 10px 10px 15px;
     font-size: 24px;
 }
 
-.avatar{
-    margin-right: 10px;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
-}
-
 .workExperience {
+    display: flex;
+    justify-content: space-between;
     width: 80vw;
     min-height: 150px;
     background-color: #fff;
@@ -41,6 +108,8 @@
 }
 
 .education{
+    display: flex;
+    justify-content: space-between;
     width: 80vw;
     min-height: 150px;
     background-color: #fff;
@@ -49,6 +118,8 @@
 }
 
 .bio {
+    display: flex;
+    justify-content: space-between;
     width: 80vw;
     min-height: 150px;
     background-color: #fff;
@@ -56,8 +127,14 @@
     border-radius: 10px;
 }
 
+.divider {
+    display: flex;
+    flex-direction: column;
+}
+
 .phone {
     display: flex;
+    justify-content: space-between;
     width: 80vw;
     min-height: 50px;
     background-color: #fff;
@@ -66,6 +143,8 @@
 }
 
 .location {
+    display: flex;
+    justify-content: space-between;
     width: 80vw;
     min-height: 50px;
     background-color: #fff;
