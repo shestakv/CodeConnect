@@ -1,11 +1,11 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
       this.hasMany(models.Company, { foreignKey: "userId" });
+      this.hasMany(models.UserStack, { foreignKey: "userId" });
+      this.hasMany(models.TestingResult, { foreignKey: "userId" });
     }
   }
   User.init(

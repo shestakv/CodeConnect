@@ -27,4 +27,3 @@ module.exports = {
     await queryInterface.bulkDelete("Companies", null, {});
   },
 };
-

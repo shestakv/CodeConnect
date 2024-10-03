@@ -1,48 +1,52 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Company extends Model {
+  class StackTask extends Model {
     static associate(models) {
-      this.belongsTo(models.User, { foreignKey: "userId" });
+      this.belongsTo(models.Stack, { foreignKey: "stackId" });
     }
   }
-  Company.init(
+  StackTask.init(
     {
-      userId: {
+      description: {
+        allowNull: false,
+        type: DataTypes.TEXT,
+      },
+      stackId: {
         allowNull: false,
         type: DataTypes.INTEGER,
         references: {
-          model: "Users",
+          model: "Stacks",
           key: "id",
         },
+        onDelete: "cascade",
+        onUpdate: "cascade",
       },
-      name: {
-        unique: true,
+      answer1: {
         allowNull: false,
         type: DataTypes.TEXT,
       },
-      email: {
-        unique: true,
+      answer2: {
         allowNull: false,
         type: DataTypes.TEXT,
       },
-      phone: {
-        unique: true,
+      answer3: {
         allowNull: false,
         type: DataTypes.TEXT,
       },
-      description: {
+      answer4: {
+        allowNull: false,
         type: DataTypes.TEXT,
       },
-      logo: {
-        defaultValue: "/defAvatar.png",
+      trueAnswer: {
+        allowNull: false,
         type: DataTypes.TEXT,
       },
     },
     {
       sequelize,
-      modelName: "Company",
+      modelName: "StackTask",
     }
   );
-  return Company;
+  return StackTask;
 };

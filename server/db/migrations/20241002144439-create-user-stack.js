@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Companies", {
+    await queryInterface.createTable("UserStacks", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -16,42 +16,36 @@ module.exports = {
           model: "Users",
           key: "id",
         },
+        onDelete: "cascade",
+        onUpdate: "cascade",
       },
-      name: {
-        unique: true,
+      stackId: {
         allowNull: false,
-        type: Sequelize.TEXT,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Stacks",
+          key: "id",
+        },
+        onDelete: "cascade",
+        onUpdate: "cascade",
       },
-      email: {
-        unique: true,
+      grade: {
         allowNull: false,
-        type: Sequelize.TEXT,
-      },
-      phone: {
-        unique: true,
-        allowNull: false,
-        type: Sequelize.TEXT,
-      },
-      description: {
-        type: Sequelize.TEXT,
-      },
-      logo: {
-        defaultValue: "/defAvatar.png",
-        type: Sequelize.TEXT
+        type: Sequelize.INTEGER,
       },
       createdAt: {
-        defaultValue: new Date(),
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
       updatedAt: {
-        defaultValue: new Date(),
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Companies");
+    await queryInterface.dropTable("UserStacks");
   },
 };

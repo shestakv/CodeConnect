@@ -2,56 +2,35 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Companies", {
+    await queryInterface.createTable("Stacks", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      userId: {
+      title: {
         allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: "Users",
-          key: "id",
-        },
-      },
-      name: {
         unique: true,
+        type: Sequelize.TEXT,
+      },
+      image: {
         allowNull: false,
         type: Sequelize.TEXT,
-      },
-      email: {
-        unique: true,
-        allowNull: false,
-        type: Sequelize.TEXT,
-      },
-      phone: {
-        unique: true,
-        allowNull: false,
-        type: Sequelize.TEXT,
-      },
-      description: {
-        type: Sequelize.TEXT,
-      },
-      logo: {
-        defaultValue: "/defAvatar.png",
-        type: Sequelize.TEXT
       },
       createdAt: {
-        defaultValue: new Date(),
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
       updatedAt: {
-        defaultValue: new Date(),
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Companies");
+    await queryInterface.dropTable("Stacks");
   },
 };
