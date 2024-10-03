@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
       },
       avatar: {
-      defaultValue: "/defAvatar.png",
+      defaultValue: "/images/defAvatar.png",
       type: DataTypes.TEXT,
       },
       email: {
@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       phone: {
         unique: true,
         allowNull: false,
-        type: DataTypes.BIGINT,
+        type: DataTypes.TEXT,
       },
       patronymic: {
         type: DataTypes.TEXT,

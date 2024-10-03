@@ -1,5 +1,8 @@
 'use strict';
 
+const bcrypt = require("bcrypt");
+const user = require("../models/user");
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -9,10 +12,11 @@ module.exports = {
         {
           userId: 1,
           name: "Elbrus",
+          userId: 1,
           email: "elbrus@gmail.vom",
           phone: '84999386824',
           description: 'Топ место',
-          logo: "defAvatar.png",
+          logo: "/images/defAvatar.png",
         },
       ],
       {}
