@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.TEXT,
       },
       avatar: {
-        defaultValue: "defAvatar.png",
+        defaultValue: "/images/defAvatar.png",
         type: Sequelize.TEXT,
       },
       surname: {
@@ -33,7 +33,16 @@ module.exports = {
       phone: {
         unique: true,
         allowNull: false,
-        type: Sequelize.BIGINT,
+        type: Sequelize.TEXT,
+      },
+      education: {
+        type: Sequelize.TEXT,
+      },
+      workExperience: {
+        type: Sequelize.TEXT,
+      },
+      skills: {
+        type: Sequelize.TEXT,
       },
       patronymic: {
         type: Sequelize.TEXT,

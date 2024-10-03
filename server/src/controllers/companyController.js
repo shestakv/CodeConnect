@@ -27,7 +27,6 @@ exports.getCompanyById = async (req, res) => {
 exports.createCompany = async (req, res) => {
   try {
     const { name, email, phone, description, logo } = req.body;
-
     const company = await CompanyServices.createCompany({
       userId: res.locals.user.id,
       name,
@@ -36,6 +35,7 @@ exports.createCompany = async (req, res) => {
       description,
       logo
     });
+console.log(company);
 
     res.status(201).json({ message: "success", company });
   } catch (error) {
@@ -75,13 +75,14 @@ exports.deleteCompany = async (req, res) => {
     const userId = res.locals.user.id;
     
     let company = await CompanyServices.getCompanyById(id);
+    
     if (company) {
-      await CompanyServices.deleteCompany(id, userId);
+      company = await CompanyServices.deleteCompany(id, userId);
       res.status(200).json({ message: "success" });
     } else {
       res.status(404).json({ message: "Company not found" });
     }
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: message });
   }
 };

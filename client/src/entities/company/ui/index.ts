@@ -1,0 +1,1 @@
+export {MemorizedCompanyItem as CompanyItem} from './CompanyItem';

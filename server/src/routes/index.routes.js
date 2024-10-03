@@ -6,8 +6,10 @@ const tokensRouter = require("./tokens.routes");
 const stackRouter = require("./stack.routes");
 const userStackRouter = require("./userStack.routes");
 const testingResultRouter = require("./testingResult.routes");
+const companiesRouter = require("./company.routes");
 
 apiRouter.use("/auth", authRouter);
+apiRouter.use('/companies', companiesRouter);
 apiRouter.use("/tokens", tokensRouter);
 
 apiRouter.use("/stack", stackRouter);

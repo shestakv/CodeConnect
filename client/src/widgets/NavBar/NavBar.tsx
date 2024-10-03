@@ -4,13 +4,17 @@ import {
   NotificationOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import styles from "./NavBar.module.css";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import { logout } from "@/entities/user";
+import { UserCard } from "@/entities/user/ui";
+import { ROUTES } from "@/app/router/routes";
 // import { logout } from "@/entities/user";
 
 const { Header } = Layout;
+
 
 export const NavBar: React.FC = () => {
   const { user } = useAppSelector((state) => state.user);
@@ -20,24 +24,22 @@ export const NavBar: React.FC = () => {
     dispatch(logout());
   };
   return (
-    <Header style={{ display: "flex", alignItems: "center" }}>
-      <Flex justify="center" align="center">
-        <div className="demo-logo">
-          <img src="logo.jpg" style={{ height: "60px", marginTop: "30px", marginRight: "30px" }} alt="" />
-        </div>
-      </Flex>
-
-      <Menu
-        theme="dark"
-        mode="horizontal"
-        defaultSelectedKeys={["/"]}
-        style={{ flex: 1, minWidth: 0 }}
-      >
+    <Header className={styles.header}>
+      <Menu className={styles.menu} mode="horizontal" defaultSelectedKeys={["/"]}>
         <Menu.Item key="/">
           <Link to="/">Главная</Link>
         </Menu.Item>
+        <Menu.Item key="/companies">
+              <Link to="/companies">Компании</Link>
+            </Menu.Item>
         {user ? (
           <>
+            <Link to={ROUTES.PROFILE}>
+              <div className={styles.avatarContainer}>
+                <img className={styles.avatar} src={`${import.meta.env.VITE_IMG}${user.avatar}`} />
+                  {user.firstname} {user.surname}
+              </div>
+            </Link>
             <Menu.Item key="/game">
               <Link to="/game">Игра</Link>
             </Menu.Item>

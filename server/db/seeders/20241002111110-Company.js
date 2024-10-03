@@ -1,5 +1,7 @@
-"use strict";
+'use strict';
+
 const bcrypt = require("bcrypt");
+const user = require("../models/user");
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -8,12 +10,13 @@ module.exports = {
       "Companies",
       [
         {
+          userId: 1,
           name: "Elbrus",
           userId: 1,
-          email: "elbrus@gmail.com",
-          phone: "84999386824",
-          description: "Топ место",
-          logo: "defAvatar.png",
+          email: "elbrus@gmail.vom",
+          phone: '84999386824',
+          description: 'Топ место',
+          logo: "/images/defAvatar.png",
         },
       ],
       {}

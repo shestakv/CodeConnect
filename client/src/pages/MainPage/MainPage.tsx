@@ -17,7 +17,7 @@ export const MainPage: React.FC<MainPageProps> = ({}) => {
         >
           {user ? (
             <>
-              <h1>Добро пожаловать, {user?.name}!</h1>
+              <h1>Добро пожаловать, {user?.firstname}!</h1>
               <Button type="primary"><Link to="/game">Играть</Link></Button>
             </>
           ) : (
