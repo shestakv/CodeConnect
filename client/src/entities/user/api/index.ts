@@ -53,34 +53,9 @@ export class UserServices {
     setAccessToken("");
   }
 
-  static async updateUser(
-    id: number,
-    firstname: string,
-    surname: string,
-    patronymic: string,
-    phone: string,
-    email: string,
-    avatar: string,
-    location: string,
-    bio: string): Promise<{ accessToken: string; user: User }> {
-      try {
-        const response = await axiosInstance.put(`/user/${id}`, {
-          firstname,
-          surname,
-          patronymic,
-          phone,
-          email,
-          avatar,
-          location,
-          bio,
-        })
-        return response.data
-      } catch (error) {
-        console.error("Error updating user:", error);
-        throw new Error("Failed to update user");
-      }
-    
-    const response = await axiosInstance.put(`/user/${id}`);
-    return response.data;
-  }
+static async updateUser(userData: Object) {
+  
+  const response = await axiosInstance.put(`/user`, {userData});
+  return response.data;
+}
 }

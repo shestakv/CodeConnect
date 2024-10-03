@@ -2,11 +2,11 @@ const UserServices = require("../services/UserServices");
 
 exports.updateUser = async (req, res) => {
   try {
-    const userId = req.user.userId;
-    const { education } = req.body;
-    console.log(education);
-
-    const updatedUser = await UserServices.updateUser(userId, updatedData);
+    // const userId = req.user.userId;
+    const { id } = res.locals.user;
+    const { userData } = req.body;
+    
+    const updatedUser = await UserServices.updateUser( id, userData);
 
     if (!updatedUser) {
       res.status(404).json({ message: "Пользователь не найден" });

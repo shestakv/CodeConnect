@@ -20,6 +20,7 @@ export const UserPage: React.FC<UserPageProps> = ({}) => {
     location: user?.location,
   });
   const handleEditClick = (field: string) => {
+    
     setIsEditing((prev) => ({ ...prev, [field]: !prev[field] }));
   };
 
@@ -27,11 +28,15 @@ export const UserPage: React.FC<UserPageProps> = ({}) => {
     e: React.ChangeEvent<HTMLInputElement>,
     field: string
   ) => {
+    
     setFormData({ ...formData, [field]: e.target.value });
+    
   };
 
   const handleSave = (field: string) => {
+
     const userData = { [field]: formData[field] };
+    
     dispatch(updateUserOnServer({ userData })); // Используем thunk для обновления
     setIsEditing((prev) => ({ ...prev, [field]: false }));
   };
