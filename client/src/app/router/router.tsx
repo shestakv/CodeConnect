@@ -3,7 +3,7 @@ import { ROUTES } from "./routes";
 import Layout from "./Layout/Layout";
 import { ProtectedRoute } from "@/shared/ui/ProtectedRoute";
 import { PublicRoute } from "@/shared/ui/PublicRoute";
-import { MainPage, SignInPage, SignUpPage } from "@/pages";
+import { MainPage, SignInPage, SignUpPage, UserPage } from "@/pages";
 import { ErrorPage } from "@/pages/ErrorPage";
 import { CompanyPage } from "@/pages/CompanyPage";
 
@@ -31,6 +31,15 @@ export const router = createBrowserRouter([
           <PublicRoute>
             <SignUpPage />
           </PublicRoute>
+        ),
+      },
+
+      {
+        path: ROUTES.PROFILE,
+        element: (
+          <ProtectedRoute>
+            <UserPage />
+          </ProtectedRoute>
         ),
       },
       {

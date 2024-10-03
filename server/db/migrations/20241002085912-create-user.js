@@ -35,6 +35,15 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT,
       },
+      education: {
+        type: Sequelize.TEXT,
+      },
+      workExperience: {
+        type: Sequelize.TEXT,
+      },
+      skills: {
+        type: Sequelize.TEXT,
+      },
       patronymic: {
         type: Sequelize.TEXT,
       },

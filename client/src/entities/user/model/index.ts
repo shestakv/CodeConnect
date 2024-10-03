@@ -8,6 +8,8 @@ export type User = {
   avatar: string;
   location: string;
   bio: string;
+  workExperience: string;
+  education: string;
   cookingExp: number;
   password: string;
   id: number;

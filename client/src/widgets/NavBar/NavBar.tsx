@@ -15,6 +15,7 @@ import { ROUTES } from "@/app/router/routes";
 
 const { Header } = Layout;
 
+
 export const NavBar: React.FC = () => {
   const { user } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
@@ -23,23 +24,8 @@ export const NavBar: React.FC = () => {
     dispatch(logout());
   };
   return (
-    <Header style={{ display: "flex", alignItems: "center" }}>
-      <Flex justify="center" align="center">
-        <div className="demo-logo">
-          <img
-            src="logo.jpg"
-            style={{ height: "60px", marginTop: "30px", marginRight: "30px" }}
-            alt=""
-          />
-        </div>
-      </Flex>
-
-      <Menu
-        theme="dark"
-        mode="horizontal"
-        defaultSelectedKeys={["/"]}
-        style={{ flex: 1, minWidth: 0 }}
-      >
+    <Header className={styles.header}>
+      <Menu className={styles.menu} mode="horizontal" defaultSelectedKeys={["/"]}>
         <Menu.Item key="/">
           <Link to="/">Главная</Link>
         </Menu.Item>
@@ -48,11 +34,12 @@ export const NavBar: React.FC = () => {
             </Menu.Item>
         {user ? (
           <>
-            <div className={styles.avatarContainer}>
-              <Link to={ROUTES.PROFILE}>
-                <img src={user.avatar} />
-              </Link>
-            </div>
+            <Link to={ROUTES.PROFILE}>
+              <div className={styles.avatarContainer}>
+                <img className={styles.avatar} src={`${import.meta.env.VITE_IMG}${user.avatar}`} />
+                  {user.firstname} {user.surname}
+              </div>
+            </Link>
             <Menu.Item key="/game">
               <Link to="/game">Игра</Link>
             </Menu.Item>
