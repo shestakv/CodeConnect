@@ -1,0 +1,74 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+
+.titleHeader {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+    width: 80vw;
+    margin-top: 25px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    border-radius: 10px;
+}
+
+.title {
+    margin: 25px 10px 10px 10px;
+    font-size: 24px;
+}
+
+.avatar{
+    margin-right: 10px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.workExperience {
+    width: 80vw;
+    min-height: 150px;
+    background-color: #fff;
+    margin-top: 25px;
+    border-radius: 10px;
+}
+
+.education{
+    width: 80vw;
+    min-height: 150px;
+    background-color: #fff;
+    margin-top: 25px;
+    border-radius: 10px;
+}
+
+.bio {
+    width: 80vw;
+    min-height: 150px;
+    background-color: #fff;
+    margin-top: 25px;
+    border-radius: 10px;
+}
+
+.phone {
+    display: flex;
+    width: 80vw;
+    min-height: 50px;
+    background-color: #fff;
+    margin-top: 25px;
+    border-radius: 10px;
+}
+
+.location {
+    width: 80vw;
+    min-height: 50px;
+    background-color: #fff;
+    margin-top: 25px;
+    border-radius: 10px;
+}
