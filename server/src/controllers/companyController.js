@@ -17,7 +17,7 @@ exports.getCompanyById = async (req, res) => {
     if (company) {
       res.status(200).json({ message: "success", company });
     } else {
-      res.status(404).json({ message: "Weather not found" });
+      res.status(404).json({ message: "Company not found" });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -62,7 +62,7 @@ exports.updateCompanyId = async (req, res) => {
       });
       res.status(200).json({ message: "success", company });
     } else {
-      res.status(404).json({ message: "Weather not found" });
+      res.status(404).json({ message: "Company not found" });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -79,7 +79,7 @@ exports.deleteCompany = async (req, res) => {
       await CompanyServices.deleteCompany(id, userId);
       res.status(200).json({ message: "success" });
     } else {
-      res.status(404).json({ message: "Weather not found" });
+      res.status(404).json({ message: "Company not found" });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });

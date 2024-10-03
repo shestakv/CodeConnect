@@ -2,56 +2,54 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Companies", {
+    await queryInterface.createTable("StackTasks", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      userId: {
+      description: {
+        allowNull: false,
+        type: Sequelize.TEXT,
+      },
+      stackId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: {
-          model: "Users",
-          key: "id",
-        },
       },
-      name: {
-        unique: true,
+      answer1: {
         allowNull: false,
         type: Sequelize.TEXT,
       },
-      email: {
-        unique: true,
+      answer2: {
         allowNull: false,
         type: Sequelize.TEXT,
       },
-      phone: {
-        unique: true,
+      answer3: {
         allowNull: false,
         type: Sequelize.TEXT,
       },
-      description: {
+      answer4: {
+        allowNull: false,
         type: Sequelize.TEXT,
       },
-      logo: {
-        defaultValue: "defAvatar.png",
+      trueAnswer: {
+        allowNull: false,
         type: Sequelize.TEXT,
       },
       createdAt: {
-        defaultValue: new Date(),
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
       updatedAt: {
-        defaultValue: new Date(),
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Companies");
+    await queryInterface.dropTable("StackTasks");
   },
 };
