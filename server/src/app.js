@@ -1,6 +1,5 @@
 require("dotenv").config();
 const express = require("express");
-const path = require("path");
 const serverConfig = require("./config/serverConfig");
 // Импортируем роуты из отдельных файлов
 const indexRouter = require("./routes/index.routes");
@@ -11,8 +10,6 @@ const app = express(); // Создаем экземпляр приложения
 
 //конфигурация
 serverConfig(app); // запускаем конфигурацию (мидлварки)
-
-app.use(express.static(path.join(__dirname, '..',"images"))); // статика, если что-то нужно енаходится в папке паблик на сервере и нужно это прочитать
 
 //мaршрутизация
 app.use("/api", indexRouter); // протягиваем сюда роуты, не прописывавем их здесь

@@ -1,0 +1,23 @@
+.avatar {
+    width: 60px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.avatarContainer {
+    display: flex;
+    align-items: center;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+}
+
+.header {
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+}

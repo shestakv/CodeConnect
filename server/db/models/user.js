@@ -19,8 +19,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
       },
       avatar: {
-      defaultValue: "/images/defAvatar.png",
-      type: DataTypes.TEXT,
+        defaultValue: "/images/defAvatar.png",
+        type: DataTypes.TEXT,
       },
       email: {
         unique: true,
@@ -41,6 +41,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       age: {
         type: DataTypes.INTEGER,
+      },
+      education: {
+        type: DataTypes.TEXT,
+      },
+      workExperience: {
+        type: DataTypes.TEXT,
       },
       location: {
         type: DataTypes.TEXT,

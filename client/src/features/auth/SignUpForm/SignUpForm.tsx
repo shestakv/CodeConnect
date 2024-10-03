@@ -9,7 +9,7 @@ import { ROUTES } from "@/app/router/routes";
 import {
   MailOutlined,
   UserOutlined,
-  PhoneFilled,
+  // PhoneFilled,
   LockFilled,
   UnlockOutlined,
 } from "@ant-design/icons";
@@ -42,7 +42,7 @@ export const SignUpForm: React.FC = () => {
 
     const prefixSelector = (
       <Form.Item name="prefix" noStyle>
-        <Select style={{ width: 70 }}>
+        <Select defaultValue={"+7"} style={{ width: 70 }}>
           <Option value="+7">+7</Option>
         </Select>
       </Form.Item>
@@ -97,7 +97,7 @@ export const SignUpForm: React.FC = () => {
         <Input
           addonBefore={prefixSelector}
           style={{ width: "100%" }}
-          prefix={<PhoneFilled />}
+          // prefix={<PhoneFilled />}
           placeholder="Введите Телефон"
         />
       </Form.Item>
