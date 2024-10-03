@@ -43,6 +43,9 @@ export const NavBar: React.FC = () => {
         <Menu.Item key="/">
           <Link to="/">Главная</Link>
         </Menu.Item>
+        <Menu.Item key="/companies">
+              <Link to="/companies">Компании</Link>
+            </Menu.Item>
         {user ? (
           <>
             <div className={styles.avatarContainer}>
