@@ -13,12 +13,11 @@ class CompanyServices {
   } = {}) => {
     try {
       const company = await Company.create({
-        userId,
         name,
         email,
         phone,
         description,
-        logo
+        logo, userId
       });
       console.log("Компания создана");
       return company.get();
@@ -38,7 +37,7 @@ class CompanyServices {
 
   static getCompanyById = async (id) => {
     try{
-    const company = await User.findByPk(id);
+    const company = await Company.findByPk(id);
     return company ? company.get() : null;
     } catch ({ message }) {
     console.log(message);
@@ -65,7 +64,7 @@ class CompanyServices {
   static deleteCompany = async (id, userId) => {
     try {
       const company = await Company.destroy({ where: { id, userId } });
-      return;
+      return company;
     } catch ({ message }) {
       console.log(message);
     }

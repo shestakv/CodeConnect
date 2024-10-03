@@ -1,9 +1,9 @@
 import { Flex, Layout, Menu } from "antd";
-import {
-  LaptopOutlined,
-  NotificationOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+// import {
+//   LaptopOutlined,
+//   NotificationOutlined,
+//   UserOutlined,
+// } from "@ant-design/icons";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
@@ -36,6 +36,9 @@ export const NavBar: React.FC = () => {
         <Menu.Item key="/">
           <Link to="/">Главная</Link>
         </Menu.Item>
+        <Menu.Item key="/companies">
+              <Link to="/companies">Компании</Link>
+            </Menu.Item>
         {user ? (
           <>
             <Menu.Item key="/game">

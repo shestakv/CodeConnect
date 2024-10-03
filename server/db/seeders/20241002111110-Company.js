@@ -1,5 +1,4 @@
 'use strict';
-const bcrypt = require("bcrypt");
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -8,10 +7,10 @@ module.exports = {
       "Companies",
       [
         {
+          userId: 1,
           name: "Elbrus",
           email: "elbrus@gmail.vom",
-          password: await bcrypt.hash("123", 8),
-          phone: 84999386824,
+          phone: '84999386824',
           description: 'Топ место',
           logo: "defAvatar.png",
         },

@@ -5,6 +5,7 @@ import { ProtectedRoute } from "@/shared/ui/ProtectedRoute";
 import { PublicRoute } from "@/shared/ui/PublicRoute";
 import { MainPage, SignInPage, SignUpPage } from "@/pages";
 import { ErrorPage } from "@/pages/ErrorPage";
+import { CompanyPage } from "@/pages/CompanyPage";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,14 @@ export const router = createBrowserRouter([
           <PublicRoute>
             <SignUpPage />
           </PublicRoute>
+        ),
+      },
+      {
+        path: ROUTES.COMPANY,
+        element: (
+          <ProtectedRoute>
+            <CompanyPage />
+          </ProtectedRoute>
         ),
       },
       {

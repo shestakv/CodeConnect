@@ -3,11 +3,13 @@ import { userReducer } from '@/entities/user';
 import { configureStore } from '@reduxjs/toolkit';
 
 //? редуктор пользователя из файла userSlice.ts. Редуктор отвечает за управление состоянием пользователя в приложении.
-import { userReducer } from '@/entities/user';
+// import { userReducer } from '@/entities/user';
+import { companyReducer } from '@/entities/company';
 
 const store = configureStore({
     reducer: {
-      user: userReducer, //? В этом объекте ключ reducer используется для определения всех редукторов, которые будут работать с хранилищем.
+      user: userReducer,
+      company: companyReducer //? В этом объекте ключ reducer используется для определения всех редукторов, которые будут работать с хранилищем.
     },
   });
 
