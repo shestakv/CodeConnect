@@ -3,6 +3,7 @@ import { Company } from "../model";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import { deleteCompany } from "../model/comapnyThunks";
 import CompanyFormUpdate from "@/widgets/CompanyFormUpdate/CompanyFormUpdate";
+import styles from "./CompanyItem.module.css";
 
 type Props = {
     company: Company;
@@ -11,35 +12,30 @@ type Props = {
 const CompanyItem: React.FC<Props> = ({ company }) => {
     const dispatch = useAppDispatch();
     const { user } = useAppSelector((state) => state.user);
-    // console.log(user);
-    
 
     const handleDeleteCompany = () => {
         try {
-           void dispatch(deleteCompany({id: company.id})); 
+            void dispatch(deleteCompany({ id: company.id }));
         } catch (error) {
-            console.error("Error deleting company:", error); 
+            console.error("Error deleting company:", error);
         }
     };
 
     return (
-        <>
-         <div>
-            <h3>{company.name}</h3>
-            <p>Описание: {company.description}</p>
-            <p>Почта: {company.email}</p>
-            <p>Номер телефона: {company.phone}</p>
+        <div className={styles.companyCard}>
+            <h3 className={styles.companyName}>{company.name}</h3>
+            <p className={styles.companyDescription}>Описание: {company.description}</p>
+            <p className={styles.companyEmail}>Почта: {company.email}</p>
+            <p className={styles.companyPhone}>Номер телефона: {company.phone}</p>
             {user?.id === company.userId ? (
-                <button onClick={handleDeleteCompany}>Удалить</button>
+                <button onClick={handleDeleteCompany} className={styles.deleteButton}>Удалить</button>
             ) : (
-                <p>У вас нет прав на удаление этой компании.</p>
+                <p className={styles.noPermission}>У вас нет прав на удаление этой компании.</p>
             )}
             <CompanyFormUpdate company={company} />
         </div>
-        </>
-    )
-
-}
+    );
+};
 
 
 
