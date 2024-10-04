@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { AxiosError } from "axios";
+import axios, { AxiosError } from "axios";
 import { UserServices } from "../api";
 import { AuthResponse } from ".";
+import { axiosInstance } from "@/shared/lib/axiosInstance";
 
 
 type RejectValue = {
@@ -87,6 +88,12 @@ export const logout = createAsyncThunk<
 export const updateUserOnServer = createAsyncThunk<AuthResponse, {userData: any}, { rejectValue: RejectValue }>("user/updateUserOnServer", async ({userData}, { rejectWithValue }) => {
   try {
     
+    const response = await axiosInstance.put('/user', userData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      
     return await UserServices.updateUser(    
       userData);
   } catch (error) {

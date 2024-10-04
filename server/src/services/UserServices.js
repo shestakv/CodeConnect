@@ -43,22 +43,19 @@ class UserServices {
 
   static async updateUser(userId, updateData) {
     try {
-
-      let user = await User.findOne({
+      await User.update(updateData, {
         where: { id: userId },
-      })
+      });
+      const user = await User.findByPk(userId);
 
-     await user.update(updateData)
-    
+      // console.log(user, 111111111112222222222222);
+
+      //  await user.update(updateData)
+
       return user ? user.get() : null;
-      
-      // const [updatedRowsCount, [updateUser]] = await User.update(updateData, {
-      //   where: { id: userId },
-      //   returning: true,})
-      //   return updatedRowsCount > 0 ? updateUser.get() : null;
-      } catch (error) {
-        throw new Error(error);
-      }
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }
 

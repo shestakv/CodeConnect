@@ -22,6 +22,7 @@ export class UserServices {
       email,
       password,
     });
+    
     setAccessToken(response.data.accessToken);
     return response.data;
   }
