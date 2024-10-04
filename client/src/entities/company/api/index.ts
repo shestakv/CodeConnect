@@ -1,5 +1,5 @@
 import { axiosInstance } from "@/shared/lib/axiosInstance";
-import { Company, CompanyId, CompanyResponse, CompanyWithoutIdAndUserId } from "../model";
+import { CompanyId, CompanyResponse, CompanyWithoutIdAndUserId } from "../model";
 
 
 
@@ -17,7 +17,7 @@ export class CompanyServices {
 
     }
 
-    static async updateCompany( id: number, name:string, email:string, phone:string, description:string, logo:string ): Promise<Company> {
+    static async updateCompany( id: number, name:string, email:string, phone:string, description:string, logo:string ): Promise<CompanyResponse> {
         try{
         const response = await axiosInstance.put(`/companies/${id}`, { name, email, phone, description, logo });
         console.log(response.data);

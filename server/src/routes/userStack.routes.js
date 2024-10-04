@@ -4,12 +4,12 @@ const verifyAccessToken = require("../middleware/verifyAccessToken");
 
 
 router.route('/')
-    .get(userStackController.getAllUserStacks)
+    .get(verifyAccessToken, userStackController.getAllUserStacks)
     .post(verifyAccessToken, userStackController.createUserStack)
 
 router
   .route('/:id')
-    .get(userStackController.getUserStackById)
+    .get(verifyAccessToken, userStackController.getUserStackById)
     .delete(verifyAccessToken, userStackController.deleteUserStack)
 
 module.exports = router;

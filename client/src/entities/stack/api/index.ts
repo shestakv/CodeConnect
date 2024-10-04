@@ -10,6 +10,5 @@ export class StackService {
             console.error('Error getting all themes:', error);
             throw new Error('Failed to get all themes');
         }
-
     }
 }
