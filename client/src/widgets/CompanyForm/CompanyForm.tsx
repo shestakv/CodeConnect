@@ -27,7 +27,6 @@ const CompanyForm: React.FC = () => {
         try {
             console.log(name, email, phone, description, logo);
             await dispatch(createCompany({ name, email, phone, description, logo }));
-            // Сброс полей формы
             setName("");
             setEmail("");
             setPhone('');

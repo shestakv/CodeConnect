@@ -1,6 +1,14 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
 .companyCard {
     max-width: 1300px;
-    margin: 20px auto;
+    margin: 20px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -20,8 +28,6 @@
     opacity: 0;
     transform: translateY(20px);
 }
-
-
 
 .companyCard:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -54,3 +60,4 @@
 .noPermission {
     color: #888;
 }
+

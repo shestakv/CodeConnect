@@ -52,7 +52,7 @@
     overflow: hidden;
     max-height: 0;
     opacity: 0;
-    transition: max-height 1.2s ease, opacity 0.5s ease;
+    transition: max-height 1.0s ease, opacity 0.5s ease;
 }
 
 .formContainer.show {
