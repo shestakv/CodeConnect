@@ -1,5 +1,6 @@
 import { axiosInstance, setAccessToken } from "@/shared/lib/axiosInstance";
 import { User } from "../model";
+import axios from "axios";
 
 export class UserServices {
   // * Метод для получения текущего пользователя
@@ -51,4 +52,10 @@ export class UserServices {
     await axiosInstance.delete("/auth/logout");
     setAccessToken("");
   }
+
+static async updateUser(userData: Object) {
+  
+  const response = await axiosInstance.put(`/user`, {userData});
+  return response.data;
+}
 }

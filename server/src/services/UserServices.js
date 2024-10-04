@@ -40,6 +40,26 @@ class UserServices {
       throw new Error(error);
     }
   }
+
+  static async updateUser(userId, updateData) {
+    try {
+
+      let user = await User.findOne({
+        where: { id: userId },
+      })
+
+     await user.update(updateData)
+    
+      return user ? user.get() : null;
+      
+      // const [updatedRowsCount, [updateUser]] = await User.update(updateData, {
+      //   where: { id: userId },
+      //   returning: true,})
+      //   return updatedRowsCount > 0 ? updateUser.get() : null;
+      } catch (error) {
+        throw new Error(error);
+      }
+  }
 }
 
 module.exports = UserServices;

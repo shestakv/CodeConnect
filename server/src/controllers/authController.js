@@ -14,7 +14,13 @@ exports.signUp = async (req, res) => {
       password,
       cookingExp,
     } = req.body;
-    if (firstname.trim() === "" || surname.trim() === "" || email.trim() === "" || password.trim() === "" || phone.trim() === "") {
+    if (
+      firstname.trim() === "" ||
+      surname.trim() === "" ||
+      email.trim() === "" ||
+      password.trim() === "" ||
+      phone.trim() === ""
+    ) {
       console.log("Заполни все поля!");
       return res.status(400).json({ message: "Заполни все поля!" });
     }
@@ -89,3 +95,4 @@ exports.logout = async (req, res) => {
     res.status(500).json({ error: message });
   }
 };
+
