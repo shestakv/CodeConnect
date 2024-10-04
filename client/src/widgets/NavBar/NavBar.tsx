@@ -34,7 +34,7 @@ export const NavBar: React.FC = () => {
             </Menu.Item>
         {user ? (
           <>
-            <Link to={ROUTES.PROFILE}>
+            <Link to={ROUTES.USER}>
               <div className={styles.avatarContainer}>
                 <img className={styles.avatar} src={`${import.meta.env.VITE_IMG}${user.avatar}`} />
                   {user.firstname} {user.surname}
