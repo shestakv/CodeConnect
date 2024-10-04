@@ -2,7 +2,8 @@ const UserStackServices = require("../services/UserStackServices");
 
 exports.getAllUserStacks = async (req, res) => {
   try {
-    const userStacks = await UserStackServices.getAllUserStacks(req.query);
+    const { userId } = req.params;
+    const userStacks = await UserStackServices.getAllUserStacks(userId);
     res.status(200).json({ message: "success", userStacks });
   } catch (error) {
     res.status(500).json({ error: error.message });

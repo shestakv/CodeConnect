@@ -1,5 +1,5 @@
 import { axiosInstance } from "@/shared/lib/axiosInstance";
-import { Company, CompanyId, CompanyResponse, CompanyWithoutIdAndUserId } from "../model";
+import { CompanyId, CompanyResponse, CompanyWithoutIdAndUserId } from "../model";
 
 
 

@@ -14,10 +14,10 @@ class UserStackServices {
     }
   };
 
-  static getAllUserStacks = async (query) => {
+  static getAllUserStacks = async (userId) => {
     try {
       const userStacks = await UserStack.findAll({
-        where: query,
+        where: { userId },
         include: {
           model: TestingResult,
           attributes: [
