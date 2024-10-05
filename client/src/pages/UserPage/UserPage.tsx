@@ -11,16 +11,17 @@ import { useParams } from "react-router-dom";
 
 export const UserPage: React.FC = () => {
   const dispatch = useAppDispatch();
+  const { userPersonal } = useAppSelector((state) => state.userPersonal);
   const { user } = useAppSelector((state) => state.user);
   const { id } = useParams();
 
   const [isEditing, setIsEditing] = useState<{ [key: string]: boolean }>({});
   const [formData, setFormData] = useState<FormDataType>({
-    workExperience: user?.workExperience,
-    education: user?.education,
-    bio: user?.bio,
-    phone: user?.phone,
-    location: user?.location,
+    workExperience: userPersonal?.workExperience,
+    education: userPersonal?.education,
+    bio: userPersonal?.bio,
+    phone: userPersonal?.phone,
+    location: userPersonal?.location,
   });
 
   const handleEditClick = (field: string) => {
@@ -41,24 +42,22 @@ export const UserPage: React.FC = () => {
   };
 
   useEffect(() => {
-    if (id && user?.id !== +id) {
-      console.log(id);
+    if (id && (!userPersonal || userPersonal.id !== +id)) {
       dispatch(getUserById({ id: +id }));
-      console.log(user);
     }
-  }, [id, user, dispatch]);
+  }, [id, dispatch, userPersonal]);
 
   useEffect(() => {
-    if (user) {
+    if (userPersonal) {
       setFormData({
-        workExperience: user.workExperience,
-        education: user.education,
-        bio: user.bio,
-        phone: user.phone,
-        location: user.location,
+        workExperience: userPersonal.workExperience,
+        education: userPersonal.education,
+        bio: userPersonal.bio,
+        phone: userPersonal.phone,
+        location: userPersonal.location,
       });
     }
-  }, [user]);
+  }, [userPersonal]);
 
   return (
     <div className={styles.container}>
@@ -66,7 +65,7 @@ export const UserPage: React.FC = () => {
         <div className={styles.avatarContainer}>
           <img
             className={styles.avatar}
-            src={`${import.meta.env.VITE_IMG}${user?.avatar}`}
+            src={`${import.meta.env.VITE_IMG}${userPersonal?.avatar}`}
           />
           <div className={styles.settingIconImg}>
             <button className={styles.buttonImg}>
@@ -75,8 +74,9 @@ export const UserPage: React.FC = () => {
           </div>
         </div>
         <div>
-          {user && user.surname} {user && user.firstname}{" "}
-          {user && user.patronymic}
+          {userPersonal && userPersonal.surname}{" "}
+          {userPersonal && userPersonal.firstname}{" "}
+          {userPersonal && userPersonal.patronymic}
         </div>
       </div>
 

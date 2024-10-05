@@ -18,6 +18,7 @@ import { message } from "antd";
 type UserState = {
   user: User | null;
   users: User[];
+  userPersonal: User | null;
   loading: boolean;
   error: string | null;
   points: number;
@@ -28,6 +29,7 @@ type UserState = {
 const initialState: UserState = {
   user: null,
   users: [],
+  userPersonal: null,
   loading: false,
   error: null,
   points: 0,
@@ -152,7 +154,7 @@ const userSlice = createSlice({
       })
       .addCase(getUserById.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload.user;
+        state.userPersonal = action.payload.user;
         state.error = null;
       })
       .addCase(getUserById.rejected, (state) => {
