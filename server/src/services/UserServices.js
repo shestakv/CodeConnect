@@ -48,10 +48,6 @@ class UserServices {
       });
       const user = await User.findByPk(userId);
 
-      // console.log(user, 111111111112222222222222);
-
-      //  await user.update(updateData)
-
       return user ? user.get() : null;
     } catch (error) {
       throw new Error(error);

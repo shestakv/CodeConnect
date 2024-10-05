@@ -11,22 +11,22 @@ exports.updateUser = [
       console.log(req.body);
 
       // const pathImages = await processImages(req.file.buffer);
-      const updatedUser = await UserServices.updateUser(
+      const user = await UserServices.updateUser(
         res.locals.user.id,
         // pathImages,
         // id,
         userData
       );
-      if (!updatedUser) {
+      if (!user) {
         res.status(404).json({ message: "Пользователь не найден" });
       }
 
-      delete updatedUser.password;
+      delete user.password;
 
-      res.status(200).json({ updatedUser });
+      res.status(200).json({ user });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
   },
-  verifyAccessToken
+  verifyAccessToken,
 ];

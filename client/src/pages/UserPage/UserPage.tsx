@@ -6,11 +6,14 @@ import {
   updateUserOnServer,
 } from "@/entities/user/model/userThunks";
 import { FIELDS_MAP, type FormDataType, RUSSIAN_FIELDS } from "@/entities/user";
+import { setAccessToken } from "@/shared/lib/axiosInstance";
+import { log } from "console";
 
 
 export const UserPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.user);
+  
 
   const [isEditing, setIsEditing] = useState<{ [key: string]: boolean }>({});
   const [formData, setFormData] = useState<FormDataType>({
@@ -52,11 +55,16 @@ export const UserPage: React.FC = () => {
     };
 
 useEffect(() => {
-  const userData = {
-    formData,
-  };
-  dispatch(updateUserOnServer({ userData }));
-}, [dispatch]);
+  if (user) {
+    setFormData({
+      workExperience: user.workExperience,
+      education: user.education,
+      bio: user.bio,
+      phone: user.phone,
+      location: user.location,
+    });
+  }
+}, [user]);
 
 
   return (

@@ -55,7 +55,6 @@ export class UserServices {
   }
 
 static async updateUser(userData: Object) {
-  
   const response = await axiosInstance.put(`/user`, {userData});
   return response.data;
 }

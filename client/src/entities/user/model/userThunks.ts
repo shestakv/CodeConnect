@@ -88,11 +88,11 @@ export const logout = createAsyncThunk<
 export const updateUserOnServer = createAsyncThunk<AuthResponse, {userData: any}, { rejectValue: RejectValue }>("user/updateUserOnServer", async ({userData}, { rejectWithValue }) => {
   try {
     
-    const response = await axiosInstance.put('/user', userData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
+    // const response = await axiosInstance.put('/user', userData, {
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data',
+    //     },
+    //   })
       
     return await UserServices.updateUser(    
       userData);

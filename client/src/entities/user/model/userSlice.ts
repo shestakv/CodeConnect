@@ -13,6 +13,7 @@ type UserState = {
   loading: boolean;
   error: string | null;
   points: number;
+  updatedUser: User | null;
   answeredQuestions: number[]; // массив ID отвеченных вопросов
 };
 
@@ -112,7 +113,7 @@ const userSlice = createSlice({
 
       //!----------------------------------------------------------------
       .addCase(updateUserOnServer.fulfilled, (state, action) => {
-        state.user = { ...state.user, ...action.payload.updatedUser };
+        state.user =  action.payload.user ;
       })
   },
 });
