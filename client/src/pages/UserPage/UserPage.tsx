@@ -3,28 +3,27 @@ import styles from "./UserPage.module.css";
 import { SettingOutlined } from "@ant-design/icons";
 import { useEffect, useRef, useState } from "react";
 import {
+  getUserById,
   updateUserOnServer,
 } from "@/entities/user/model/userThunks";
 import { FIELDS_MAP, type FormDataType, RUSSIAN_FIELDS } from "@/entities/user";
-import { setAccessToken } from "@/shared/lib/axiosInstance";
-import { log } from "console";
-
+import { useParams } from "react-router-dom";
 
 export const UserPage: React.FC = () => {
   const dispatch = useAppDispatch();
+  const { userPersonal } = useAppSelector((state) => state.userPersonal);
   const { user } = useAppSelector((state) => state.user);
-  
+  const { id } = useParams();
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const [isEditing, setIsEditing] = useState<{ [key: string]: boolean }>({});
   const [formData, setFormData] = useState<FormDataType>({
-    workExperience: user?.workExperience,
-    education: user?.education,
-    bio: user?.bio,
-    phone: user?.phone,
-    location: user?.location,
+    workExperience: '',
+    education: '',
+    bio: '',
+    phone: '',
+    location: '',
   });
-
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleEditClick = (field: string) => {
     setIsEditing((prev) => ({ ...prev, [field]: !prev[field] }));
@@ -37,35 +36,48 @@ export const UserPage: React.FC = () => {
     setFormData({ ...formData, [field]: e.target.value });
   };
 
-  const handleSave = async (field: keyof FormDataType) => {
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append("avatar", file);
+
+      dispatch(updateUserOnServer(formData));
+    }
+  };
+
+  const handleSave = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: keyof FormDataType
+  ) => {
+    e.preventDefault();
     const userData = { [field]: formData[field] };
-    await dispatch(updateUserOnServer({ userData })); // Используем thunk для обновления
-    await dispatch(formData);
+    const updatedUser = await dispatch(updateUserOnServer({ userData }));
+    
+    if (updatedUser.meta.requestStatus === "fulfilled") {
+      dispatch(getUserById({ id: +id }));
+    }
     setIsEditing((prev) => ({ ...prev, [field]: false }));
   };
 
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      const file = event.target.files?.[0];
-      if (file) {
-        const formData = new FormData();
-        formData.append("avatar", file);
-        
-        dispatch(updateUserOnServer(formData));
-      }
-    };
+  useEffect(() => {
+    if (id && (!userPersonal || userPersonal.id !== +id)) {
+      dispatch(getUserById({ id: +id }));
+    }
+  }, [id, dispatch, userPersonal]);
 
-useEffect(() => {
-  if (user) {
-    setFormData({
-      workExperience: user.workExperience,
-      education: user.education,
-      bio: user.bio,
-      phone: user.phone,
-      location: user.location,
-    });
-  }
-}, [user]);
-
+  useEffect(() => {
+    
+    if (userPersonal) {
+      setFormData({
+        workExperience: userPersonal.workExperience || '',
+        education: userPersonal.education || '',
+        bio: userPersonal.bio || '',
+        phone: userPersonal.phone || '',
+        location: userPersonal.location || '',
+      });
+    }
+  }, [userPersonal]);
 
   return (
     <div className={styles.container}>
@@ -73,18 +85,33 @@ useEffect(() => {
         <div className={styles.avatarContainer}>
           <img
             className={styles.avatar}
-            src={`${import.meta.env.VITE_IMG}${user?.avatar}`}
+            src={`${import.meta.env.VITE_IMG}${userPersonal?.avatar}`}
           />
-          <div className={styles.settingIconImg}>
-            <button className={styles.buttonImg} onClick={() => fileInputRef.current?.click()} >
-              <SettingOutlined />
-            </button>
-            <input type="file" accept="image/*" style={{ display: "none" }} ref={fileInputRef} onChange={handleFileChange} />
-          </div>
+
+          {user?.id === userPersonal?.id ? (
+            <div className={styles.settingIconImg}>
+              <button
+                className={styles.buttonImg}
+                onClick={() => fileInputRef.current?.click()}
+              >
+                <SettingOutlined />
+              </button>
+              <input
+                type="file"
+                accept="image/*"
+                style={{ display: "none" }}
+                ref={fileInputRef}
+                onChange={handleFileChange}
+              />
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
         <div>
-          {user && user.surname} {user && user.firstname}{" "}
-          {user && user.patronymic}
+          {userPersonal && userPersonal.surname}{" "}
+          {userPersonal && userPersonal.firstname}{" "}
+          {userPersonal && userPersonal.patronymic}
         </div>
       </div>
 
@@ -100,18 +127,23 @@ useEffect(() => {
                     value={formData[field]}
                     onChange={(e) => handleInputChange(e, field)}
                   />
-                  <button onClick={() => handleSave(field)}>Сохранить</button>
+                  <button onClick={(e) => handleSave(e,field)}>Сохранить</button>
                 </>
               ) : (
                 <h3 className={styles.secondTitle}>{formData[field]}</h3>
               )}
             </div>
-            <button
-              className={styles.button}
-              onClick={() => handleEditClick(field)}
-            >
-              <SettingOutlined className={styles.settingIcon} />
-            </button>
+
+            {user?.id === userPersonal?.id ? (
+              <button
+                className={styles.button}
+                onClick={() => handleEditClick(field)}
+              >
+                <SettingOutlined className={styles.settingIcon} />
+              </button>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       ))}

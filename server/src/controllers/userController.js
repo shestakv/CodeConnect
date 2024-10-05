@@ -2,8 +2,7 @@ const verifyAccessToken = require("../middleware/verifyAccessToken");
 const verifyRefreshToken = require("../middleware/verifyRefreshToken");
 const UserServices = require("../services/UserServices");
 
-exports.updateUser = [
-  async (req, res) => {
+exports.updateUser = async (req, res) => {
     try {
       // const userId = req.user.userId;
       // const { id } = res.locals.user;
@@ -28,5 +27,26 @@ exports.updateUser = [
       res.status(500).json({ error: error.message });
     }
   },
-  verifyAccessToken,
-];
+  
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await UserServices.getAllUsers(req.query);
+    res.status(200).json({ message: "success", users });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  } 
+}
+
+exports.getUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await UserServices.getUserById(id);
+    if (user) {
+      res.status(200).json({ message: "success", user });
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
