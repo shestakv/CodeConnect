@@ -21,6 +21,7 @@ export class UserServices {
       email,
       password,
     });
+    
     setAccessToken(response.data.accessToken);
     return response.data;
   }
@@ -51,6 +52,7 @@ export class UserServices {
     await axiosInstance.delete("/auth/logout");
     setAccessToken("");
   }
+
 
   static async updateUser(userData: Object) {
     const response = await axiosInstance.put(`/users`, { userData });

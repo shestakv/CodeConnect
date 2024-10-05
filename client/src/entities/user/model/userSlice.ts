@@ -10,6 +10,7 @@ import {
   getUserById,
 } from "./userThunks";
 import { message } from "antd";
+import { fetchUser } from './fetchUser';
 
 //FIX Что такое слайс?
 //? Слайс в Redux Toolkit — это объект, который объединяет состояние, редукторы и действия, относящиеся к одной функциональной области приложения (например, юзеры).
@@ -22,6 +23,7 @@ type UserState = {
   loading: boolean;
   error: string | null;
   points: number;
+  updatedUser: User | null;
   answeredQuestions: number[]; // массив ID отвеченных вопросов
 };
 
@@ -121,13 +123,14 @@ const userSlice = createSlice({
         state.error = action.payload?.message || "Failed to logout";
         message.error(action.payload?.message || "Failed to logout");
       })
+
       //!--------------------------updateUser----------------------------
       .addCase(updateUserOnServer.pending, (state) => {
         state.loading = true;
       })
       .addCase(updateUserOnServer.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = { ...state.user, ...action.payload };
+        state.user = action.payload.user;
         state.error = null;
       })
       .addCase(updateUserOnServer.rejected, (state, action) => {

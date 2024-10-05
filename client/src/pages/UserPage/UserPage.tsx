@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import styles from "./UserPage.module.css";
 import { SettingOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   getUserById,
   updateUserOnServer,
@@ -14,14 +14,15 @@ export const UserPage: React.FC = () => {
   const { userPersonal } = useAppSelector((state) => state.userPersonal);
   const { user } = useAppSelector((state) => state.user);
   const { id } = useParams();
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const [isEditing, setIsEditing] = useState<{ [key: string]: boolean }>({});
   const [formData, setFormData] = useState<FormDataType>({
-    workExperience: userPersonal?.workExperience,
-    education: userPersonal?.education,
-    bio: userPersonal?.bio,
-    phone: userPersonal?.phone,
-    location: userPersonal?.location,
+    workExperience: '',
+    education: '',
+    bio: '',
+    phone: '',
+    location: '',
   });
 
   const handleEditClick = (field: string) => {
@@ -35,9 +36,27 @@ export const UserPage: React.FC = () => {
     setFormData({ ...formData, [field]: e.target.value });
   };
 
-  const handleSave = (field: keyof FormDataType) => {
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append("avatar", file);
+
+      dispatch(updateUserOnServer(formData));
+    }
+  };
+
+  const handleSave = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: keyof FormDataType
+  ) => {
+    e.preventDefault();
     const userData = { [field]: formData[field] };
-    dispatch(updateUserOnServer({ userData }));
+    const updatedUser = await dispatch(updateUserOnServer({ userData }));
+    
+    if (updatedUser.meta.requestStatus === "fulfilled") {
+      dispatch(getUserById({ id: +id }));
+    }
     setIsEditing((prev) => ({ ...prev, [field]: false }));
   };
 
@@ -45,16 +64,17 @@ export const UserPage: React.FC = () => {
     if (id && (!userPersonal || userPersonal.id !== +id)) {
       dispatch(getUserById({ id: +id }));
     }
-  }, [id, dispatch, userPersonal, user]);
+  }, [id, dispatch, userPersonal]);
 
   useEffect(() => {
+    
     if (userPersonal) {
       setFormData({
-        workExperience: userPersonal.workExperience,
-        education: userPersonal.education,
-        bio: userPersonal.bio,
-        phone: userPersonal.phone,
-        location: userPersonal.location,
+        workExperience: userPersonal.workExperience || '',
+        education: userPersonal.education || '',
+        bio: userPersonal.bio || '',
+        phone: userPersonal.phone || '',
+        location: userPersonal.location || '',
       });
     }
   }, [userPersonal]);
@@ -67,11 +87,22 @@ export const UserPage: React.FC = () => {
             className={styles.avatar}
             src={`${import.meta.env.VITE_IMG}${userPersonal?.avatar}`}
           />
+
           {user?.id === userPersonal?.id ? (
             <div className={styles.settingIconImg}>
-              <button className={styles.buttonImg}>
+              <button
+                className={styles.buttonImg}
+                onClick={() => fileInputRef.current?.click()}
+              >
                 <SettingOutlined />
               </button>
+              <input
+                type="file"
+                accept="image/*"
+                style={{ display: "none" }}
+                ref={fileInputRef}
+                onChange={handleFileChange}
+              />
             </div>
           ) : (
             <></>
@@ -96,12 +127,13 @@ export const UserPage: React.FC = () => {
                     value={formData[field]}
                     onChange={(e) => handleInputChange(e, field)}
                   />
-                  <button onClick={() => handleSave(field)}>Сохранить</button>
+                  <button onClick={(e) => handleSave(e,field)}>Сохранить</button>
                 </>
               ) : (
                 <h3 className={styles.secondTitle}>{formData[field]}</h3>
               )}
             </div>
+
             {user?.id === userPersonal?.id ? (
               <button
                 className={styles.button}
