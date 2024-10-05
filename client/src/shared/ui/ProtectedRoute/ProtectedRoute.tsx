@@ -13,9 +13,9 @@ export const ProtectedRoute: React.FC<{ children: JSX.Element }> = ({
     return <Loader />;
   }
 
-  if (!user) {
-    return <Navigate to={ROUTES.SIGNIN} />;
-  }
+  // if (!user) {
+  //   return <Navigate to={ROUTES.SIGNIN} />;
+  // }
 
   return children;
 };

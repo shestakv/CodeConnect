@@ -45,7 +45,7 @@ export const UserPage: React.FC = () => {
     if (id && (!userPersonal || userPersonal.id !== +id)) {
       dispatch(getUserById({ id: +id }));
     }
-  }, [id, dispatch, userPersonal]);
+  }, [id, dispatch, userPersonal, user]);
 
   useEffect(() => {
     if (userPersonal) {
@@ -67,11 +67,15 @@ export const UserPage: React.FC = () => {
             className={styles.avatar}
             src={`${import.meta.env.VITE_IMG}${userPersonal?.avatar}`}
           />
-          <div className={styles.settingIconImg}>
-            <button className={styles.buttonImg}>
-              <SettingOutlined />
-            </button>
-          </div>
+          {user?.id === userPersonal?.id ? (
+            <div className={styles.settingIconImg}>
+              <button className={styles.buttonImg}>
+                <SettingOutlined />
+              </button>
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
         <div>
           {userPersonal && userPersonal.surname}{" "}
@@ -98,12 +102,16 @@ export const UserPage: React.FC = () => {
                 <h3 className={styles.secondTitle}>{formData[field]}</h3>
               )}
             </div>
-            <button
-              className={styles.button}
-              onClick={() => handleEditClick(field)}
-            >
-              <SettingOutlined className={styles.settingIcon} />
-            </button>
+            {user?.id === userPersonal?.id ? (
+              <button
+                className={styles.button}
+                onClick={() => handleEditClick(field)}
+              >
+                <SettingOutlined className={styles.settingIcon} />
+              </button>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       ))}
