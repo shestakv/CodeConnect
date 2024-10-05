@@ -43,22 +43,39 @@ class UserServices {
 
   static async updateUser(userId, updateData) {
     try {
-
       let user = await User.findOne({
         where: { id: userId },
-      })
+      });
 
-     await user.update(updateData)
-    
+      await user.update(updateData);
+
       return user ? user.get() : null;
-      
+
       // const [updatedRowsCount, [updateUser]] = await User.update(updateData, {
       //   where: { id: userId },
       //   returning: true,})
       //   return updatedRowsCount > 0 ? updateUser.get() : null;
-      } catch (error) {
-        throw new Error(error);
-      }
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  static async getAllUsers() {
+    try {
+      const users = await User.findAll();
+      return users.map((user) => user.get());
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  static async getUserById(id) {
+    try {
+      const user = await User.findOne({ where: { id } });
+      return user ? user.get() : null;
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }
 
