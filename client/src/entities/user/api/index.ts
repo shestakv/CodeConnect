@@ -1,6 +1,5 @@
 import { axiosInstance, setAccessToken } from "@/shared/lib/axiosInstance";
-import { User } from "../model";
-import axios from "axios";
+import { User, UserResponse, UsersResponse } from "../model";
 
 export class UserServices {
   // * Метод для получения текущего пользователя
@@ -28,20 +27,20 @@ export class UserServices {
 
   // * Метод для регистрации пользователя
   static async signUp(
-  firstname: string,
-  surname: string,
-  patronymic: string,
-  phone: bigint,
-  email: string,
-  password: string,
+    firstname: string,
+    surname: string,
+    patronymic: string,
+    phone: bigint,
+    email: string,
+    password: string
   ): Promise<{ accessToken: string; user: User }> {
     const response = await axiosInstance.post("/auth/signUp", {
-  firstname,
-  surname,
-  patronymic,
-  phone,
-  email,
-  password,
+      firstname,
+      surname,
+      patronymic,
+      phone,
+      email,
+      password,
     });
     setAccessToken(response.data.accessToken);
     return response.data;
@@ -53,9 +52,18 @@ export class UserServices {
     setAccessToken("");
   }
 
-static async updateUser(userData: Object) {
-  
-  const response = await axiosInstance.put(`/user`, {userData});
-  return response.data;
-}
+  static async updateUser(userData: Object) {
+    const response = await axiosInstance.put(`/users`, { userData });
+    return response.data;
+  }
+
+  static async getAllUsers(): Promise<UsersResponse> {
+    const response = await axiosInstance.get("/users");
+    return response.data;
+  }
+
+  static async getUserById(id: number): Promise<UserResponse> {
+    const response = await axiosInstance.get(`/users/${id}`);
+    return response.data;
+  }
 }

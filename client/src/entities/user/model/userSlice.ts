@@ -1,6 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from ".";
-import { refreshAccessToken, signUp, logout, signIn, updateUserOnServer } from "./userThunks";
+import {
+  refreshAccessToken,
+  signUp,
+  logout,
+  signIn,
+  updateUserOnServer,
+  getAllUsers,
+  getUserById,
+} from "./userThunks";
 import { message } from "antd";
 
 //FIX Что такое слайс?
@@ -9,6 +17,8 @@ import { message } from "antd";
 //? Определение типа состояния юзера:
 type UserState = {
   user: User | null;
+  users: User[];
+  userPersonal: User | null;
   loading: boolean;
   error: string | null;
   points: number;
@@ -18,6 +28,8 @@ type UserState = {
 //? Инициализация начального состояния юзера:
 const initialState: UserState = {
   user: null,
+  users: [],
+  userPersonal: null,
   loading: false,
   error: null,
   points: 0,
@@ -53,6 +65,7 @@ const userSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
+      //!----------------------refreshAccessToken------------------------
       .addCase(refreshAccessToken.pending, (state) => {
         state.loading = true;
       })
@@ -64,7 +77,7 @@ const userSlice = createSlice({
       .addCase(refreshAccessToken.rejected, (state) => {
         state.loading = false;
       })
-      //!----------------------------------------------------------------
+      //!----------------------------signIn------------------------------
       .addCase(signIn.pending, (state) => {
         state.loading = true;
       })
@@ -79,7 +92,7 @@ const userSlice = createSlice({
         message.warning(action.payload?.message || "Failed to sign in");
       })
 
-      //!----------------------------------------------------------------
+      //!----------------------------signUp------------------------------
       .addCase(signUp.pending, (state) => {
         state.loading = true;
       })
@@ -94,7 +107,7 @@ const userSlice = createSlice({
         message.error(action.payload?.message || "Failed to sign up");
       })
 
-      //!----------------------------------------------------------------
+      //!---------------------------logout------------------------------
       .addCase(logout.pending, (state) => {
         state.loading = true;
       })
@@ -108,11 +121,45 @@ const userSlice = createSlice({
         state.error = action.payload?.message || "Failed to logout";
         message.error(action.payload?.message || "Failed to logout");
       })
-
-      //!----------------------------------------------------------------
-      .addCase(updateUserOnServer.fulfilled, (state, action) => {
-        state.user = { ...state.user, ...action.payload };
+      //!--------------------------updateUser----------------------------
+      .addCase(updateUserOnServer.pending, (state) => {
+        state.loading = true;
       })
+      .addCase(updateUserOnServer.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = { ...state.user, ...action.payload };
+        state.error = null;
+      })
+      .addCase(updateUserOnServer.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload?.message || "Failed to update user";
+        message.error(action.payload?.message || "Failed to update user");
+      })
+
+      //!--------------------------getAllUsers----------------------------
+      .addCase(getAllUsers.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getAllUsers.fulfilled, (state, action) => {
+        state.loading = false;
+        state.users = action.payload.users;
+        state.error = null;
+      })
+      .addCase(getAllUsers.rejected, (state) => {
+        state.loading = false;
+      })
+      //!--------------------------getUserById----------------------------
+      .addCase(getUserById.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getUserById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.userPersonal = action.payload.user;
+        state.error = null;
+      })
+      .addCase(getUserById.rejected, (state) => {
+        state.loading = false;
+      });
   },
 });
 

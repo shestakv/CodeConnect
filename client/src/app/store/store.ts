@@ -9,6 +9,8 @@ import { configureStore } from "@reduxjs/toolkit";
 const store = configureStore({
   reducer: {
     user: userReducer,
+    users: userReducer,
+    userPersonal: userReducer,
     company: companyReducer,
     stackUser: stackUserReducer,
   },

@@ -11,8 +11,6 @@ type Props = {
 const CompanyItem: React.FC<Props> = ({ company }) => {
     const dispatch = useAppDispatch();
     const { user } = useAppSelector((state) => state.user);
-    // console.log(user);
-    
 
     const handleDeleteCompany = () => {
         try {
