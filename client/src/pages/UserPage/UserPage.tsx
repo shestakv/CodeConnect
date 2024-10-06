@@ -4,6 +4,7 @@ import { SettingOutlined } from "@ant-design/icons";
 import { useEffect, useRef, useState } from "react";
 import {
   getUserById,
+  updateAvatarUserOnServer,
   updateUserOnServer,
 } from "@/entities/user/model/userThunks";
 import { FIELDS_MAP, type FormDataType, RUSSIAN_FIELDS } from "@/entities/user";
@@ -12,6 +13,7 @@ import { useParams } from "react-router-dom";
 export const UserPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { userPersonal } = useAppSelector((state) => state.userPersonal);
+  console.log(userPersonal,101010101001);
   const { user } = useAppSelector((state) => state.user);
   const { id } = useParams();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -23,6 +25,7 @@ export const UserPage: React.FC = () => {
     bio: '',
     phone: '',
     location: '',
+    avatar: '',
   });
 
   const handleEditClick = (field: string) => {
@@ -38,13 +41,16 @@ export const UserPage: React.FC = () => {
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
+    
     if (file) {
       const formData = new FormData();
       formData.append("avatar", file);
+      
 
-      dispatch(updateUserOnServer(formData));
+      dispatch(updateAvatarUserOnServer(formData));
     }
   };
+
 
   const handleSave = async (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -55,7 +61,7 @@ export const UserPage: React.FC = () => {
     const updatedUser = await dispatch(updateUserOnServer({ userData }));
     
     if (updatedUser.meta.requestStatus === "fulfilled") {
-      dispatch(getUserById({ id: +id }));
+      dispatch(getUserById({ id: +id! }));
     }
     setIsEditing((prev) => ({ ...prev, [field]: false }));
   };
@@ -64,17 +70,18 @@ export const UserPage: React.FC = () => {
     if (id && (!userPersonal || userPersonal.id !== +id)) {
       dispatch(getUserById({ id: +id }));
     }
-  }, [id, dispatch, userPersonal]);
+  }, [id, dispatch, userPersonal, setFormData]);
 
   useEffect(() => {
     
     if (userPersonal) {
       setFormData({
-        workExperience: userPersonal.workExperience || '',
-        education: userPersonal.education || '',
-        bio: userPersonal.bio || '',
-        phone: userPersonal.phone || '',
-        location: userPersonal.location || '',
+        workExperience: userPersonal.workExperience || "",
+        education: userPersonal.education || "",
+        bio: userPersonal.bio || "",
+        phone: userPersonal.phone || "",
+        location: userPersonal.location || "",
+        avatar: userPersonal.avatar || "",
       });
     }
   }, [userPersonal]);

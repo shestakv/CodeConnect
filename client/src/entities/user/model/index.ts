@@ -38,6 +38,7 @@ export type FormDataType = {
   bio: string | undefined;
   phone: string | undefined;
   location: string | undefined;
+  avatar: string | undefined;
 };
 
 export enum FIELDS {

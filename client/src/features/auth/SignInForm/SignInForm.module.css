@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formContainer {
+    display: flex;
+    align-items: center;
+    /* width: 50vw; */
+    /* margin-left: 50vw; */
+}
+
+.ant-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input {
+}
+

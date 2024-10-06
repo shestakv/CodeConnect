@@ -89,11 +89,12 @@ export const logout = createAsyncThunk<
   }
 });
 
-export const updateUserOnServer = createAsyncThunk<
+export const updateAvatarUserOnServer = createAsyncThunk<
   AuthResponse,
-  { userData: FormData },
+  { FormData: FormData;},
   { rejectValue: RejectValue }
->("user/updateUserOnServer", async ({ userData }, { rejectWithValue }) => {
+  
+  >("user/updateUserAvatarOnServer", async ( FormData, { rejectWithValue }) => {
   try {
     
     // await axiosInstance.put('/users', userData, {
@@ -102,7 +103,31 @@ export const updateUserOnServer = createAsyncThunk<
     //     },
     //   })
 
-    return await UserServices.updateUser(userData);
+    
+    return await UserServices.updateAvatarUser(FormData);
+  } catch (error) {
+    const err = error as AxiosError<{ message: string }>;
+    return rejectWithValue({
+      message: err.response?.data.message || err.message,
+    });
+  }
+})
+export const updateUserOnServer = createAsyncThunk<
+  AuthResponse,
+  { FormData: FormData;},
+  { rejectValue: RejectValue }
+  
+  >("user/updateUserOnServer", async ( FormData, { rejectWithValue }) => {
+  try {
+    
+    // await axiosInstance.put('/users', userData, {
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data',
+    //     },
+    //   })
+
+    
+    return await UserServices.updateUser(FormData);
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;
     return rejectWithValue({

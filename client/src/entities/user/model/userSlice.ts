@@ -8,6 +8,7 @@ import {
   updateUserOnServer,
   getAllUsers,
   getUserById,
+  updateAvatarUserOnServer,
 } from "./userThunks";
 import { message } from "antd";
 import { fetchUser } from './fetchUser';
@@ -134,6 +135,20 @@ const userSlice = createSlice({
         state.error = null;
       })
       .addCase(updateUserOnServer.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload?.message || "Failed to update user";
+        message.error(action.payload?.message || "Failed to update user");
+      })
+      //!--------------------------updateAvatarUser----------------------------
+      .addCase(updateAvatarUserOnServer.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(updateAvatarUserOnServer.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload.user;
+        state.error = null;
+      })
+      .addCase(updateAvatarUserOnServer.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload?.message || "Failed to update user";
         message.error(action.payload?.message || "Failed to update user");

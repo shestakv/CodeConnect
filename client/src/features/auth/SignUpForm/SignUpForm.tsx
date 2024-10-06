@@ -14,6 +14,7 @@ import {
   UnlockOutlined,
 } from "@ant-design/icons";
 import { Option } from "antd/es/mentions";
+import styles from "./SignUpForm.module.css";
 
 type SignUpFormData = {
   firstname: string;
@@ -48,111 +49,118 @@ export const SignUpForm: React.FC = () => {
       </Form.Item>
     );
   return (
-    <Form
-      name="basic"
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
-      style={{ maxWidth: 600 }}
-      initialValues={{ remember: true }}
-      onFinish={onFinish}
-      autoComplete="off"
-    >
-      <Form.Item<SignUpFormData>
-        name="firstname"
-        hasFeedback
-        validateDebounce={800}
-        rules={[
-          { required: true, message: "Введите Имя!" },
-          { type: "string", message: "Введен некорректное Имя!" },
-        ]}
-      >
-        <Input prefix={<UserOutlined />} placeholder="Введите Имя" />
-      </Form.Item>
-      <Form.Item<SignUpFormData>
-        name="surname"
-        hasFeedback
-        validateDebounce={800}
-        rules={[
-          { required: true, message: "Введите Фамилию!" },
-          { type: "string", message: "Введен некорректное Имя!" },
-        ]}
-      >
-        <Input prefix={<UserOutlined />} placeholder="Введите Фамилию" />
-      </Form.Item>
-      <Form.Item<SignUpFormData>
-        name="patronymic"
-        hasFeedback
-        validateDebounce={800}
-        rules={[{ required: true, message: "Введите Отчество!" }]}
-      >
-        <Input prefix={<UserOutlined />} placeholder="Введите Отчество" />
-      </Form.Item>
+    <div className={styles.container}>
+      <div className={styles.formContainer}>
+        <Form
+          name="basic"
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 16 }}
+          style={{ maxWidth: 600 }}
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+          autoComplete="off"
+        >
+          <Form.Item<SignUpFormData>
+            name="firstname"
+            hasFeedback
+            validateDebounce={800}
+            rules={[
+              { required: true, message: "Введите Имя!" },
+              { type: "string", message: "Введен некорректное Имя!" },
+            ]}
+          >
+            <Input prefix={<UserOutlined />} placeholder="Введите Имя" />
+          </Form.Item>
+          <Form.Item<SignUpFormData>
+            name="surname"
+            hasFeedback
+            validateDebounce={800}
+            rules={[
+              { required: true, message: "Введите Фамилию!" },
+              { type: "string", message: "Введен некорректное Имя!" },
+            ]}
+          >
+            <Input prefix={<UserOutlined />} placeholder="Введите Фамилию" />
+          </Form.Item>
+          <Form.Item<SignUpFormData>
+            name="patronymic"
+            hasFeedback
+            validateDebounce={800}
+            rules={[{ required: true, message: "Введите Отчество!" }]}
+          >
+            <Input prefix={<UserOutlined />} placeholder="Введите Отчество" />
+          </Form.Item>
 
-      <Form.Item<SignUpFormData>
-        name="phone"
-        hasFeedback
-        validateDebounce={800}
-        rules={[{ required: true, message: "Введите номер телефона!" }]}
-      >
-        <Input
-          addonBefore={prefixSelector}
-          style={{ width: "100%" }}
-          // prefix={<PhoneFilled />}
-          placeholder="Введите Телефон"
-        />
-      </Form.Item>
+          <Form.Item<SignUpFormData>
+            name="phone"
+            hasFeedback
+            validateDebounce={800}
+            rules={[{ required: true, message: "Введите номер телефона!" }]}
+          >
+            <Input
+              addonBefore={prefixSelector}
+              style={{ width: "100%" }}
+              // prefix={<PhoneFilled />}
+              placeholder="Введите Телефон"
+            />
+          </Form.Item>
 
-      <Form.Item<SignUpFormData>
-        name="email"
-        hasFeedback
-        validateDebounce={800}
-        rules={[
-          { required: true, message: "Введите почту!" },
-          {
-            type: "email",
-            message:
-              "Введенный адрес электронной почты не является действительным!",
-          },
-        ]}
-      >
-        <Input prefix={<MailOutlined />} placeholder="Введите Почту" />
-      </Form.Item>
-      <Form.Item<SignUpFormData>
-        name="password"
-        hasFeedback
-        validateDebounce={800}
-        rules={[{ required: true, message: "Введите Пароль!" }]}
-      >
-        <Input.Password prefix={<LockFilled />} placeholder="Введите Пароль" />
-      </Form.Item>
-      <Form.Item<SignUpFormData>
-        name="confirmPassword"
-        hasFeedback
-        validateDebounce={800}
-        rules={[
-          { required: true, message: "Повторите Пароль!" },
-          ({ getFieldValue }) => ({
-            validator(_, value) {
-              if (!value || getFieldValue("password") === value) {
-                return Promise.resolve();
-              }
-              return Promise.reject(new Error("Пароли не совпадают!"));
-            },
-          }),
-        ]}
-      >
-        <Input.Password
-          prefix={<UnlockOutlined />}
-          type="password"
-          placeholder="Повторите Пароль"
-        />
-      </Form.Item>
+          <Form.Item<SignUpFormData>
+            name="email"
+            hasFeedback
+            validateDebounce={800}
+            rules={[
+              { required: true, message: "Введите почту!" },
+              {
+                type: "email",
+                message:
+                  "Введенный адрес электронной почты не является действительным!",
+              },
+            ]}
+          >
+            <Input prefix={<MailOutlined />} placeholder="Введите Почту" />
+          </Form.Item>
+          <Form.Item<SignUpFormData>
+            name="password"
+            hasFeedback
+            validateDebounce={800}
+            rules={[{ required: true, message: "Введите Пароль!" }]}
+          >
+            <Input.Password
+              prefix={<LockFilled />}
+              placeholder="Введите Пароль"
+            />
+          </Form.Item>
+          <Form.Item<SignUpFormData>
+            name="confirmPassword"
+            hasFeedback
+            validateDebounce={800}
+            rules={[
+              { required: true, message: "Повторите Пароль!" },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue("password") === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error("Пароли не совпадают!"));
+                },
+              }),
+            ]}
+          >
+            <Input.Password
+              prefix={<UnlockOutlined />}
+              type="password"
+              placeholder="Повторите Пароль"
+            />
+          </Form.Item>
 
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit">
-          Войти
-        </Button>
-      </Form.Item>
-    </Form>
+          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+            <Button className={styles.button} type="primary" htmlType="submit">
+              Войти
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
+    </div>
   );
 };
