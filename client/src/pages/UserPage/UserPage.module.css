@@ -7,14 +7,27 @@
 }
 
 .button {
-    border: #ffffff00;
-    background-color: #ffffff00;
+    width: 40px;
+    /* Увеличиваем ширину кнопки */
+    height: 40px;
+    /* Установите высоту, чтобы кнопка была более заметной */
+    border: none;
+    /* Убираем ненужную границу */
+    background-color: transparent;
+    /* Прозрачный фон */
     font-size: 20px;
-    align-items: start;
+    display: flex;
+    /* Для центрирования содержимого */
+    justify-content: center;
+    /* Центрируем содержимое */
+    align-items: center;
+    /* Центрируем содержимое */
+    transition: transform 0.1s ease;
+    /* Плавный переход */
 }
 
 .button:active {
-    transform: scale(0.9);
+    transform: scale(0.99);
 }
 
 .buttonImg:active {
@@ -34,6 +47,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .secondTitle {
@@ -43,12 +57,16 @@
 
 .settingIcon {
     opacity: 0;
-    /* Скрываем элемент по умолчанию */
-    font-size: 20px;
-    margin: 15px;
-    align-items: start;
-    transition: opacity 0.3s ease;
-    /* Плавный переход */
+        /* Скрываем элемент по умолчанию */
+        font-size: 20px;
+        position: absolute;
+        /* Устанавливаем абсолютное позиционирование */
+        top:40px;
+        /* Отступ от верхнего края */
+        right: 15px;
+        /* Отступ от правого края */
+        transition: opacity 0.35s ease;
+        /* Плавный переход */
 }
 
 .settingIconImg {
@@ -71,16 +89,9 @@
 
 .avatarContainer {
     position: relative;
-}
-
-.settingIcon {
-    margin-left: 10px;
-    /* Отступ между текстом и иконкой */
-}
-
-.avatarContainer {
     display: flex;
 }
+
 
 .avatar {
     position: relative;
@@ -133,4 +144,23 @@
 .divider {
     display: flex;
     flex-direction: column;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Устанавливаем центрирование */
+    align-items: center;
+    /* Устанавливаем центрирование */
+    width: 20px;
+    height: 1px;
+    /* Можно увеличить ширину, если нужно */
+}
+
+.secondButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
 }
