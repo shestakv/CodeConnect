@@ -31,6 +31,7 @@ export const SignInForm: React.FC = () => {
   };
   return (
     <div className={styles.container}>
+      <h1 className={styles.title}>Авторизация</h1>
       <div className={styles.formContainer}>
         <Form
           name="basic"
