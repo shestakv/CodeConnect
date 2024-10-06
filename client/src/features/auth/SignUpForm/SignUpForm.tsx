@@ -1,6 +1,6 @@
 import React from "react";
 import type { FormProps } from "antd";
-import { Button, Form, Input, InputNumber, Select } from "antd";
+import { Button, Flex, Form, Input, InputNumber, Select } from "antd";
 import { useAppDispatch } from "@/shared/hooks/reduxHooks";
 import { useNavigate } from "react-router-dom";
 import { signUp } from "@/entities/user";
@@ -41,15 +41,16 @@ export const SignUpForm: React.FC = () => {
     }
   };
 
-    const prefixSelector = (
-      <Form.Item name="prefix" noStyle>
-        <Select defaultValue={"+7"} style={{ width: 70 }}>
-          <Option value="+7">+7</Option>
-        </Select>
-      </Form.Item>
-    );
+  const prefixSelector = (
+    <Form.Item name="prefix" noStyle>
+      <Select defaultValue={"+7"} style={{ width: 70 }}>
+        <Option value="+7">+7</Option>
+      </Select>
+    </Form.Item>
+  );
   return (
     <div className={styles.container}>
+      <h1 className={styles.title}>Регистрация</h1>
       <div className={styles.formContainer}>
         <Form
           name="basic"
@@ -68,6 +69,7 @@ export const SignUpForm: React.FC = () => {
               { required: true, message: "Введите Имя!" },
               { type: "string", message: "Введен некорректное Имя!" },
             ]}
+            className={styles.input}
           >
             <Input prefix={<UserOutlined />} placeholder="Введите Имя" />
           </Form.Item>
