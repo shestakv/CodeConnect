@@ -15,7 +15,9 @@ module.exports = (sequelize, DataTypes) => {
         references: {
           model: "Users",
           key: "id",
-        }
+        },
+        onDelete: "cascade",
+        onUpdate: "cascade",
       },
       stackId: {
         allowNull: false,

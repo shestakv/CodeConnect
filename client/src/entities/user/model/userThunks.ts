@@ -123,7 +123,6 @@ export const getUserById = createAsyncThunk<
   { rejectValue: RejectValue }
 >("user/getUserById", async ({ id }, { rejectWithValue }) => {
   try {
-    console.log(id);
     return await UserServices.getUserById(id);
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;

@@ -1,7 +1,7 @@
 //? способ создания хранилища в Redux, который автоматически включает ряд полезных настроек
 import { userReducer } from "@/entities/user";
 import { companyReducer } from "@/entities/company";
-import { stackUserReducer } from "@/entities/stackUser";
+import { userStackReducer } from "@/entities/userStack";
 import { configureStore } from "@reduxjs/toolkit";
 
 //? редуктор пользователя из файла userSlice.ts. Редуктор отвечает за управление состоянием пользователя в приложении.
@@ -12,7 +12,7 @@ const store = configureStore({
     users: userReducer,
     userPersonal: userReducer,
     company: companyReducer,
-    stackUser: stackUserReducer,
+    userStacks: userStackReducer,
   },
 });
 

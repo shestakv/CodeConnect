@@ -1,16 +1,19 @@
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import styles from "./UserPage.module.css";
-import { SettingOutlined } from "@ant-design/icons";
+import { RightOutlined, SettingOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import {
   getUserById,
   updateUserOnServer,
 } from "@/entities/user/model/userThunks";
 import { FIELDS_MAP, type FormDataType, RUSSIAN_FIELDS } from "@/entities/user";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { getAllUserStacks } from "@/entities/userStack";
+import { Button } from "antd";
 
 export const UserPage: React.FC = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { userPersonal } = useAppSelector((state) => state.userPersonal);
   const { user } = useAppSelector((state) => state.user);
   const { id } = useParams();
@@ -58,6 +61,14 @@ export const UserPage: React.FC = () => {
       });
     }
   }, [userPersonal]);
+
+  const { userStacks } = useAppSelector((state) => state.userStacks);
+  useEffect(() => {
+    if (id) {
+      dispatch(getAllUserStacks({ userId: +id }));
+      console.log(userStacks);
+    }
+  }, [id, dispatch]);
 
   return (
     <div className={styles.container}>
@@ -115,6 +126,50 @@ export const UserPage: React.FC = () => {
           </div>
         </div>
       ))}
+
+      <div className={styles.secondContainer}>
+        <div className={styles.userStacks}>
+          <div className={styles.divider}>
+            <div className={styles.topContainer}>
+              <h3 className={styles.title}>Навыки:</h3>
+              {userStacks && userStacks.length > 0 ? (
+                <Button
+                  type="default"
+                  shape="round"
+                  onClick={() => navigate(`/users/userStacks/${id}`)}
+                >
+                  Подробнее
+                  <RightOutlined />
+                </Button>
+              ) : (
+                <></>
+              )}
+            </div>
+            <div className={styles.userStacksContainer}>
+              {userStacks && userStacks.length > 0 ? (
+                userStacks.map((userStack) => (
+                  <div key={userStack.id} className={styles.stackCard}>
+                    <div className={styles.stackCardContent}>
+                      <div className={styles.stackCardTitle}>
+                        {userStack.Stack.title}
+                      </div>
+                      <img
+                        src={`${import.meta.env.VITE_IMG}${
+                          userStack.Stack.image
+                        }`}
+                        alt="Stack Icon"
+                        className={styles.stackIcon}
+                      />
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <h3>Навыки не добавлены</h3>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

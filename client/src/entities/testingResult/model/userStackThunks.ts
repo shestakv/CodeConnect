@@ -1,19 +1,20 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
-import { StackUserService } from "../api";
-import { StackUserId, StackUserResponse } from ".";
+import { UserStackService } from "../api";
+import { UserStackId, UserStackResponse } from ".";
 
 type RejectValue = {
   message: string;
 };
 
-export const getAllStackUsers = createAsyncThunk<
-  StackUserResponse,
-  void,
+export const getAllUserStacks = createAsyncThunk<
+  UserStackResponse,
+  { userId: number },
   { rejectValue: RejectValue }
->("company/getAllStackUsers", async (_, { rejectWithValue }) => {
+>("company/getAllUserStacks", async ({ userId }, { rejectWithValue }) => {
   try {
-    return await StackUserService.getAllStackUsers();
+    return await UserStackService.getAllUserStacks(userId);
+  
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;
     return rejectWithValue({
@@ -22,23 +23,23 @@ export const getAllStackUsers = createAsyncThunk<
   }
 });
 
-export const getStackUserById = createAsyncThunk<
-  StackUserResponse,
-  { id: number },
-  { rejectValue: RejectValue }
->("company/getStackUserById", async ({ id }, { rejectWithValue }) => {
-  try {
-    return await StackUserService.getStackUserById(id);
-  } catch (error) {
-    const err = error as AxiosError<{ message: string }>;
-    return rejectWithValue({
-      message: err.response?.data.message || err.message,
-    });
-  }
-});
+// export const getUserStackById = createAsyncThunk<
+//   UserStackResponse,
+//   { id: number },
+//   { rejectValue: RejectValue }
+// >("company/getUserStackById", async ({ id }, { rejectWithValue }) => {
+//   try {
+//     return await UserStackService.getUserStackById(id);
+//   } catch (error) {
+//     const err = error as AxiosError<{ message: string }>;
+//     return rejectWithValue({
+//       message: err.response?.data.message || err.message,
+//     });
+//   }
+// });
 
-export const createStackUser = createAsyncThunk<
-  StackUserResponse,
+export const createUserStack = createAsyncThunk<
+  UserStackResponse,
   {
     userId: number;
     stackId: number;
@@ -46,10 +47,10 @@ export const createStackUser = createAsyncThunk<
   },
   { rejectValue: RejectValue }
 >(
-  "company/createStackUser",
+  "company/createUserStack",
   async ({ userId, stackId, grade }, { rejectWithValue }) => {
     try {
-      return await StackUserService.createStackUser(userId, stackId, grade);
+      return await UserStackService.createUserStack(userId, stackId, grade);
     } catch (error) {
       const err = error as AxiosError<{ message: string }>;
       return rejectWithValue({
@@ -59,8 +60,8 @@ export const createStackUser = createAsyncThunk<
   }
 );
 
-export const updateStackUser = createAsyncThunk<
-  StackUserResponse,
+export const updateUserStack = createAsyncThunk<
+  UserStackResponse,
   {
     id: number;
     userId: number;
@@ -69,10 +70,10 @@ export const updateStackUser = createAsyncThunk<
   },
   { rejectValue: RejectValue }
 >(
-  "company/updateStackUser",
+  "company/updateUserStack",
   async ({ id, userId, stackId, grade }, { rejectWithValue }) => {
     try {
-      return await StackUserService.updateStackUser(id, userId, stackId, grade);
+      return await UserStackService.updateUserStack(id, userId, stackId, grade);
     } catch (error) {
       const err = error as AxiosError<{ message: string }>;
       return rejectWithValue({
@@ -82,13 +83,13 @@ export const updateStackUser = createAsyncThunk<
   }
 );
 
-export const deleteStackUser = createAsyncThunk<
-  StackUserId,
+export const deleteUserStack = createAsyncThunk<
+  UserStackId,
   { id: number },
   { rejectValue: RejectValue }
->("company/deleteStackUser", async ({ id }, { rejectWithValue }) => {
+>("company/deleteUserStack", async ({ id }, { rejectWithValue }) => {
   try {
-    const deleteId = await StackUserService.deleteStackUser(id);
+    const deleteId = await UserStackService.deleteUserStack(id);
     return deleteId;
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;

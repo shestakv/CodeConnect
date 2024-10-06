@@ -1,4 +1,10 @@
-const { UserStack, TestingResult } = require("../../db/models");
+const {
+  UserStack,
+  TestingResult,
+  Stack,
+  StackTask,
+} = require("../../db/models");
+const user = require("../../db/models/user");
 
 class UserStackServices {
   static createUserStack = async ({ userId, stackId, grade } = {}) => {
@@ -18,33 +24,53 @@ class UserStackServices {
     try {
       const userStacks = await UserStack.findAll({
         where: { userId },
-        include: {
-          model: TestingResult,
-          attributes: [
-            "id",
-            "userId",
-            "stackId",
-            "quantityCorrect",
-            "quantityTrue",
-            "quantityFalse",
-            "currentStackId",
-          ],
-        },
+        include: [
+          {
+            model: Stack,
+            include: [
+              {
+                model: StackTask,
+                attributes: [
+                  "id",
+                  "description",
+                  "stackId",
+                  "answer1",
+                  "answer2",
+                  "answer3",
+                  "answer4",
+                ],
+              },
+              {
+                model: TestingResult,
+                attributes: [
+                  "id",
+                  "userId",
+                  "quantityCorrect",
+                  "quantityTrue",
+                  "quantityFalse",
+                  "currentStackTaskId",
+                ],
+              },
+            ],
+            attributes: ["id", "title", "image"],
+          },
+        ],
       });
+      console.log(userStacks.map((userStack) => userStack.get()));
       return userStacks ? userStacks.map((userStack) => userStack.get()) : null;
     } catch ({ message }) {
       console.log(message);
     }
   };
 
-  static getUserStackById = async (id) => {
-    try {
-      const userStack = await UserStack.findByPk(id);
-      return userStack ? userStack.get() : null;
-    } catch ({ message }) {
-      console.log(message);
-    }
-  };
+  // static getUserStackById = async (id) => {
+  //   try {
+  //     const userStack = await UserStack.findByPk(id);
+  //     return userStack ? userStack.get() : null;
+  //   } catch ({ message }) {
+  //     console.log(message);
+  //   }
+  // };
 
   static deleteUserStack = async (id, userId) => {
     try {

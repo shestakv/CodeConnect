@@ -5,6 +5,6 @@ export enum ROUTES {
   COMPANY = "/companies",
   USERS = "/users",
   USER_PERSONAL = "/users/:id",
-  USER_STACK = "/user/userStack/:id",
+  USER_STACKS = "/users/userStacks/:id",
   ERROR = "*",
 }

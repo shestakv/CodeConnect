@@ -16,6 +16,8 @@ module.exports = (sequelize, DataTypes) => {
           model: "Users",
           key: "id",
         },
+        onDelete: "cascade",
+        onUpdate: "cascade",
       },
       stackId: {
         allowNull: false,
@@ -24,6 +26,8 @@ module.exports = (sequelize, DataTypes) => {
           model: "Stacks",
           key: "id",
         },
+        onDelete: "cascade",
+        onUpdate: "cascade",
       },
       quantityCorrect: {
         type: DataTypes.INTEGER,
@@ -34,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
       quantityFalse: {
         type: DataTypes.INTEGER,
       },
-      currentStackId: {
+      currentStackTaskId: {
         type: DataTypes.INTEGER,
       },
     },
