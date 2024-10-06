@@ -6,6 +6,31 @@
     width: 100vw;
 }
 
+.button {
+    border: #ffffff00;
+    background-color: #ffffff00;
+    /* display: flex; */
+    font-size: 20px;
+    align-items: start;
+    
+}
+
+.button:active {
+    transform: scale(0.9);
+}
+
+.buttonImg:active {
+    transform: scale(0.9);
+}
+
+.buttonImg {
+    border: #ffffff00;
+    background-color: #ffffff00;
+    display: flex;
+    font-size: 30px;
+    align-items: start;
+}
+
 .secondContainer {
     display: flex;
     flex-direction: row;

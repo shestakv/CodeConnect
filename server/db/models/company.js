@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
       },
       logo: {
-        defaultValue: "/defAvatar.png",
+        defaultValue: "/images/defAvatar.png",
         type: DataTypes.TEXT,
       },
     },

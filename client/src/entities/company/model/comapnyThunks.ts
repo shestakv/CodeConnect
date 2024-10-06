@@ -54,7 +54,7 @@ type RejectValue = {
 
     export const updateCompany = createAsyncThunk<
     CompanyResponse,
-    { id: number; name: string; email: string; phone: string; description: string; logo: string },
+    { id: number ; name?: string; email?: string; phone?: string; description?: string; logo?: string },
     { rejectValue: RejectValue }
   >("company/updateCompany", async ({ id, name, email, phone, description, logo }, { rejectWithValue }) => {
     try {

@@ -50,7 +50,6 @@ const CompanyForm: React.FC = () => {
                     {isFormVisible ? "Скрыть" : "Создать компанию"}
                 </button>
             </div>
-
             <div className={`${styles.formContainer} ${isFormVisible ? styles.show : ''}`}>
                 <form onSubmit={handleSubmit} className={styles.form}>
                     <input

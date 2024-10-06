@@ -27,3 +27,45 @@
   font-weight: 600;
   /* z-index: 2; */
 }
+
+.modalButtons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.confirm {
+  padding: 15px 30px;
+  font-size: 18px;
+  background-color: #007BFF; /* Голубой цвет */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  flex: 1; /* Занимает равное пространство */
+  margin: 0 10px; /* Отступ между кнопками */
+}
+
+.confirm:hover {
+  background-color: #0056b3; /* Темно-голубой при наведении */
+}
+
+.cancel {
+  padding: 15px 30px;
+  font-size: 18px;
+  background-color: #dc3545; /* Красный цвет */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  flex: 1; /* Занимает равное пространство */
+  margin: 0 10px; /* Отступ между кнопками */
+}
+
+.cancel:hover {
+  background-color: #c82333; /* Темно-красный при наведении */
+}
+
