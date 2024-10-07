@@ -1,9 +1,9 @@
 import { Flex, Layout, Menu } from "antd";
 import style from "./NavBar.module.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
-import { logout } from "@/entities/user";
+import { logout, refreshAccessToken } from "@/entities/user";
 import { UserCardNavBar } from "@/entities/user/ui/UserCardNavBar/UserCardNavBar";
 import { ROUTES } from "@/app/router/routes";
 import { AntDesignOutlined } from "@ant-design/icons";
@@ -66,24 +66,24 @@ export const NavBar: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
+  
 
   const handleLogout = () => {
     dispatch(logout());
   };
+
   return (
     <ConfigProvider
-        button={{
-          className: styles.linearGradientButton,
-        }}
-      >
-    <Header className={style.header}>
-      
+      button={{
+        className: styles.linearGradientButton,
+      }}
+    >
+      <Header className={style.header}>
         <Menu
           className={style.menu}
           mode="horizontal"
           defaultSelectedKeys={["/"]}
         >
-
           <Menu.Item key="/">
             <Space>
               <Button shape="round" onClick={() => navigate("/")}>
@@ -109,7 +109,7 @@ export const NavBar: React.FC = () => {
               <Menu.Item key={ROUTES.USERS + `/${user.id}`}>
                 <Link to={ROUTES.USERS + `/${user.id}`}>
                   <UserCardNavBar
-                    avatar={`${import.meta.env.VITE_IMG}${user.avatar}`}
+                    avatar={`${import.meta.env.VITE_IMG}${user?.avatar}`}
                     firstname={user.firstname}
                     surname={user.surname}
                   />
@@ -138,8 +138,7 @@ export const NavBar: React.FC = () => {
             </>
           )}
         </Menu>
-    
-    </Header>
+      </Header>
     </ConfigProvider>
   );
 };

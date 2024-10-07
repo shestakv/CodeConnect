@@ -6,6 +6,7 @@ import { PublicRoute } from "@/shared/ui/PublicRoute";
 import { MainPage, SignInPage, SignUpPage, UserPage, UserStackPage } from "@/pages";
 import { ErrorPage } from "@/pages/ErrorPage";
 import { CompanyPage } from "@/pages/CompanyPage";
+import CompanyDetails from "@/widgets/CompanyDetails/CompanyDetails";
 import { UsersPage } from "@/pages/UsersPage";
 
 export const router = createBrowserRouter([
@@ -67,6 +68,15 @@ export const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+      {
+        path: `${ROUTES.COMPANY}/:id`,
+        element: (
+          <ProtectedRoute>
+            <CompanyDetails />
+          </ProtectedRoute>
+        ),
+      },
+      
       {
         path: ROUTES.ERROR,
         element: <ErrorPage />,

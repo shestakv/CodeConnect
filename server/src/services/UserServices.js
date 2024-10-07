@@ -43,14 +43,12 @@ class UserServices {
 
   static async updateUser(userId, updateData) {
     try {
-      let user = await User.findOne({
+      await User.update(updateData, {
         where: { id: userId },
       });
-
-      await user.update(updateData);
+      const user = await User.findByPk(userId);
 
       return user ? user.get() : null;
-
       // const [updatedRowsCount, [updateUser]] = await User.update(updateData, {
       //   where: { id: userId },
       //   returning: true,})

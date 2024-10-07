@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Company, { foreignKey: "userId" });
       this.hasMany(models.UserStack, { foreignKey: "userId" });
       this.hasMany(models.TestingResult, { foreignKey: "userId" });
+      this.hasMany(models.FavoriteCompany, { foreignKey: "userId", as: "favoriteCompanies" });
     }
   }
   User.init(

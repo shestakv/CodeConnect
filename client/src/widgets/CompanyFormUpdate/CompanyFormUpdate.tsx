@@ -1,10 +1,12 @@
 import { Company, updateCompany } from "@/entities/company"
 import { useAppDispatch } from "@/shared/hooks/reduxHooks";
-import { useState } from "react";
+import React, { Dispatch, useState } from "react";
 
 function CompanyFormUpdate({
+    setActive,
     company,
 }: {
+    setActive: Dispatch<React.SetStateAction<boolean>>;
     company: Company
 }): JSX.Element {
     const [name, setName] = useState(company.name);
@@ -18,6 +20,7 @@ function CompanyFormUpdate({
         e.preventDefault();
             try {
                 dispatch(updateCompany({ id: company.id, name, email, phone, description, logo }));
+                setActive(false);
             } catch (error) {
                 console.error("Error updating post:", error);
             }

@@ -1,0 +1,79 @@
+.container { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.companyCard {
+    width: 350px;
+    height: 150px;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 1;
+    transform: translateY(0);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.companyCard:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.companyName {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.companyDescription,
+.companyEmail,
+.companyPhone {
+    margin: 5px 0;
+}
+
+.deleteButton {
+    padding: 10px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.deleteButton:hover {
+    background-color: #ff1a1a;
+}
+
+.noPermission {
+    color: #888;
+}
+
+.companyLogo {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    margin-right: 15px; 
+}
+
+
+
+
+

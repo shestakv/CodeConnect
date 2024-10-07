@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class Company extends Model {
     static associate(models) {
       this.belongsTo(models.User, { foreignKey: "userId" });
+      this.hasMany(models.FavoriteCompany, { foreignKey: "companyId", as: 'favorites' });
     }
   }
   Company.init(
@@ -35,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
       },
       logo: {
-        defaultValue: "/defAvatar.png",
+        defaultValue: "/images/defAvatar.png",
         type: DataTypes.TEXT,
       },
     },

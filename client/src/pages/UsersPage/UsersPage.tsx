@@ -1,5 +1,5 @@
 import { UsersList } from "@/widgets/UsersList";
-import styles from "./UserPage.module.css";
+import styles from "./UsersPage.module.css";
 
 export const UsersPage: React.FC = () => {
   return (

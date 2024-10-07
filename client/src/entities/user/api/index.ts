@@ -8,6 +8,8 @@ export class UserServices {
     user: User;
   }> {
     const response = await axiosInstance.get("/tokens/refresh");
+    console.log(response.data);
+    
     setAccessToken(response.data.accessToken);
     return response.data;
   }
@@ -21,6 +23,7 @@ export class UserServices {
       email,
       password,
     });
+    
     setAccessToken(response.data.accessToken);
     return response.data;
   }
@@ -52,8 +55,20 @@ export class UserServices {
     setAccessToken("");
   }
 
+
+  static async updateAvatarUser(userData: Object) {
+    const response = await axiosInstance.put(`/users/avatar`, userData , {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      
+    return response.data;
+  }
+
   static async updateUser(userData: Object) {
-    const response = await axiosInstance.put(`/users`, { userData });
+    const response = await axiosInstance.put(`/users`, userData);
+      
     return response.data;
   }
 

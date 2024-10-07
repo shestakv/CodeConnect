@@ -1,11 +1,17 @@
-export type Company = {
+export interface ClientCompany {
+  name: string | undefined;
+  email: string | undefined;
+  phone: string | undefined;
+  description: string | undefined;
+  logo: string | undefined;
+}
+
+
+
+
+export interface Company extends ClientCompany  {
     id: number;
     userId: number;
-    name: string;
-    email: string;
-    phone: string;
-    description: string;
-    logo: string;
   }
   
   export type CompanyId = Company["id"]

@@ -5,35 +5,45 @@ import {
   RightOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   getUserById,
+  updateAvatarUserOnServer,
   updateUserOnServer,
 } from "@/entities/user/model/userThunks";
 import { FIELDS_MAP, type FormDataType, RUSSIAN_FIELDS } from "@/entities/user";
+
 import { useNavigate, useParams } from "react-router-dom";
 import { getAllUserStacks } from "@/entities/userStack";
 import { Button } from "antd";
+import TextArea from "antd/es/input/TextArea";
+
 
 export const UserPage: React.FC = () => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { userPersonal } = useAppSelector((state) => state.userPersonal);
+  const dispatch = useAppDispatch();
+  const { userPersonal } = useAppSelector((state) => state.user);
   const { user } = useAppSelector((state) => state.user);
+
   const { id } = useParams();
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const [isEditing, setIsEditing] = useState<{ [key: string]: boolean }>({});
   const [formData, setFormData] = useState<FormDataType>({
-    workExperience: userPersonal?.workExperience,
-    education: userPersonal?.education,
-    bio: userPersonal?.bio,
-    phone: userPersonal?.phone,
-    location: userPersonal?.location,
+    workExperience: "",
+    education: "",
+    bio: "",
+    phone: "",
+    location: "",
+    avatar: "",
   });
 
-  const handleEditClick = (field: string) => {
-    setIsEditing((prev) => ({ ...prev, [field]: !prev[field] }));
-  };
+const handleEditClick = (field: string) => {
+  setIsEditing((prev) => {
+    const newEditing = { ...prev, [field]: !prev[field] };
+    return newEditing;
+  });
+};
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -42,9 +52,28 @@ export const UserPage: React.FC = () => {
     setFormData({ ...formData, [field]: e.target.value });
   };
 
-  const handleSave = (field: keyof FormDataType) => {
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+
+    if (file) {
+      const formData = new FormData();
+      formData.append("avatar", file);
+
+      dispatch(updateAvatarUserOnServer(formData));
+    }
+  };
+
+  const handleSave = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: keyof FormDataType
+  ) => {
+    e.preventDefault();
     const userData = { [field]: formData[field] };
-    dispatch(updateUserOnServer({ userData }));
+    const updatedUser = await dispatch(updateUserOnServer({ userData }));
+
+    if (updatedUser.meta.requestStatus === "fulfilled") {
+      dispatch(getUserById({ id: +id! }));
+    }
     setIsEditing((prev) => ({ ...prev, [field]: false }));
   };
 
@@ -52,16 +81,17 @@ export const UserPage: React.FC = () => {
     if (id && (!userPersonal || userPersonal.id !== +id)) {
       dispatch(getUserById({ id: +id }));
     }
-  }, [id, dispatch, userPersonal, user]);
+  }, [id, dispatch, userPersonal, setFormData]);
 
   useEffect(() => {
     if (userPersonal) {
       setFormData({
-        workExperience: userPersonal.workExperience,
-        education: userPersonal.education,
-        bio: userPersonal.bio,
-        phone: userPersonal.phone,
-        location: userPersonal.location,
+        workExperience: userPersonal.workExperience || "",
+        education: userPersonal.education || "",
+        bio: userPersonal.bio || "",
+        phone: userPersonal.phone || "",
+        location: userPersonal.location || "",
+        avatar: userPersonal.avatar || "",
       });
     }
   }, [userPersonal]);
@@ -82,11 +112,22 @@ export const UserPage: React.FC = () => {
             className={styles.avatar}
             src={`${import.meta.env.VITE_IMG}${userPersonal?.avatar}`}
           />
+
           {user?.id === userPersonal?.id ? (
             <div className={styles.settingIconImg}>
-              <button className={styles.buttonImg}>
+              <button
+                className={styles.buttonImg}
+                onClick={() => fileInputRef.current?.click()}
+              >
                 <SettingOutlined />
               </button>
+              <input
+                type="file"
+                accept="image/*"
+                style={{ display: "none" }}
+                ref={fileInputRef}
+                onChange={handleFileChange}
+              />
             </div>
           ) : (
             <></>
@@ -96,6 +137,9 @@ export const UserPage: React.FC = () => {
           {userPersonal && userPersonal.surname}{" "}
           {userPersonal && userPersonal.firstname}{" "}
           {userPersonal && userPersonal.patronymic}
+          {"\n\t"}
+          Возраст:
+          {userPersonal && userPersonal.age}{" "}
         </div>
       </div>
 
@@ -104,28 +148,44 @@ export const UserPage: React.FC = () => {
           <div className={styles[field]}>
             <div className={styles.divider}>
               <h3 className={styles.title}>{`${RUSSIAN_FIELDS[field]}:`}</h3>
-              {isEditing[field] ? (
-                <>
-                  <input
-                    type="text"
+              <div className={styles.inputWrapper}>
+                {isEditing[field] ? (
+                  <TextArea
+                    className={styles.input}
                     value={formData[field]}
+                    autoSize
                     onChange={(e) => handleInputChange(e, field)}
                   />
-                  <button onClick={() => handleSave(field)}>Сохранить</button>
-                </>
-              ) : (
-                <h3 className={styles.secondTitle}>{formData[field]}</h3>
+                ) : (
+                  // <textarea
+                  //   type="text"
+                  //   value={formData[field]}
+                  //   className={styles.input}
+                  //   onChange={(e) => handleInputChange(e, field)}
+                  // />
+                  <h3 className={styles.secondTitle} style={{ textOverflow: "ellipsis" }}>{formData[field]}</h3>
+                )}
+              </div>
+              {isEditing[field] && (
+                <Button
+                  className={styles.inputButton}
+                  onClick={(e) => handleSave(e, field)}
+                >
+                  Сохранить
+                </Button>
               )}
             </div>
-            {user?.id === userPersonal?.id ? (
-              <button
-                className={styles.button}
-                onClick={() => handleEditClick(field)}
-              >
-                <SettingOutlined className={styles.settingIcon} />
-              </button>
-            ) : (
-              <></>
+            {user?.id === userPersonal?.id && (
+              <div className={styles.buttonContainer}>
+                <div className={styles.secondButtonContainer}>
+                  <button
+                    className={styles.button}
+                    onClick={() => handleEditClick(field)}
+                  >
+                    <SettingOutlined className={styles.settingIcon} />
+                  </button>
+                </div>
+              </div>
             )}
           </div>
         </div>

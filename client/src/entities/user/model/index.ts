@@ -1,3 +1,4 @@
+
 export type User = {
   id: number;
   firstname: string;
@@ -37,12 +38,14 @@ export type FormDataType = {
   bio: string | undefined;
   phone: string | undefined;
   location: string | undefined;
+  avatar: string | undefined;
 };
 
 export enum FIELDS {
   WORK_EXPERIENCE = "workExperience",
   EDUCATION = "education",
   BIO = "bio",
+  AGE = "age",
   PHONE = "phone",
   LOCATION = "location",
 }
