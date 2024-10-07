@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.hasMany(models.StackTask, { foreignKey: "stackId" });
       this.hasMany(models.UserStack, { foreignKey: "stackId" });
+      this.hasMany(models.TestingResult, { foreignKey: "stackId" });
     }
   }
   Stack.init(

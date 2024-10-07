@@ -1,4 +1,3 @@
-import { useAppSelector } from "@/shared/hooks/reduxHooks";
 import Error from "@/shared/ui/Error/Error";
 // import { Flex, Button } from "antd";
 import React from "react";

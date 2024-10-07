@@ -16,6 +16,12 @@ module.exports = {
       stackId: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        references: {
+          model: "Stacks",
+          key: "id",
+        },
+        onDelete: "cascade",
+        onUpdate: "cascade",
       },
       answer1: {
         allowNull: false,

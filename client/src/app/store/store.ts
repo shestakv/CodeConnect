@@ -1,7 +1,7 @@
 //? способ создания хранилища в Redux, который автоматически включает ряд полезных настроек
 import { userReducer } from "@/entities/user";
 import { companyReducer } from "@/entities/company";
-import { stackUserReducer } from "@/entities/stackUser";
+import { userStackReducer } from "@/entities/userStack";
 import { configureStore } from "@reduxjs/toolkit";
 import { favooriteCompanyReducer } from '@/entities/favoriteCompany';
 
@@ -11,8 +11,8 @@ const store = configureStore({
   reducer: {
     user: userReducer,
     company: companyReducer,
+    userStacks: userStackReducer,
     favoriteCompanies: favooriteCompanyReducer,
-    stackUser: stackUserReducer,
   },
 });
 

@@ -1,9 +1,9 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
 }
 
 .button {
@@ -27,19 +27,19 @@
 }
 
 .button:active {
-    transform: scale(0.99);
+  transform: scale(0.99);
 }
 
 .buttonImg:active {
-    transform: scale(0.9);
+  transform: scale(0.9);
 }
 
 .buttonImg {
-    border: #ffffff00;
-    background-color: #ffffff00;
-    display: flex;
-    font-size: 30px;
-    align-items: start;
+  border: #ffffff00;
+  background-color: #ffffff00;
+  display: flex;
+  font-size: 30px;
+  align-items: start;
 }
 
 .secondContainer {
@@ -101,12 +101,12 @@
 
 
 .avatar {
-    position: relative;
-    margin-right: 10px;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
+  position: relative;
+  margin-right: 10px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .titleHeader {
@@ -123,8 +123,69 @@
 }
 
 .title {
-    margin: 15px 10px 10px 15px;
-    font-size: 24px;
+  margin: 15px 10px 10px 15px;
+  font-size: 24px;
+}
+
+.topContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 8px;
+}
+
+.userStacksContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}
+
+.stackCard {
+  border: 1px solid #d9d9d9; /* Цвет рамки */
+  border-radius: 10px; /* Закругление углов */
+  padding: 8px; /* Уменьшенные внутренние отступы */
+  margin: 8px; /* Уменьшенные внешние отступы */
+  background-color: #fff; /* Цвет фона карточки */
+  /* box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); Уменьшенная тень */
+  transition: transform 0.2s; /* Плавный эффект при наведении */
+  width: 100px; /* Уменьшенная ширина карточки */
+}
+
+.stackCard:hover {
+  transform: scale(1.03); /* Уменьшенный эффект увеличения при наведении */
+}
+
+.stackCardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центрирование содержимого */
+}
+
+.stackCardTitle {
+  /* font-size: 14px; Меньший размер шрифта для названия */
+  /* font-weight: bold; Выделение названия стека */
+  margin-bottom: 4px; /* Уменьшенный отступ между названием и изображением */
+}
+
+.stackIcon {
+  max-width: 80%; /* Уменьшенная ширина изображения */
+  height: auto; /* Автоматическая высота */
+  border-radius: 4px; /* Закругление углов изображения */
+}
+
+.divIcon {
+  display: flex;
+  height: 65px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.plusIcon {
+  font-size: 40px;
 }
 
 .workExperience,

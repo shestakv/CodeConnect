@@ -12,10 +12,22 @@ module.exports = {
       userId: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        references: {
+          model: "Users",
+          key: "id",
+        },
+        onDelete: "cascade",
+        onUpdate: "cascade",
       },
       stackId: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        references: {
+          model: "Stacks",
+          key: "id",
+        },
+        onDelete: "cascade",
+        onUpdate: "cascade",
       },
       quantityCorrect: {
         type: Sequelize.INTEGER,
@@ -26,7 +38,7 @@ module.exports = {
       quantityFalse: {
         type: Sequelize.INTEGER,
       },
-      currentStackId: {
+      currentStackTaskId: {
         type: Sequelize.INTEGER,
       },
       createdAt: {

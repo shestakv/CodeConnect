@@ -3,12 +3,11 @@ import { ROUTES } from "./routes";
 import Layout from "./Layout/Layout";
 import { ProtectedRoute } from "@/shared/ui/ProtectedRoute";
 import { PublicRoute } from "@/shared/ui/PublicRoute";
-import { MainPage, SignInPage, SignUpPage, UserPage } from "@/pages";
+import { MainPage, SignInPage, SignUpPage, UserPage, UserStackPage } from "@/pages";
 import { ErrorPage } from "@/pages/ErrorPage";
 import { CompanyPage } from "@/pages/CompanyPage";
 import CompanyDetails from "@/widgets/CompanyDetails/CompanyDetails";
 import { UsersPage } from "@/pages/UsersPage";
-import { UserStackPage } from "@/pages/UserStackPage";
 
 export const router = createBrowserRouter([
   {
@@ -54,7 +53,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: ROUTES.USER_STACK,
+        path: ROUTES.USER_STACKS,
         element: (
           <ProtectedRoute>
             <UserStackPage />

@@ -1,153 +1,220 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15px;
+  width: 100vw;
 }
 
 .secondContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .secondTitle {
-    margin-left: 120px;
-    margin-bottom: 10px;
+  margin-left: 120px;
+  margin-bottom: 10px;
 }
-
-.settingIcon {
-    display: flex;
-    font-size: 20px;
-    margin: 15px;
-    align-items: start;
-
-}
-
 
 .settingIconImg {
-    display: none;
-    position: absolute;
-    font-size: 30px;
-    margin: 110px 0px 0px 120px;
-}
-
-.settingIcon,
-.settingIconImg {
-    display: none;
-    /* Скрываем элементы по умолчанию */
-}
-
-.avatarContainer:hover .settingIconImg,
-.secondContainer:hover .settingIcon {
-    display: block;
-    /* Показываем элементы при наведении */
+  display: none;
+  position: absolute;
+  font-size: 30px;
+  margin: 110px 0px 0px 120px;
 }
 
 .avatarContainer {
-    position: relative;
-    /* Чтобы иконка могла позиционироваться относительно аватара */
+  position: relative;
 }
 
 .settingIconImg {
-    position: absolute;
-    /* Подкорректируйте по желанию */
-    right: 15px;
-    /* Подкорректируйте по желанию */
-    font-size: 30px;
-    /* Размер иконки */
+  position: absolute;
+  /* Подкорректируйте по желанию */
+  right: 15px;
+  /* Подкорректируйте по желанию */
+  font-size: 30px;
+  /* Размер иконки */
 }
 
 .settingIcon {
-    margin-left: 10px;
-    /* Отступ между текстом и иконкой */
+  margin-left: 10px;
+  /* Отступ между текстом и иконкой */
 }
 
-
 .avatarContainer {
-    display: flex;
+  display: flex;
 }
 
 .avatar {
-    position: relative;
-    margin-right: 10px;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
+  position: relative;
+  margin-right: 10px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .titleHeader {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #fff;
-    width: 80vw;
-    margin-top: 25px;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 29px;
-    border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+  width: 80vw;
+  margin-top: 25px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  border-radius: 10px;
 }
 
 .title {
-    margin: 15px 10px 10px 15px;
-    font-size: 24px;
+  margin: 15px 10px 10px 15px;
+  font-size: 24px;
 }
 
 .workExperience {
-    display: flex;
-    justify-content: space-between;
-    width: 80vw;
-    min-height: 150px;
-    background-color: #fff;
-    margin-top: 25px;
-    border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 80vw;
+  min-height: 150px;
+  background-color: #fff;
+  margin-top: 25px;
+  border-radius: 10px;
 }
 
-.education{
-    display: flex;
-    justify-content: space-between;
-    width: 80vw;
-    min-height: 150px;
-    background-color: #fff;
-    margin-top: 25px;
-    border-radius: 10px;
+.education {
+  display: flex;
+  justify-content: space-between;
+  width: 80vw;
+  min-height: 150px;
+  background-color: #fff;
+  margin-top: 25px;
+  border-radius: 10px;
 }
 
 .bio {
-    display: flex;
-    justify-content: space-between;
-    width: 80vw;
-    min-height: 100px;
-    background-color: #fff;
-    margin-top: 25px;
-    border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 80vw;
+  min-height: 100px;
+  background-color: #fff;
+  margin-top: 25px;
+  border-radius: 10px;
+}
+
+.userStacks {
+  display: flex;
+  justify-content: space-between;
+  width: 80vw;
+  min-height: 150px;
+  background-color: #fff;
+  margin-top: 25px;
+  border-radius: 10px;
 }
 
 .divider {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .phone {
-    display: flex;
-    justify-content: space-between;
-    width: 80vw;
-    min-height: 50px;
-    background-color: #fff;
-    margin-top: 25px;
-    border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 80vw;
+  min-height: 50px;
+  background-color: #fff;
+  margin-top: 25px;
+  border-radius: 10px;
 }
 
 .location {
-    display: flex;
-    justify-content: space-between;
-    width: 80vw;
-    min-height: 50px;
-    background-color: #fff;
-    margin-top: 25px;
-    border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 80vw;
+  min-height: 50px;
+  background-color: #fff;
+  margin-top: 25px;
+  border-radius: 10px;
 }
+
+.topContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+}
+
+.stackTitle {
+  display: flex;
+  margin-top: 10px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.testResults {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}
+
+.stackCard {
+  border: 1px solid #d9d9d9; /* Цвет рамки */
+  border-radius: 10px; /* Закругление углов */
+  padding: 8px; /* Уменьшенные внутренние отступы */
+  margin: 8px; /* Уменьшенные внешние отступы */
+  background-color: #fff; /* Цвет фона карточки */
+  /* box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); Уменьшенная тень */
+  transition: transform 0.2s; /* Плавный эффект при наведении */
+  width: 100px; /* Уменьшенная ширина карточки */
+}
+
+.stackCard:hover {
+  transform: scale(1.03); /* Уменьшенный эффект увеличения при наведении */
+}
+
+.stackCardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центрирование содержимого */
+}
+
+.stackIcon {
+  margin-left: 10px;
+  width: 30px;
+  height: auto; /* Автоматическая высота */
+  border-radius: 4px; /* Закругление углов изображения */
+}
+
+.titleStack {
+  display: flex;
+  background-color: #fff; /* Цвет фона карточки */
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  margin-top: 25px;
+  width: 80vw;
+  height: 60px;
+}
+
+.stackCard {
+    border: 1px solid #d9d9d9; /* Цвет рамки */
+    border-radius: 4px; /* Закругление углов */
+    padding: 8px; /* Уменьшенные внутренние отступы */
+    margin: 8px; /* Уменьшенные внешние отступы */
+    background-color: #fff; /* Цвет фона карточки */
+    /* box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); Уменьшенная тень */
+    transition: transform 0.2s; /* Плавный эффект при наведении */
+    width: 200px; /* Уменьшенная ширина карточки */
+    height: 100px;
+  }
+  
+  .stackCard:hover {
+    transform: scale(1.03); /* Уменьшенный эффект увеличения при наведении */
+  }
