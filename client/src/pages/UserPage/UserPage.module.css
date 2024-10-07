@@ -65,7 +65,7 @@
         /* Отступ от верхнего края */
         right: 15px;
         /* Отступ от правого края */
-        transition: opacity 0.1s ease;
+        transition: opacity 0.35s ease;
         /* Плавный переход */
 }
 
