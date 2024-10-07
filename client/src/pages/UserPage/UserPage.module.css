@@ -202,7 +202,7 @@
 
 .stackCard {
   border: 1px solid #d9d9d9; /* Цвет рамки */
-  border-radius: 4px; /* Закругление углов */
+  border-radius: 10px; /* Закругление углов */
   padding: 8px; /* Уменьшенные внутренние отступы */
   margin: 8px; /* Уменьшенные внешние отступы */
   background-color: #fff; /* Цвет фона карточки */

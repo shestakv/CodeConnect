@@ -4,7 +4,7 @@ import { LeftOutlined } from "@ant-design/icons";
 import { useEffect } from "react";
 import { getAllUserStacks } from "@/entities/userStack";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button } from "antd";
+import { Button, Progress, Tooltip } from "antd";
 import { getUserById } from "@/entities/user";
 
 export const UserStackPage: React.FC = () => {
@@ -24,6 +24,35 @@ export const UserStackPage: React.FC = () => {
       dispatch(getUserById({ id: +id }));
     }
   }, [id, dispatch, userPersonal, user]);
+
+  const handleQuantityQuestions = ({ stackId }: { stackId: number }) => {
+    console.log(userStacks?.filter((userStack) => userStack.id === stackId)[0].Stack
+    .StackTasks.length)
+    return userStacks?.filter((userStack) => userStack.id === stackId)[0].Stack
+      .StackTasks.length;
+  };
+
+  const handleQuantityTrue = ({ stackId }: { stackId: number }) => {
+    return userStacks?.filter((userStack) => userStack.id === stackId)[0].Stack
+      .TestingResults[0].quantityTrue;
+  };
+
+  const handleQuantityFalse = ({ stackId }: { stackId: number }) => {
+    return userStacks?.filter((userStack) => userStack.id === stackId)[0].Stack
+      .TestingResults[0].quantityFalse;
+  };
+
+  const handleQuantityTruePercents = ({ stackId }: { stackId: number }) => {
+    const quantityQuestion = handleQuantityQuestions({ stackId });
+    const quantityTrue = handleQuantityTrue({ stackId });
+    return (quantityTrue / quantityQuestion) * 100;
+  };
+
+  const handleQuantityFalsePercents = ({ stackId }: { stackId: number }) => {
+    const quantityQuestion = handleQuantityQuestions({ stackId });
+    const quantityFalse = handleQuantityFalse({ stackId });
+    return (quantityFalse / quantityQuestion) * 100;
+  };
 
   return (
     <>
@@ -46,9 +75,7 @@ export const UserStackPage: React.FC = () => {
             </div>
           </div>
 
-          <div className={styles.titleStack}>
-            Результаты проверки навыков:
-          </div>
+          <div className={styles.titleStack}>Результаты проверки навыков:</div>
 
           {userStacks?.map((userStack) => (
             <div className={styles.secondContainer}>
@@ -66,12 +93,28 @@ export const UserStackPage: React.FC = () => {
                       <h3 className={styles.title}>{userStack.Stack.title}</h3>
                     </div>
 
-                    <div className={styles.title}>
-                      {userStack.Stack.title}
-                    </div>
+                    <div className={styles.title}>{userStack.Stack.title}</div>
                   </div>
                   <div className={styles.testResults}>
-                    
+                    <button className={styles.stackCard}>
+                      Тест пройден на {userStack.grade} баллов
+                      <Tooltip
+                        title={`Правильных ответов: ${handleQuantityTruePercents({
+                          stackId: userStack.id,
+                        })}%`}
+                      >
+                        <Progress
+                          percent={handleQuantityTruePercents({
+                            stackId: userStack.id,
+                          })}
+                          success={{
+                            percent: handleQuantityFalsePercents({
+                              stackId: userStack.id,
+                            }),
+                          }}
+                        />
+                      </Tooltip>
+                    </button>
                   </div>
                 </div>
               </div>

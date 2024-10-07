@@ -166,7 +166,7 @@
 
 .stackCard {
   border: 1px solid #d9d9d9; /* Цвет рамки */
-  border-radius: 4px; /* Закругление углов */
+  border-radius: 10px; /* Закругление углов */
   padding: 8px; /* Уменьшенные внутренние отступы */
   margin: 8px; /* Уменьшенные внешние отступы */
   background-color: #fff; /* Цвет фона карточки */
@@ -202,3 +202,19 @@
   width: 80vw;
   height: 60px;
 }
+
+.stackCard {
+    border: 1px solid #d9d9d9; /* Цвет рамки */
+    border-radius: 4px; /* Закругление углов */
+    padding: 8px; /* Уменьшенные внутренние отступы */
+    margin: 8px; /* Уменьшенные внешние отступы */
+    background-color: #fff; /* Цвет фона карточки */
+    /* box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); Уменьшенная тень */
+    transition: transform 0.2s; /* Плавный эффект при наведении */
+    width: 250px; /* Уменьшенная ширина карточки */
+    height: 100px;
+  }
+  
+  .stackCard:hover {
+    transform: scale(1.03); /* Уменьшенный эффект увеличения при наведении */
+  }

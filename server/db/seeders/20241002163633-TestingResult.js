@@ -9,9 +9,9 @@ module.exports = {
         {
           userId: 1,
           stackId: 1,
-          quantityCorrect: 0,
+          quantityCorrect: 13,
           quantityTrue: 0,
-          quantityFalse: 0,
+          quantityFalse: 13,
           currentStackTaskId: 1,
         },
         {
