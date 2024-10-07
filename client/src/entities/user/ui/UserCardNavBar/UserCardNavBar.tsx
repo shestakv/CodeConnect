@@ -8,7 +8,6 @@ interface UserCardNavBarProps {
 }
 
 export const UserCardNavBar: React.FC<UserCardNavBarProps> = ({ avatar, firstname, surname }) => {
-  console.log(avatar);
   
   return (
     <div className={styles.avatarContainer}>

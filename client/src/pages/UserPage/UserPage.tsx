@@ -10,13 +10,14 @@ import {
 import { FIELDS_MAP, type FormDataType, RUSSIAN_FIELDS } from "@/entities/user";
 import { useParams } from "react-router-dom";
 import { Button } from "antd";
+import TextArea from "antd/es/input/TextArea";
 
 export const UserPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { userPersonal } = useAppSelector((state) => state.user);
-  
+
   const { user } = useAppSelector((state) => state.user);
-  
+
   const { id } = useParams();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -30,9 +31,12 @@ export const UserPage: React.FC = () => {
     avatar: "",
   });
 
-  const handleEditClick = (field: string) => {
-    setIsEditing((prev) => ({ ...prev, [field]: !prev[field] }));
-  };
+const handleEditClick = (field: string) => {
+  setIsEditing((prev) => {
+    const newEditing = { ...prev, [field]: !prev[field] };
+    return newEditing;
+  });
+};
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -129,29 +133,34 @@ export const UserPage: React.FC = () => {
           <div className={styles[field]}>
             <div className={styles.divider}>
               <h3 className={styles.title}>{`${RUSSIAN_FIELDS[field]}:`}</h3>
-              {isEditing[field] ? (
-                <>
-                  <div className={styles.inputContainer}>
-                    <input
-                      type="text"
-                      value={formData[field]}
-                      className={styles.input}
-                      onChange={(e) => handleInputChange(e, field)}
-                    />
-                    <Button
-                      className={styles.inputButton}
-                      onClick={(e) => handleSave(e, field)}
-                    >
-                      Сохранить
-                    </Button>
-                  </div>
-                </>
-              ) : (
-                <h3 className={styles.secondTitle}>{formData[field]}</h3>
+              <div className={styles.inputWrapper}>
+                {isEditing[field] ? (
+                  <TextArea
+                    className={styles.input}
+                    value={formData[field]}
+                    autoSize
+                    onChange={(e) => handleInputChange(e, field)}
+                  />
+                ) : (
+                  // <textarea
+                  //   type="text"
+                  //   value={formData[field]}
+                  //   className={styles.input}
+                  //   onChange={(e) => handleInputChange(e, field)}
+                  // />
+                  <h3 className={styles.secondTitle} style={{ textOverflow: "ellipsis" }}>{formData[field]}</h3>
+                )}
+              </div>
+              {isEditing[field] && (
+                <Button
+                  className={styles.inputButton}
+                  onClick={(e) => handleSave(e, field)}
+                >
+                  Сохранить
+                </Button>
               )}
             </div>
-
-            {user?.id === userPersonal?.id ? (
+            {user?.id === userPersonal?.id && (
               <div className={styles.buttonContainer}>
                 <div className={styles.secondButtonContainer}>
                   <button
@@ -162,8 +171,6 @@ export const UserPage: React.FC = () => {
                   </button>
                 </div>
               </div>
-            ) : (
-              <></>
             )}
           </div>
         </div>

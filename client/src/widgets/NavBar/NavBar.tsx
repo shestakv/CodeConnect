@@ -66,7 +66,6 @@ export const NavBar: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
-  console.log(user);
   
 
   const handleLogout = () => {
