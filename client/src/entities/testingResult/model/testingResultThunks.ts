@@ -7,7 +7,7 @@ type RejectValue = {
   message: string;
 };
 
-export const getAllUserStacks = createAsyncThunk<
+export const testingResultThunks = createAsyncThunk<
   UserStackResponse,
   { userId: number },
   { rejectValue: RejectValue }

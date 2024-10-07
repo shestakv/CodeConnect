@@ -1,9 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { UserServices } from "../api";
 import { AuthResponse, UserResponse, UsersResponse } from ".";
-import { axiosInstance } from "@/shared/lib/axiosInstance";
-
 
 type RejectValue = {
   message: string;
@@ -91,20 +89,12 @@ export const logout = createAsyncThunk<
 
 export const updateAvatarUserOnServer = createAsyncThunk<
   AuthResponse,
-  { FormData: FormData;},
+  { formData: FormData;},
   { rejectValue: RejectValue }
   
-  >("user/updateUserAvatarOnServer", async ( FormData, { rejectWithValue }) => {
-  try {
-    
-    // await axiosInstance.put('/users', userData, {
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data',
-    //     },
-    //   })
-
-    
-    return await UserServices.updateAvatarUser(FormData);
+  >("user/updateUserAvatarOnServer", async ( {formData}, { rejectWithValue }) => {
+  try {  
+    return await UserServices.updateAvatarUser(formData);
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;
     return rejectWithValue({
@@ -114,20 +104,11 @@ export const updateAvatarUserOnServer = createAsyncThunk<
 })
 export const updateUserOnServer = createAsyncThunk<
   AuthResponse,
-  { FormData: FormData;},
+  { userData: object;},
   { rejectValue: RejectValue }
-  
-  >("user/updateUserOnServer", async ( FormData, { rejectWithValue }) => {
+  >("user/updateUserOnServer", async ( userData, { rejectWithValue }) => {
   try {
-    
-    // await axiosInstance.put('/users', userData, {
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data',
-    //     },
-    //   })
-
-    
-    return await UserServices.updateUser(FormData);
+    return await UserServices.updateUser(userData);
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;
     return rejectWithValue({

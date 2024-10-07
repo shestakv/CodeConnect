@@ -11,7 +11,6 @@ import {
   updateAvatarUserOnServer,
 } from "./userThunks";
 import { message } from "antd";
-import { fetchUser } from './fetchUser';
 
 //FIX Что такое слайс?
 //? Слайс в Redux Toolkit — это объект, который объединяет состояние, редукторы и действия, относящиеся к одной функциональной области приложения (например, юзеры).
@@ -36,6 +35,7 @@ const initialState: UserState = {
   loading: false,
   error: null,
   points: 0,
+  updatedUser: null,
   answeredQuestions: [],
 };
 

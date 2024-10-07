@@ -11,7 +11,7 @@ export const UserStackPage: React.FC = () => {
   const { id } = useParams();
   const { user } = useAppSelector((state) => state.user);
   const { userStacks } = useAppSelector((state) => state.userStacks);
-  const { userPersonal } = useAppSelector((state) => state.userPersonal);
+  const { userPersonal } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 

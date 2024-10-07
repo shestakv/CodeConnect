@@ -1,18 +1,22 @@
 // favoriteCompanySlice.ts
-import { createSlice } from '@reduxjs/toolkit';
-import { getFavoriteCompanies, addFavoriteCompany, deleteFavoriteCompany } from './favoriteCompanyThunks';
-import { FavoriteCompany } from './index';
+import { createSlice } from "@reduxjs/toolkit";
+import {
+  getFavoriteCompanies,
+  addFavoriteCompany,
+  deleteFavoriteCompany,
+} from "./favoriteCompanyThunks";
+import { FavoriteCompany } from "./index";
 
 type FavoriteCompanyState = {
-    favoriteCompanies: FavoriteCompany[];
-    loading: boolean;
-    error: string | null;
-}
+  favoriteCompanies: FavoriteCompany[];
+  loading: boolean;
+  error: string | null;
+};
 
 const initialState: FavoriteCompanyState = {
-    favoriteCompanies: [],
-    loading: false,
-    error: null,
+  favoriteCompanies: [],
+  loading: false,
+  error: null,
 };
 
 export const favoriteCompanySlice = createSlice({

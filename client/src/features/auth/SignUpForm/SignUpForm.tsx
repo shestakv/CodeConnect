@@ -1,6 +1,6 @@
 import React from "react";
 import type { FormProps } from "antd";
-import { Button, Flex, Form, Input, InputNumber, Select } from "antd";
+import { Button, Form, Input, Select } from "antd";
 import { useAppDispatch } from "@/shared/hooks/reduxHooks";
 import { useNavigate } from "react-router-dom";
 import { signUp } from "@/entities/user";
@@ -23,6 +23,7 @@ type SignUpFormData = {
   phone: bigint;
   email: string;
   password: string;
+  confirmPassword: string;
 };
 
 export const SignUpForm: React.FC = () => {

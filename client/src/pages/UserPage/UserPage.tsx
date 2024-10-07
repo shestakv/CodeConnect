@@ -11,13 +11,17 @@ import {
   updateAvatarUserOnServer,
   updateUserOnServer,
 } from "@/entities/user/model/userThunks";
-import { FIELDS_MAP, type FormDataType, RUSSIAN_FIELDS } from "@/entities/user";
+import {
+  FIELDS,
+  FIELDS_MAP,
+  type FormDataType,
+  RUSSIAN_FIELDS,
+} from "@/entities/user";
 
 import { useNavigate, useParams } from "react-router-dom";
 import { getAllUserStacks } from "@/entities/userStack";
 import { Button } from "antd";
 import TextArea from "antd/es/input/TextArea";
-
 
 export const UserPage: React.FC = () => {
   const navigate = useNavigate();
@@ -38,15 +42,15 @@ export const UserPage: React.FC = () => {
     avatar: "",
   });
 
-const handleEditClick = (field: string) => {
-  setIsEditing((prev) => {
-    const newEditing = { ...prev, [field]: !prev[field] };
-    return newEditing;
-  });
-};
+  const handleEditClick = (field: string) => {
+    setIsEditing((prev) => {
+      const newEditing = { ...prev, [field]: !prev[field] };
+      return newEditing;
+    });
+  };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
     field: string
   ) => {
     setFormData({ ...formData, [field]: e.target.value });
@@ -59,15 +63,11 @@ const handleEditClick = (field: string) => {
       const formData = new FormData();
       formData.append("avatar", file);
 
-      dispatch(updateAvatarUserOnServer(formData));
+      dispatch(updateAvatarUserOnServer({ formData }));
     }
   };
 
-  const handleSave = async (
-    e: React.ChangeEvent<HTMLInputElement>,
-    field: keyof FormDataType
-  ) => {
-    e.preventDefault();
+  const handleSave = async (field: keyof FormDataType) => {
     const userData = { [field]: formData[field] };
     const updatedUser = await dispatch(updateUserOnServer({ userData }));
 
@@ -147,7 +147,9 @@ const handleEditClick = (field: string) => {
         <div key={field} className={styles.secondContainer}>
           <div className={styles[field]}>
             <div className={styles.divider}>
-              <h3 className={styles.title}>{`${RUSSIAN_FIELDS[field]}:`}</h3>
+              <h3 className={styles.title}>{`${
+                RUSSIAN_FIELDS[field as FIELDS]
+              }:`}</h3>
               <div className={styles.inputWrapper}>
                 {isEditing[field] ? (
                   <TextArea
@@ -163,13 +165,18 @@ const handleEditClick = (field: string) => {
                   //   className={styles.input}
                   //   onChange={(e) => handleInputChange(e, field)}
                   // />
-                  <h3 className={styles.secondTitle} style={{ textOverflow: "ellipsis" }}>{formData[field]}</h3>
+                  <h3
+                    className={styles.secondTitle}
+                    style={{ textOverflow: "ellipsis" }}
+                  >
+                    {formData[field]}
+                  </h3>
                 )}
               </div>
               {isEditing[field] && (
                 <Button
                   className={styles.inputButton}
-                  onClick={(e) => handleSave(e, field)}
+                  onClick={() => handleSave(field)}
                 >
                   Сохранить
                 </Button>
@@ -193,7 +200,7 @@ const handleEditClick = (field: string) => {
 
       <div className={styles.secondContainer}>
         <div className={styles.userStacks}>
-          <div className={styles.divider}>
+          <div className={styles.dividerStacks}>
             <div className={styles.topContainer}>
               <h3 className={styles.title}>Навыки:</h3>
               {userStacks && userStacks.length > 0 ? (
@@ -229,21 +236,29 @@ const handleEditClick = (field: string) => {
                 ))
               ) : (
                 <div>
-                {userPersonal?.id === user?.id ? (<></>): (<h3>Навыки не добавлены</h3>)}
+                  {userPersonal?.id === user?.id ? (
+                    <></>
+                  ) : (
+                    <h3>Навыки не добавлены</h3>
+                  )}
                 </div>
               )}
-              
+
               {userPersonal?.id === user?.id ? (
-                <button className={styles.stackCard} onClick={() => navigate(-1)}>
-                <div className={styles.stackCardContent}>
-                  <div className={styles.stackCardTitle}>Добавить</div>
-                  <div className={styles.divIcon}>
-                    <PlusCircleOutlined className={styles.plusIcon} />
+                <button
+                  className={styles.stackCard}
+                  onClick={() => navigate(-1)}
+                >
+                  <div className={styles.stackCardContent}>
+                    <div className={styles.stackCardTitle}>Добавить</div>
+                    <div className={styles.divIcon}>
+                      <PlusCircleOutlined className={styles.plusIcon} />
+                    </div>
                   </div>
-                </div>
                 </button>
-              )
-              : (<></>)}
+              ) : (
+                <></>
+              )}
             </div>
           </div>
         </div>

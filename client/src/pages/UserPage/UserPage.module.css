@@ -7,23 +7,23 @@
 }
 
 .button {
-    width: 40px;
-    /* Увеличиваем ширину кнопки */
-    height: 40px;
-    /* Установите высоту, чтобы кнопка была более заметной */
-    border: none;
-    /* Убираем ненужную границу */
-    background-color: transparent;
-    /* Прозрачный фон */
-    font-size: 20px;
-    display: flex;
-    /* Для центрирования содержимого */
-    justify-content: center;
-    /* Центрируем содержимое */
-    align-items: center;
-    /* Центрируем содержимое */
-    transition: transform 0.1s ease;
-    /* Плавный переход */
+  width: 40px;
+  /* Увеличиваем ширину кнопки */
+  height: 40px;
+  /* Установите высоту, чтобы кнопка была более заметной */
+  border: none;
+  /* Убираем ненужную границу */
+  background-color: transparent;
+  /* Прозрачный фон */
+  font-size: 20px;
+  display: flex;
+  /* Для центрирования содержимого */
+  justify-content: center;
+  /* Центрируем содержимое */
+  align-items: center;
+  /* Центрируем содержимое */
+  transition: transform 0.1s ease;
+  /* Плавный переход */
 }
 
 .button:active {
@@ -43,62 +43,61 @@
 }
 
 .secondContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  flex-wrap: wrap;
 }
 
 .secondTitle {
-    margin: 10px 50px 35px 60px;
-    font-size: 18px;
-    line-height: 25px;
-    text-overflow: inherit;
+  margin: 10px 50px 35px 60px;
+  font-size: 18px;
+  line-height: 25px;
+  text-overflow: inherit;
 }
 
 .inputWrapper {
-    width: 100% !important;
+  width: 100% !important;
 }
 
 .settingIcon {
-    opacity: 0;
-        /* Скрываем элемент по умолчанию */
-        font-size: 20px;
-        position: absolute;
-        /* Устанавливаем абсолютное позиционирование */
-        top:40px;
-        /* Отступ от верхнего края */
-        right: 15px;
-        /* Отступ от правого края */
-        transition: opacity 0.35s ease;
-        /* Плавный переход */
+  opacity: 0;
+  /* Скрываем элемент по умолчанию */
+  font-size: 20px;
+  position: absolute;
+  /* Устанавливаем абсолютное позиционирование */
+  top: 40px;
+  /* Отступ от верхнего края */
+  right: 15px;
+  /* Отступ от правого края */
+  transition: opacity 0.35s ease;
+  /* Плавный переход */
 }
 
 .settingIconImg {
-    opacity: 0;
-    /* Скрываем элемент по умолчанию */
-    position: absolute;
-    font-size: 30px;
-    margin: 110px 0px 0px 120px;
-    transition: opacity 0.3s ease;
-    /* Плавный переход */
+  opacity: 0;
+  /* Скрываем элемент по умолчанию */
+  position: absolute;
+  font-size: 30px;
+  margin: 110px 0px 0px 120px;
+  transition: opacity 0.3s ease;
+  /* Плавный переход */
 }
 
 .avatarContainer:hover .settingIcon,
 .avatarContainer:hover .settingIconImg,
 .secondContainer:hover .settingIcon,
 .secondContainer:hover .settingIconImg {
-    opacity: 1;
-    /* Показываем элементы при наведении */
+  opacity: 1;
+  /* Показываем элементы при наведении */
 }
 
 .avatarContainer {
-    position: relative;
-    display: flex;
+  position: relative;
+  display: flex;
 }
-
 
 .avatar {
   position: relative;
@@ -110,16 +109,16 @@
 }
 
 .titleHeader {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #fff;
-    width: 80vw;
-    margin-top: 25px;
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 30px;
-    border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+  width: 80vw;
+  margin-top: 25px;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 30px;
+  border-radius: 10px;
 }
 
 .title {
@@ -192,73 +191,79 @@
 .education,
 .bio,
 .phone,
-.location {
-    display: flex;
-    justify-content: space-between;
-    width: 60vw;
-    min-height: 150px;
-    /* Можно изменить для phone и location */
-    background-color: #fff;
-    margin-top: 25px;
-    border-radius: 10px;
+.location,
+.userStacks {
+  display: flex;
+  justify-content: space-between;
+  width: 60vw;
+  min-height: 150px;
+  /* Можно изменить для phone и location */
+  background-color: #fff;
+  margin-top: 25px;
+  border-radius: 10px;
 }
 
 .phone,
 .location {
-    min-height: 50px;
-    /* Для phone и location */
+  min-height: 50px;
+  /* Для phone и location */
 }
 
-.divider {
-    display: flex;
-    flex-direction: column;
+.divider,
+.dividerStacks {
+  display: flex;
+  flex-direction: column;
+}
+
+.dividerStacks{
+  width: 100%;
 }
 
 .buttonContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* Устанавливаем центрирование */
-    align-items: center;
-    /* Устанавливаем центрирование */
-    width: 20px;
-    height: 1px;
-    /* Можно увеличить ширину, если нужно */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Устанавливаем центрирование */
+  align-items: center;
+  /* Устанавливаем центрирование */
+  width: 20px;
+  height: 1px;
+  /* Можно увеличить ширину, если нужно */
 }
 
 .secondButtonContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
 }
 
 .inputContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px 0px 10px 50px;
-    /* padding-left: 1vw; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0px 10px 50px;
+  /* padding-left: 1vw; */
 }
 
 .input {
-    display: flex;
-    margin: 10px 0px 10px 50px;
-    width: 55vw;
-    min-height: 30vw;
-    border-radius: 10px;
-    border: 1px solid #00000043;
-    padding-left: 1vw;
-    font-size: 20px;
+  display: flex;
+  margin: 10px 0px 10px 50px;
+  width: 55vw;
+  min-height: 30vw;
+  border-radius: 10px;
+  border: 1px solid #00000043;
+  padding-left: 1vw;
+  font-size: 20px;
 }
 
 .inputButton {
-    margin-left: 10px;
-    width: 150px;
-    height: 30px;
-    border-radius: 10px;
-    border: 1px solid #00000043;
-    font-size: 15px;
-    background-color: #fff;
-    cursor: pointer;
+  margin-left: 10px;
+  width: 150px;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid #00000043;
+  font-size: 15px;
+  background-color: #fff;
+  cursor: pointer;
 }
