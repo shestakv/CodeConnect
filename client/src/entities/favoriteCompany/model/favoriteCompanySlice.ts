@@ -26,18 +26,26 @@ export const favoriteCompanySlice = createSlice({
             })
             .addCase(getFavoriteCompanies.fulfilled, (state, action) => {
                 state.loading = false;
-                console.log(action.payload);
-        
                 state.favoriteCompanies = action.payload;
                 state.error = null;
             })
             .addCase(getFavoriteCompanies.rejected, (state) => {
                 state.loading = false;
             })
-
-            .addCase(addFavoriteCompany.fulfilled, (state, action) => {
-                state.favoriteCompanies.push(action.payload);
+            
+            .addCase(addFavoriteCompany.pending, (state) => {
+                state.loading = true;
             })
+            .addCase(addFavoriteCompany.fulfilled, (state, action) => {
+                state.loading = false;
+                console.log(action.payload);
+                state.favoriteCompanies.push(action.payload);
+                state.error = null;
+            })
+            .addCase(addFavoriteCompany.rejected, (state) => {
+                state.loading = false;
+            })
+            
             .addCase(deleteFavoriteCompany.fulfilled, (state, action) => {
                 state.favoriteCompanies = state.favoriteCompanies.filter(
                     favorite => favorite.companyId !== action.payload.companyId
