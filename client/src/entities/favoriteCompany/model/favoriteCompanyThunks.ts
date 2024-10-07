@@ -29,7 +29,7 @@ FavoriteCompany[],
 );
 
 export const addFavoriteCompany = createAsyncThunk<
-    FavoriteCompany[],
+    FavoriteCompany,
     { userId: number; companyId: number },
     { rejectValue: RejectValue }
 >(
@@ -49,10 +49,21 @@ export const addFavoriteCompany = createAsyncThunk<
     }
 );
 
-export const deleteFavoriteCompany = createAsyncThunk(
+export const deleteFavoriteCompany = createAsyncThunk<
+    { userId: number; companyId: number },
+    { userId: number; companyId: number },
+    { rejectValue: RejectValue }
+>(
     'favoriteCompanies/deleteFavorite',
-    async ({ userId, companyId }: { userId: number; companyId: number }) => {
-        await FavoriteCompanyServices.deleteFavoriteCompany(userId, companyId);
-        return { userId, companyId };
+    async ({ userId, companyId }, { rejectWithValue }) => {
+        try {
+            await FavoriteCompanyServices.deleteFavoriteCompany(userId, companyId);
+            return { userId, companyId };
+        } catch (error) {
+            const err = error as AxiosError<{ message: string }>;
+            return rejectWithValue({
+                message: err.response?.data.message || err.message,
+            });
+        }
     }
 );

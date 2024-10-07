@@ -6,7 +6,7 @@ router.route('/')
     .get(verifyAccessToken, favoriteCompanyController.getAllFavoriteCompanies)
     .post(verifyAccessToken, favoriteCompanyController.addFavoriteCompany);
 
-router.route('/:id')
+router.route('/')
     .delete(verifyAccessToken, favoriteCompanyController.deleteFavoriteCompany);
 
 module.exports = router;
