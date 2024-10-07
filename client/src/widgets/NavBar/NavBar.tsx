@@ -65,25 +65,26 @@ export const NavBar: React.FC = () => {
   const { styles } = useStyle();
   const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.user);
+  const { userPersonal } = useAppSelector((state) => state.userPersonal);
+  console.log(userPersonal, 'PERSONAL');
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
     dispatch(logout());
   };
+  
   return (
     <ConfigProvider
-        button={{
-          className: styles.linearGradientButton,
-        }}
-      >
-    <Header className={style.header}>
-      
+      button={{
+        className: styles.linearGradientButton,
+      }}
+    >
+      <Header className={style.header}>
         <Menu
           className={style.menu}
           mode="horizontal"
           defaultSelectedKeys={["/"]}
         >
-
           <Menu.Item key="/">
             <Space>
               <Button shape="round" onClick={() => navigate("/")}>
@@ -109,7 +110,9 @@ export const NavBar: React.FC = () => {
               <Menu.Item key={ROUTES.USERS + `/${user.id}`}>
                 <Link to={ROUTES.USERS + `/${user.id}`}>
                   <UserCardNavBar
-                    avatar={`${import.meta.env.VITE_IMG}${user.avatar}`}
+                    avatar={`${import.meta.env.VITE_IMG}${
+                      userPersonal?.avatar
+                    }`}
                     firstname={user.firstname}
                     surname={user.surname}
                   />
@@ -138,8 +141,7 @@ export const NavBar: React.FC = () => {
             </>
           )}
         </Menu>
-    
-    </Header>
+      </Header>
     </ConfigProvider>
   );
 };

@@ -4,6 +4,7 @@ import { SettingOutlined } from "@ant-design/icons";
 import { useEffect, useRef, useState } from "react";
 import {
   getUserById,
+  updateAvatarUserOnServer,
   updateUserOnServer,
 } from "@/entities/user/model/userThunks";
 import { FIELDS_MAP, type FormDataType, RUSSIAN_FIELDS } from "@/entities/user";
@@ -12,17 +13,19 @@ import { useParams } from "react-router-dom";
 export const UserPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { userPersonal } = useAppSelector((state) => state.userPersonal);
+  console.log(userPersonal, 101010101001);
   const { user } = useAppSelector((state) => state.user);
   const { id } = useParams();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const [isEditing, setIsEditing] = useState<{ [key: string]: boolean }>({});
   const [formData, setFormData] = useState<FormDataType>({
-    workExperience: '',
-    education: '',
-    bio: '',
-    phone: '',
-    location: '',
+    workExperience: "",
+    education: "",
+    bio: "",
+    phone: "",
+    location: "",
+    avatar: "",
   });
 
   const handleEditClick = (field: string) => {
@@ -38,11 +41,12 @@ export const UserPage: React.FC = () => {
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
+
     if (file) {
       const formData = new FormData();
       formData.append("avatar", file);
 
-      dispatch(updateUserOnServer(formData));
+      dispatch(updateAvatarUserOnServer(formData));
     }
   };
 
@@ -53,9 +57,9 @@ export const UserPage: React.FC = () => {
     e.preventDefault();
     const userData = { [field]: formData[field] };
     const updatedUser = await dispatch(updateUserOnServer({ userData }));
-    
+
     if (updatedUser.meta.requestStatus === "fulfilled") {
-      dispatch(getUserById({ id: +id }));
+      dispatch(getUserById({ id: +id! }));
     }
     setIsEditing((prev) => ({ ...prev, [field]: false }));
   };
@@ -64,17 +68,17 @@ export const UserPage: React.FC = () => {
     if (id && (!userPersonal || userPersonal.id !== +id)) {
       dispatch(getUserById({ id: +id }));
     }
-  }, [id, dispatch, userPersonal]);
+  }, [id, dispatch, userPersonal, setFormData]);
 
   useEffect(() => {
-    
     if (userPersonal) {
       setFormData({
-        workExperience: userPersonal.workExperience || '',
-        education: userPersonal.education || '',
-        bio: userPersonal.bio || '',
-        phone: userPersonal.phone || '',
-        location: userPersonal.location || '',
+        workExperience: userPersonal.workExperience || "",
+        education: userPersonal.education || "",
+        bio: userPersonal.bio || "",
+        phone: userPersonal.phone || "",
+        location: userPersonal.location || "",
+        avatar: userPersonal.avatar || "",
       });
     }
   }, [userPersonal]);
@@ -127,7 +131,9 @@ export const UserPage: React.FC = () => {
                     value={formData[field]}
                     onChange={(e) => handleInputChange(e, field)}
                   />
-                  <button onClick={(e) => handleSave(e,field)}>Сохранить</button>
+                  <button onClick={(e) => handleSave(e, field)}>
+                    Сохранить
+                  </button>
                 </>
               ) : (
                 <h3 className={styles.secondTitle}>{formData[field]}</h3>
@@ -135,12 +141,16 @@ export const UserPage: React.FC = () => {
             </div>
 
             {user?.id === userPersonal?.id ? (
-              <button
-                className={styles.button}
-                onClick={() => handleEditClick(field)}
-              >
-                <SettingOutlined className={styles.settingIcon} />
-              </button>
+              <div className={styles.buttonContainer}>
+                <div className={styles.secondButtonContainer}>
+                  <button
+                    className={styles.button}
+                    onClick={() => handleEditClick(field)}
+                  >
+                    <SettingOutlined className={styles.settingIcon} />
+                  </button>
+                </div>
+              </div>
             ) : (
               <></>
             )}
