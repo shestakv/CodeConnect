@@ -7,23 +7,25 @@ import { Link } from "react-router-dom";
 type MainPageProps = {};
 
 export const MainPage: React.FC<MainPageProps> = ({}) => {
-  const user = useAppSelector((state) => state.user.user);
+  const { user } = useAppSelector((state) => state.user);
 
   return (
     <div>
       <Flex justify="center" align="center" style={{ height: "90vh" }}>
-        <div
-          className="card glow-card"
-        >
+        <div className="card glow-card">
           {user ? (
             <>
               <h1>Добро пожаловать, {user?.firstname}!</h1>
-              <Button type="primary"><Link to="/game">Играть</Link></Button>
+              <Button type="primary">
+                <Link to="/game">Играть</Link>
+              </Button>
             </>
           ) : (
             <>
               <h1>Пожалуйста, войдите</h1>
-              <Button type="primary"><Link to="/signin">Войти</Link></Button>
+              <Button type="primary">
+                <Link to="/signin">Войти</Link>
+              </Button>
             </>
           )}
         </div>

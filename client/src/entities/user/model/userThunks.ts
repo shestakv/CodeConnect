@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { AxiosError } from "axios";
+import axios, { AxiosError } from "axios";
 import { UserServices } from "../api";
-import { AuthResponse } from ".";
+import { AuthResponse, UserResponse, UsersResponse } from ".";
+import { axiosInstance } from "@/shared/lib/axiosInstance";
 
 
 type RejectValue = {
@@ -40,34 +41,38 @@ export const signIn = createAsyncThunk<
 
 export const signUp = createAsyncThunk<
   AuthResponse,
-  {  firstname: string,
-  surname: string,
-  patronymic: string,
-  phone: bigint,
-  email: string,
-  password: string,},
+  {
+    firstname: string;
+    surname: string;
+    patronymic: string;
+    phone: bigint;
+    email: string;
+    password: string;
+  },
   { rejectValue: RejectValue }
->("user/signUp", async ({  
-  firstname,
-  surname,
-  patronymic,
-  phone,
-  email,
-  password, }, { rejectWithValue }) => {
-  try {
-    return await UserServices.signUp(  firstname,
-  surname,
-  patronymic,
-  phone,
-  email,
-  password,);
-  } catch (error) {
-    const err = error as AxiosError<{ message: string }>;
-    return rejectWithValue({
-      message: err.response?.data.message || err.message,
-    });
+>(
+  "user/signUp",
+  async (
+    { firstname, surname, patronymic, phone, email, password },
+    { rejectWithValue }
+  ) => {
+    try {
+      return await UserServices.signUp(
+        firstname,
+        surname,
+        patronymic,
+        phone,
+        email,
+        password
+      );
+    } catch (error) {
+      const err = error as AxiosError<{ message: string }>;
+      return rejectWithValue({
+        message: err.response?.data.message || err.message,
+      });
+    }
   }
-});
+);
 
 export const logout = createAsyncThunk<
   void,
@@ -84,11 +89,22 @@ export const logout = createAsyncThunk<
   }
 });
 
-export const updateUserOnServer = createAsyncThunk<AuthResponse, {userData: any}, { rejectValue: RejectValue }>("user/updateUserOnServer", async ({userData}, { rejectWithValue }) => {
+export const updateAvatarUserOnServer = createAsyncThunk<
+  AuthResponse,
+  { FormData: FormData;},
+  { rejectValue: RejectValue }
+  
+  >("user/updateUserAvatarOnServer", async ( FormData, { rejectWithValue }) => {
   try {
     
-    return await UserServices.updateUser(    
-      userData);
+    // await axiosInstance.put('/users', userData, {
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data',
+    //     },
+    //   })
+
+    
+    return await UserServices.updateAvatarUser(FormData);
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;
     return rejectWithValue({
@@ -96,3 +112,56 @@ export const updateUserOnServer = createAsyncThunk<AuthResponse, {userData: any}
     });
   }
 })
+export const updateUserOnServer = createAsyncThunk<
+  AuthResponse,
+  { FormData: FormData;},
+  { rejectValue: RejectValue }
+  
+  >("user/updateUserOnServer", async ( FormData, { rejectWithValue }) => {
+  try {
+    
+    // await axiosInstance.put('/users', userData, {
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data',
+    //     },
+    //   })
+
+    
+    return await UserServices.updateUser(FormData);
+  } catch (error) {
+    const err = error as AxiosError<{ message: string }>;
+    return rejectWithValue({
+      message: err.response?.data.message || err.message,
+    });
+  }
+})
+
+export const getAllUsers = createAsyncThunk<
+  UsersResponse,
+  void,
+  { rejectValue: RejectValue }
+>("user/getAllUsers", async (_, { rejectWithValue }) => {
+  try {
+    return await UserServices.getAllUsers();
+  } catch (error) {
+    const err = error as AxiosError<{ message: string }>;
+    return rejectWithValue({
+      message: err.response?.data.message || err.message,
+    });
+  }
+});
+
+export const getUserById = createAsyncThunk<
+  UserResponse,
+  { id: number },
+  { rejectValue: RejectValue }
+>("user/getUserById", async ({ id }, { rejectWithValue }) => {
+  try {
+    return await UserServices.getUserById(id);
+  } catch (error) {
+    const err = error as AxiosError<{ message: string }>;
+    return rejectWithValue({
+      message: err.response?.data.message || err.message,
+    });
+  }
+});

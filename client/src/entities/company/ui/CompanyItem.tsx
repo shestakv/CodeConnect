@@ -10,6 +10,8 @@ type Props = {
 
 const CompanyItem: React.FC<Props> = ({ company }) => {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const { user } = useAppSelector((state) => state.user);
 
     const handleCardClick = () => {
         navigate(`${ROUTES.COMPANY}/${company.id}`);

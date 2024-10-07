@@ -7,6 +7,8 @@ import { MainPage, SignInPage, SignUpPage, UserPage } from "@/pages";
 import { ErrorPage } from "@/pages/ErrorPage";
 import { CompanyPage } from "@/pages/CompanyPage";
 import CompanyDetails from "@/widgets/CompanyDetails/CompanyDetails";
+import { UsersPage } from "@/pages/UsersPage";
+import { UserStackPage } from "@/pages/UserStackPage";
 
 export const router = createBrowserRouter([
   {
@@ -36,10 +38,26 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: ROUTES.USER,
+        path: ROUTES.USERS,
+        element: (
+          <ProtectedRoute>
+            <UsersPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: ROUTES.USER_PERSONAL,
         element: (
           <ProtectedRoute>
             <UserPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: ROUTES.USER_STACK,
+        element: (
+          <ProtectedRoute>
+            <UserStackPage />
           </ProtectedRoute>
         ),
       },

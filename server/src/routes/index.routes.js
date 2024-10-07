@@ -16,7 +16,7 @@ apiRouter.use('/favoritescompany', favoriteComapnyRouter);
 apiRouter.use("/stack", stackRouter);
 apiRouter.use("/userStack", userStackRouter);
 apiRouter.use("/testingResult", testingResultRouter);
-apiRouter.use("/user", userRouter);
+apiRouter.use("/users", userRouter);
 
 apiRouter.use("*", errorRouter);
 

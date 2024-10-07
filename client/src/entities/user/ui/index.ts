@@ -1,1 +1,2 @@
-export { UserCard } from './UserCard';
+export { UserCardNavBar } from "./UserCardNavBar/UserCardNavBar";
+export { UserCard } from "./UserCard/UserCard";

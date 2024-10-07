@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+}
+
+.formContainer {
+    display: flex;
+    align-items: center;
+    margin-left: 9vw;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    width: 450px;
+    height: 60px;
+    background-color: #fff;
+    margin-top: 25px;
+    border-radius: 30px;
+
+}
+
+.input {
+    margin-top: 20px;
+    width: 500px;
+}
+
+.button {
+    margin-left: -2vw;
+
+}

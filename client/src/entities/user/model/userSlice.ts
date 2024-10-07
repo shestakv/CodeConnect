@@ -1,7 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from ".";
-import { refreshAccessToken, signUp, logout, signIn, updateUserOnServer } from "./userThunks";
+import {
+  refreshAccessToken,
+  signUp,
+  logout,
+  signIn,
+  updateUserOnServer,
+  getAllUsers,
+  getUserById,
+  updateAvatarUserOnServer,
+} from "./userThunks";
 import { message } from "antd";
+import { fetchUser } from './fetchUser';
 
 //FIX Что такое слайс?
 //? Слайс в Redux Toolkit — это объект, который объединяет состояние, редукторы и действия, относящиеся к одной функциональной области приложения (например, юзеры).
@@ -9,15 +19,20 @@ import { message } from "antd";
 //? Определение типа состояния юзера:
 type UserState = {
   user: User | null;
+  users: User[];
+  userPersonal: User | null;
   loading: boolean;
   error: string | null;
   points: number;
+  updatedUser: User | null;
   answeredQuestions: number[]; // массив ID отвеченных вопросов
 };
 
 //? Инициализация начального состояния юзера:
 const initialState: UserState = {
   user: null,
+  users: [],
+  userPersonal: null,
   loading: false,
   error: null,
   points: 0,
@@ -53,18 +68,21 @@ const userSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
+      //!----------------------refreshAccessToken------------------------
       .addCase(refreshAccessToken.pending, (state) => {
         state.loading = true;
       })
       .addCase(refreshAccessToken.fulfilled, (state, action) => {
         state.loading = false;
+        console.log("action.payload.user", action.payload.user);
+        
         state.user = action.payload.user;
         state.error = null;
       })
       .addCase(refreshAccessToken.rejected, (state) => {
         state.loading = false;
       })
-      //!----------------------------------------------------------------
+      //!----------------------------signIn------------------------------
       .addCase(signIn.pending, (state) => {
         state.loading = true;
       })
@@ -79,7 +97,7 @@ const userSlice = createSlice({
         message.warning(action.payload?.message || "Failed to sign in");
       })
 
-      //!----------------------------------------------------------------
+      //!----------------------------signUp------------------------------
       .addCase(signUp.pending, (state) => {
         state.loading = true;
       })
@@ -94,7 +112,7 @@ const userSlice = createSlice({
         message.error(action.payload?.message || "Failed to sign up");
       })
 
-      //!----------------------------------------------------------------
+      //!---------------------------logout------------------------------
       .addCase(logout.pending, (state) => {
         state.loading = true;
       })
@@ -109,12 +127,65 @@ const userSlice = createSlice({
         message.error(action.payload?.message || "Failed to logout");
       })
 
-      //!----------------------------------------------------------------
-      .addCase(updateUserOnServer.fulfilled, (state, action) => {
-        state.user = { ...state.user, ...action.payload };
+      //!--------------------------updateUser----------------------------
+      .addCase(updateUserOnServer.pending, (state) => {
+        state.loading = true;
       })
+      .addCase(updateUserOnServer.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload.user;
+        state.error = null;
+      })
+      .addCase(updateUserOnServer.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload?.message || "Failed to update user";
+        message.error(action.payload?.message || "Failed to update user");
+      })
+      //!--------------------------updateAvatarUser----------------------------
+      .addCase(updateAvatarUserOnServer.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(updateAvatarUserOnServer.fulfilled, (state, action) => {
+        state.loading = false;
+        if (state.userPersonal?.id === action.payload.user?.id) {
+          state.userPersonal = action.payload.user;
+        }
+        console.log(action.payload,11111111111);
+        
+        state.user = action.payload.user;
+        state.error = null;
+      })
+      .addCase(updateAvatarUserOnServer.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload?.message || "Failed to update user";
+        message.error(action.payload?.message || "Failed to update user");
+      })
+
+      //!--------------------------getAllUsers----------------------------
+      .addCase(getAllUsers.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getAllUsers.fulfilled, (state, action) => {
+        state.loading = false;
+        state.users = action.payload.users;
+        state.error = null;
+      })
+      .addCase(getAllUsers.rejected, (state) => {
+        state.loading = false;
+      })
+      //!--------------------------getUserById----------------------------
+      .addCase(getUserById.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getUserById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.userPersonal = action.payload.user;
+        state.error = null;
+      })
+      .addCase(getUserById.rejected, (state) => {
+        state.loading = false;
+      });
   },
 });
 
-export const { updateUser } = userSlice.actions;
 export default userSlice.reducer;
