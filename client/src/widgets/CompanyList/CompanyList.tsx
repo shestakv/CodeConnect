@@ -6,12 +6,6 @@ import { Radio, RadioChangeEvent } from 'antd';
 import { getFavoriteCompanies, type FavoriteCompany } from "@/entities/favoriteCompany";
 
 
-// interface FavoriteCompany {
-//     id: number;
-//     companyId: number;
-//     userId: number;
-// }
-
 interface FavoriteCompanyState {
     favoriteCompanies: FavoriteCompany[];
 }
@@ -25,25 +19,18 @@ export const CompanyList: React.FC = () => {
     const [filter, setFilter] = useState<'all' | 'user' | 'favorites'>('all');
 
 
-
     const filteredCompanies = (() => {
-        console.log("Current Filter:", filter);
-        console.log("User ID:", userId);
         if (filter === 'user') {
-            console.log(companies.filter(company => company.userId === userId));
             return companies.filter(company => company.userId === userId);
         }
         
         if (filter === 'favorites') {
-            console.log("Filtering favorites...");
             const favoriteCompanyIds = favoriteCompanies.map(fav => fav.companyId);
-            console.log("Favorite Company IDs:", favoriteCompanyIds);
             
             return companies.filter(company => favoriteCompanyIds.includes(company.id));
         }
 
         if(filter === 'all') {  
-            // void dispatch(getAllCompanies());
             return companies;
         }
         

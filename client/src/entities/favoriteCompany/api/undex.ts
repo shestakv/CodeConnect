@@ -8,12 +8,13 @@ export class FavoriteCompanyServices {
         return response.data;
     }
 
-    static async addFavoriteCompany(userId: number, companyId: number): Promise<FavoriteCompany> {
-        const response = await axiosInstance.post("/favoriteCompanies", { userId, companyId });
+    static async addFavoriteCompany(userId: number, companyId: number): Promise<FavoriteCompany[]> {
+        const response = await axiosInstance.post("/favoritescompany", { userId, companyId });
+        console.log(response);
         return response.data;
     }
 
     static async deleteFavoriteCompany(userId: number, companyId: number): Promise<void> {
-        await axiosInstance.delete(`/favoriteCompanies`, { data: { userId, companyId } });
+        await axiosInstance.delete(`/favoritescompany`, { data: { userId, companyId } });
     }
 }
