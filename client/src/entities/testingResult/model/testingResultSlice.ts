@@ -3,10 +3,10 @@ import { UserStack } from ".";
 import {
   createUserStack,
   deleteUserStack,
-  getAllUserStacks,
+  // getAllUserStacks,
   // getUserStackById,
   updateUserStack,
-} from "./userStackThunks";
+} from "./testingResultThunks";
 
 type UserStackState = {
   userStack: UserStack | null;
@@ -22,23 +22,23 @@ const initialState: UserStackState = {
   loading: false,
 };
 
-const userStackSlice = createSlice({
+const testingResultSlice = createSlice({
   name: "userStack",
   initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getAllUserStacks.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(getAllUserStacks.fulfilled, (state, action) => {
-        state.loading = false;
-        state.userStacks = action.payload.userStacks;
-        state.error = null;
-      })
-      .addCase(getAllUserStacks.rejected, (state) => {
-        state.loading = false;
-      })
+      // .addCase(getAllUserStacks.pending, (state) => {
+      //   state.loading = true;
+      // })
+      // .addCase(getAllUserStacks.fulfilled, (state, action) => {
+      //   state.loading = false;
+      //   state.userStacks = action.payload.userStacks;
+      //   state.error = null;
+      // })
+      // .addCase(getAllUserStacks.rejected, (state) => {
+      //   state.loading = false;
+      // })
 
       // .addCase(getUserStackById.pending, (state) => {
       //   state.loading = true;
@@ -96,4 +96,4 @@ const userStackSlice = createSlice({
   },
 });
 
-export default userStackSlice.reducer;
+export default testingResultSlice.reducer;

@@ -1,9 +1,9 @@
-import { Flex, Layout, Menu } from "antd";
+import { Layout, Menu } from "antd";
 import style from "./NavBar.module.css";
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
-import { logout, refreshAccessToken } from "@/entities/user";
+import { logout } from "@/entities/user";
 import { UserCardNavBar } from "@/entities/user/ui/UserCardNavBar/UserCardNavBar";
 import { ROUTES } from "@/app/router/routes";
 import { AntDesignOutlined } from "@ant-design/icons";
@@ -66,7 +66,6 @@ export const NavBar: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
-  
 
   const handleLogout = () => {
     dispatch(logout());

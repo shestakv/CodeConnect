@@ -7,6 +7,7 @@ export type User = {
   phone: string;
   email: string;
   avatar: string;
+  age: number;
   location: string;
   bio: string;
   workExperience: string;
@@ -41,11 +42,12 @@ export type FormDataType = {
   avatar: string | undefined;
 };
 
+export type FormDataTypeWithoutAvatar = Omit<FormDataType, "avatar">;
+
 export enum FIELDS {
   WORK_EXPERIENCE = "workExperience",
   EDUCATION = "education",
   BIO = "bio",
-  AGE = "age",
   PHONE = "phone",
   LOCATION = "location",
 }
