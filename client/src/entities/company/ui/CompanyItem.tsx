@@ -4,14 +4,14 @@ import styles from "./CompanyItem.module.css";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "@/app/router/routes";
 
+
 type Props = {
     company: Company;
 }
 
 const CompanyItem: React.FC<Props> = ({ company }) => {
     const navigate = useNavigate();
-    const dispatch = useAppDispatch();
-    const { user } = useAppSelector((state) => state.user);
+
 
     const handleCardClick = () => {
         navigate(`${ROUTES.COMPANY}/${company.id}`);
