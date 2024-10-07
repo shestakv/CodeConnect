@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./UserCardNavBar.module.css";
-import { useAppSelector } from "@/shared/hooks/reduxHooks";
 
 interface UserCardNavBarProps {
   avatar: string | '';
@@ -9,6 +8,8 @@ interface UserCardNavBarProps {
 }
 
 export const UserCardNavBar: React.FC<UserCardNavBarProps> = ({ avatar, firstname, surname }) => {
+  console.log(avatar);
+  
   return (
     <div className={styles.avatarContainer}>
       {firstname} {surname}

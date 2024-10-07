@@ -8,6 +8,8 @@ export class UserServices {
     user: User;
   }> {
     const response = await axiosInstance.get("/tokens/refresh");
+    console.log(response.data);
+    
     setAccessToken(response.data.accessToken);
     return response.data;
   }

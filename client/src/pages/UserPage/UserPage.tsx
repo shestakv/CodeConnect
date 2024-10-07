@@ -13,11 +13,9 @@ import { Button } from "antd";
 
 export const UserPage: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { userPersonal } = useAppSelector((state) => state.userPersonal);
-  console.log(userPersonal,1111111111);
+  const { userPersonal } = useAppSelector((state) => state.user);
   
   const { user } = useAppSelector((state) => state.user);
-  console.log(user,2222222222);
   
   const { id } = useParams();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -120,6 +118,9 @@ export const UserPage: React.FC = () => {
           {userPersonal && userPersonal.surname}{" "}
           {userPersonal && userPersonal.firstname}{" "}
           {userPersonal && userPersonal.patronymic}
+          {"\n\t"}
+          Возраст:
+          {userPersonal && userPersonal.age}{" "}
         </div>
       </div>
 

@@ -45,6 +45,7 @@ export enum FIELDS {
   WORK_EXPERIENCE = "workExperience",
   EDUCATION = "education",
   BIO = "bio",
+  AGE = "age",
   PHONE = "phone",
   LOCATION = "location",
 }

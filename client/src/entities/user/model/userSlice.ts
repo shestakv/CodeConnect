@@ -74,6 +74,8 @@ const userSlice = createSlice({
       })
       .addCase(refreshAccessToken.fulfilled, (state, action) => {
         state.loading = false;
+        console.log("action.payload.user", action.payload.user);
+        
         state.user = action.payload.user;
         state.error = null;
       })
@@ -145,6 +147,11 @@ const userSlice = createSlice({
       })
       .addCase(updateAvatarUserOnServer.fulfilled, (state, action) => {
         state.loading = false;
+        if (state.userPersonal?.id === action.payload.user?.id) {
+          state.userPersonal = action.payload.user;
+        }
+        console.log(action.payload,11111111111);
+        
         state.user = action.payload.user;
         state.error = null;
       })
@@ -181,5 +188,4 @@ const userSlice = createSlice({
   },
 });
 
-export const { updateUser } = userSlice.actions;
 export default userSlice.reducer;
