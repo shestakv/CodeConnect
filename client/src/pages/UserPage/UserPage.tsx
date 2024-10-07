@@ -129,14 +129,20 @@ export const UserPage: React.FC = () => {
               <h3 className={styles.title}>{`${RUSSIAN_FIELDS[field]}:`}</h3>
               {isEditing[field] ? (
                 <>
-                  <input
-                    type="text"
-                    value={formData[field]}
-                    onChange={(e) => handleInputChange(e, field)}
-                  />
-                  <button onClick={(e) => handleSave(e, field)}>
-                    Сохранить
-                  </button>
+                  <div className={styles.inputContainer}>
+                    <input
+                      type="text"
+                      value={formData[field]}
+                      className={styles.input}
+                      onChange={(e) => handleInputChange(e, field)}
+                    />
+                    <button
+                      className={styles.inputButton}
+                      onClick={(e) => handleSave(e, field)}
+                    >
+                      Сохранить
+                    </button>
+                  </div>
                 </>
               ) : (
                 <h3 className={styles.secondTitle}>{formData[field]}</h3>

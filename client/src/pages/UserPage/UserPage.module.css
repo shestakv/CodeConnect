@@ -164,3 +164,30 @@
     align-items: center;
     width: 20px;
 }
+
+.inputContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0px 10px 50px;
+}
+
+.input {
+    width: 300px;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid #00000043;
+    padding-left: 10px;
+    font-size: 20px;
+}
+
+.inputButton {
+    margin-left: 10px;
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid #00000043;
+    font-size: 20px;
+    background-color: #fff;
+    cursor: pointer;
+}
