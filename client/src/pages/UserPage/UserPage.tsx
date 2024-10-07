@@ -9,6 +9,7 @@ import {
 } from "@/entities/user/model/userThunks";
 import { FIELDS_MAP, type FormDataType, RUSSIAN_FIELDS } from "@/entities/user";
 import { useParams } from "react-router-dom";
+import { Button } from "antd";
 
 export const UserPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -136,12 +137,12 @@ export const UserPage: React.FC = () => {
                       className={styles.input}
                       onChange={(e) => handleInputChange(e, field)}
                     />
-                    <button
+                    <Button
                       className={styles.inputButton}
                       onClick={(e) => handleSave(e, field)}
                     >
                       Сохранить
-                    </button>
+                    </Button>
                   </div>
                 </>
               ) : (
