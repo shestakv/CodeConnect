@@ -38,7 +38,6 @@ export const favoriteCompanySlice = createSlice({
             })
             .addCase(addFavoriteCompany.fulfilled, (state, action) => {
                 state.loading = false;
-                console.log(action.payload);
                 state.favoriteCompanies.push(action.payload);
                 state.error = null;
             })

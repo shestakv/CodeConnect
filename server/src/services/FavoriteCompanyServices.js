@@ -3,8 +3,6 @@ const { FavoriteCompany } = require('../../db/models');
 
 class FavoriteCompanyService {
     static async getAllFavoriteCompanies(userId) {
-        console.log(userId);
-        
         return await FavoriteCompany.findAll({ where: { userId } });
     }
 
@@ -12,14 +10,15 @@ class FavoriteCompanyService {
         return await FavoriteCompany.create({ userId, companyId });
     }
 
-    static async deleteFavoriteCompany(userId, companyId) {
-        const favorite = await FavoriteCompany.findOne({ where: { userId, companyId } });
-        if (favorite) {
-            await favorite.destroy();
-            return true;
+    static deleteFavoriteCompany = async (userId, companyId) => {
+        try {  
+            const favorite = await FavoriteCompany.destroy({ where: { userId, companyId } });
+            return favorite;
+      
+        } catch ({ message }) {
+          console.log(message);
         }
-        return false;
-    }
-}
+      };
 
+}
 module.exports = FavoriteCompanyService;
