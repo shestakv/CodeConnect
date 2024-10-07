@@ -3,6 +3,7 @@ export enum ROUTES {
   SIGNIN = "/signin",
   SIGNUP = "/signup",
   COMPANY = "/companies",
+  FAVORITES_COMPANY = "/favoritescompany",
   USER = "/user",
   ERROR = "*",
 }

@@ -1,0 +1,1 @@
+export {MemorizedFavoriteCompanyItem as FavoriteCompanyItem} from './FavoriteCompanyItem';

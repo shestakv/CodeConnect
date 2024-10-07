@@ -1,5 +1,5 @@
 const apiRouter = require("express").Router();
-
+const favoriteComapnyRouter = require("./favoriteCompany.routes");
 const errorRouter = require("./error.routes");
 const authRouter = require("./auth.routes");
 const tokensRouter = require("./tokens.routes");
@@ -12,7 +12,7 @@ const userRouter = require("./user.routes");
 apiRouter.use("/auth", authRouter);
 apiRouter.use('/companies', companiesRouter);
 apiRouter.use("/tokens", tokensRouter);
-
+apiRouter.use('/favoritescompany', favoriteComapnyRouter);
 apiRouter.use("/stack", stackRouter);
 apiRouter.use("/userStack", userStackRouter);
 apiRouter.use("/testingResult", testingResultRouter);

@@ -1,5 +1,6 @@
 //? способ создания хранилища в Redux, который автоматически включает ряд полезных настроек
 import { userReducer } from '@/entities/user';
+import { favooriteCompanyReducer } from '@/entities/favoriteCompany';
 import { configureStore } from '@reduxjs/toolkit';
 
 //? редуктор пользователя из файла userSlice.ts. Редуктор отвечает за управление состоянием пользователя в приложении.
@@ -9,7 +10,8 @@ import { companyReducer } from '@/entities/company';
 const store = configureStore({
     reducer: {
       user: userReducer,
-      company: companyReducer //? В этом объекте ключ reducer используется для определения всех редукторов, которые будут работать с хранилищем.
+      company: companyReducer, //? В этом объекте ключ reducer используется для определения всех редукторов, которые будут работать с хранилищем.
+      favoriteCompanies: favooriteCompanyReducer,
     },
   });
 

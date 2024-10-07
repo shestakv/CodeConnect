@@ -7,6 +7,8 @@ export interface ClientCompany {
 }
 
 
+
+
 export interface Company extends ClientCompany  {
     id: number;
     userId: number;
