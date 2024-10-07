@@ -9,12 +9,14 @@ import {
 } from "@/entities/user/model/userThunks";
 import { FIELDS_MAP, type FormDataType, RUSSIAN_FIELDS } from "@/entities/user";
 import { useParams } from "react-router-dom";
+import { Button } from "antd";
 
 export const UserPage: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { userPersonal } = useAppSelector((state) => state.userPersonal);
-  console.log(userPersonal, 101010101001);
+  const { userPersonal } = useAppSelector((state) => state.user);
+  
   const { user } = useAppSelector((state) => state.user);
+  
   const { id } = useParams();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -116,6 +118,9 @@ export const UserPage: React.FC = () => {
           {userPersonal && userPersonal.surname}{" "}
           {userPersonal && userPersonal.firstname}{" "}
           {userPersonal && userPersonal.patronymic}
+          {"\n\t"}
+          Возраст:
+          {userPersonal && userPersonal.age}{" "}
         </div>
       </div>
 
@@ -126,14 +131,20 @@ export const UserPage: React.FC = () => {
               <h3 className={styles.title}>{`${RUSSIAN_FIELDS[field]}:`}</h3>
               {isEditing[field] ? (
                 <>
-                  <input
-                    type="text"
-                    value={formData[field]}
-                    onChange={(e) => handleInputChange(e, field)}
-                  />
-                  <button onClick={(e) => handleSave(e, field)}>
-                    Сохранить
-                  </button>
+                  <div className={styles.inputContainer}>
+                    <input
+                      type="text"
+                      value={formData[field]}
+                      className={styles.input}
+                      onChange={(e) => handleInputChange(e, field)}
+                    />
+                    <Button
+                      className={styles.inputButton}
+                      onClick={(e) => handleSave(e, field)}
+                    >
+                      Сохранить
+                    </Button>
+                  </div>
                 </>
               ) : (
                 <h3 className={styles.secondTitle}>{formData[field]}</h3>

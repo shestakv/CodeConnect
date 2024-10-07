@@ -6,7 +6,7 @@ import styles from "./UsersList.module.css";
 
 export const UsersList: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { users, loading, error } = useAppSelector((state) => state.users);
+  const { users, loading, error } = useAppSelector((state) => state.user);
 
   useEffect(() => {
     if (!loading && users.length === 0) {

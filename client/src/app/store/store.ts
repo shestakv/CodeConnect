@@ -9,12 +9,14 @@ import { configureStore } from "@reduxjs/toolkit";
 const store = configureStore({
   reducer: {
     user: userReducer,
-    users: userReducer,
-    userPersonal: userReducer,
+    // users: userReducer,
     company: companyReducer,
     stackUser: stackUserReducer,
   },
 });
+
+//? В слайсе юзера оставить только работу с юзером, signIn и signOut Logout refetch updateUser updateAvatarUser
+//? 
 
 //? Тип RootState, который использует TypeScript для получения типа возвращаемого значения функции store.getState. Это позволяет TypeScript узнать, каким будет общее состояние хранилища
 export type RootState = ReturnType<typeof store.getState>;
