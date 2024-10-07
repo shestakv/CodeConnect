@@ -148,7 +148,7 @@ const handleEditClick = (field: string) => {
                   //   className={styles.input}
                   //   onChange={(e) => handleInputChange(e, field)}
                   // />
-                  <h3 className={styles.secondTitle}>{formData[field]}</h3>
+                  <h3 className={styles.secondTitle} style={{ textOverflow: "ellipsis" }}>{formData[field]}</h3>
                 )}
               </div>
               {isEditing[field] && (

@@ -74,7 +74,6 @@ const userSlice = createSlice({
       })
       .addCase(refreshAccessToken.fulfilled, (state, action) => {
         state.loading = false;
-        console.log("action.payload.user", action.payload.user);
         
         state.user = action.payload.user;
         state.error = null;

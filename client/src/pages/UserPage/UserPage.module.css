@@ -48,12 +48,18 @@
     justify-content: space-between;
     align-items: center;
     position: relative;
+    flex-wrap: wrap;
 }
 
 .secondTitle {
     margin: 10px 50px 35px 60px;
     font-size: 18px;
     line-height: 25px;
+    text-overflow: inherit;
+}
+
+.inputWrapper {
+    width: 100% !important;
 }
 
 .settingIcon {
@@ -112,7 +118,7 @@
     margin-top: 25px;
     font-weight: 700;
     font-size: 30px;
-    line-height: 29px;
+    line-height: 30px;
     border-radius: 10px;
 }
 
@@ -187,7 +193,7 @@
 
 .inputButton {
     margin-left: 10px;
-    width: 100px;
+    width: 150px;
     height: 30px;
     border-radius: 10px;
     border: 1px solid #00000043;
