@@ -1,6 +1,10 @@
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import styles from "./UserPage.module.css";
-import { RightOutlined, SettingOutlined } from "@ant-design/icons";
+import {
+  PlusCircleOutlined,
+  RightOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import {
   getUserById,
@@ -164,8 +168,22 @@ export const UserPage: React.FC = () => {
                   </div>
                 ))
               ) : (
-                <h3>Навыки не добавлены</h3>
+                <div>
+                {userPersonal?.id === user?.id ? (<></>): (<h3>Навыки не добавлены</h3>)}
+                </div>
               )}
+              
+              {userPersonal?.id === user?.id ? (
+                <button className={styles.stackCard} onClick={() => navigate(-1)}>
+                <div className={styles.stackCardContent}>
+                  <div className={styles.stackCardTitle}>Добавить</div>
+                  <div className={styles.divIcon}>
+                    <PlusCircleOutlined className={styles.plusIcon} />
+                  </div>
+                </div>
+                </button>
+              )
+              : (<></>)}
             </div>
           </div>
         </div>

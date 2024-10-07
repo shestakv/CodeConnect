@@ -232,3 +232,15 @@
   height: auto; /* Автоматическая высота */
   border-radius: 4px; /* Закругление углов изображения */
 }
+
+.divIcon {
+  display: flex;
+  height: 65px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.plusIcon {
+  font-size: 40px;
+}

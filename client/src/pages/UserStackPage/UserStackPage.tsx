@@ -26,8 +26,6 @@ export const UserStackPage: React.FC = () => {
   }, [id, dispatch, userPersonal, user]);
 
   const handleQuantityQuestions = ({ stackId }: { stackId: number }) => {
-    console.log(userStacks?.filter((userStack) => userStack.id === stackId)[0].Stack
-    .StackTasks.length)
     return userStacks?.filter((userStack) => userStack.id === stackId)[0].Stack
       .StackTasks.length;
   };
@@ -45,13 +43,19 @@ export const UserStackPage: React.FC = () => {
   const handleQuantityTruePercents = ({ stackId }: { stackId: number }) => {
     const quantityQuestion = handleQuantityQuestions({ stackId });
     const quantityTrue = handleQuantityTrue({ stackId });
-    return (quantityTrue / quantityQuestion) * 100;
+    return Math.round((quantityTrue / quantityQuestion) * 100);
   };
 
   const handleQuantityFalsePercents = ({ stackId }: { stackId: number }) => {
     const quantityQuestion = handleQuantityQuestions({ stackId });
     const quantityFalse = handleQuantityFalse({ stackId });
-    return (quantityFalse / quantityQuestion) * 100;
+    return Math.round((quantityFalse / quantityQuestion) * 100);
+  };
+
+  const handleDonePercents = ({ stackId }: { stackId: number }) => {
+    const quantityTruePercents = handleQuantityTruePercents({ stackId });
+    const quantityFalsePercents = handleQuantityTruePercents({ stackId });
+    return quantityTruePercents + quantityFalsePercents;
   };
 
   return (
@@ -93,25 +97,47 @@ export const UserStackPage: React.FC = () => {
                       <h3 className={styles.title}>{userStack.Stack.title}</h3>
                     </div>
 
-                    <div className={styles.title}>{userStack.Stack.title}</div>
+                    {/* <div className={styles.title}>{userStack.Stack.title}</div> */}
                   </div>
                   <div className={styles.testResults}>
-                    <button className={styles.stackCard}>
-                      Тест пройден на {userStack.grade} баллов
+                    <button className={styles.stackCard}> 
+                      <h3>Тестирование</h3>
+                      {handleDonePercents({stackId: userStack.id}) >= 100 ?  
+                      (`Результат: ${userStack.grade}/10 баллов`) :
+                      (`не окончено`)
+                    }
                       <Tooltip
-                        title={`Правильных ответов: ${handleQuantityTruePercents({
-                          stackId: userStack.id,
-                        })}%`}
+                        title={`Правильных ответов: ${handleQuantityTruePercents(
+                          {
+                            stackId: userStack.id,
+                          }
+                        )}%  
+                      Неправильных ответов: ${handleQuantityFalsePercents({
+                        stackId: userStack.id,
+                      })}%`}
                       >
                         <Progress
-                          percent={handleQuantityTruePercents({
+                          percent={handleDonePercents({
                             stackId: userStack.id,
                           })}
                           success={{
                             percent: handleQuantityFalsePercents({
                               stackId: userStack.id,
                             }),
+                            strokeColor: "red",
                           }}
+                        />
+                      </Tooltip>
+                    </button>
+                    <button className={styles.stackCard} disabled> 
+                      <h3>AI проверка</h3>
+                      <p>Скоро</p>
+                      <Tooltip
+                        title={`Правильных ответов: 0%  
+                      Неправильных ответов: 0%`}
+                      >
+                        <Progress
+                          percent={0}
                         />
                       </Tooltip>
                     </button>
