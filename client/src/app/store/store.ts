@@ -3,20 +3,20 @@ import { userReducer } from "@/entities/user";
 import { companyReducer } from "@/entities/company";
 import { stackUserReducer } from "@/entities/stackUser";
 import { configureStore } from "@reduxjs/toolkit";
+import { favooriteCompanyReducer } from '@/entities/favoriteCompany';
 
 //? редуктор пользователя из файла userSlice.ts. Редуктор отвечает за управление состоянием пользователя в приложении.
 
 const store = configureStore({
   reducer: {
     user: userReducer,
-    // users: userReducer,
     company: companyReducer,
+    favoriteCompanies: favooriteCompanyReducer,
     stackUser: stackUserReducer,
   },
 });
 
 //? В слайсе юзера оставить только работу с юзером, signIn и signOut Logout refetch updateUser updateAvatarUser
-//? 
 
 //? Тип RootState, который использует TypeScript для получения типа возвращаемого значения функции store.getState. Это позволяет TypeScript узнать, каким будет общее состояние хранилища
 export type RootState = ReturnType<typeof store.getState>;

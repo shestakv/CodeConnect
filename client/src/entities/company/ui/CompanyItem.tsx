@@ -1,44 +1,38 @@
 import React from "react";
 import { Company } from "../model";
-import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
-import { deleteCompany } from "../model/comapnyThunks";
-import CompanyFormUpdate from "@/widgets/CompanyFormUpdate/CompanyFormUpdate";
+import styles from "./CompanyItem.module.css";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "@/app/router/routes";
 
 type Props = {
     company: Company;
 }
 
 const CompanyItem: React.FC<Props> = ({ company }) => {
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { user } = useAppSelector((state) => state.user);
 
-    const handleDeleteCompany = () => {
-        try {
-           void dispatch(deleteCompany({id: company.id})); 
-        } catch (error) {
-            console.error("Error deleting company:", error); 
-        }
+    const handleCardClick = () => {
+        navigate(`${ROUTES.COMPANY}/${company.id}`);
     };
 
     return (
-        <>
-         <div>
-            <h3>{company.name}</h3>
-            <p>Описание: {company.description}</p>
-            <p>Почта: {company.email}</p>
-            <p>Номер телефона: {company.phone}</p>
-            {user?.id === company.userId ? (
-                <button onClick={handleDeleteCompany}>Удалить</button>
-            ) : (
-                <p>У вас нет прав на удаление этой компании.</p>
-            )}
-            <CompanyFormUpdate company={company} />
-        </div>
-        </>
-    )
-
-}
-
-
+            <div className="container">
+                <button 
+                    onClick={handleCardClick} 
+                    className={styles.companyCard} 
+                >
+                    <img 
+                        className="companyLogo" 
+                        src={`${import.meta.env.VITE_IMG}${company.logo}`} 
+                        alt={`${company.name} логотип`} 
+                        style={{ width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover' }}
+                    />
+                    <h3 className={styles.companyName}>{company.name}</h3>
+                </button>
+            </div>
+    );
+};
 
 export const MemorizedCompanyItem = React.memo(CompanyItem);

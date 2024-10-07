@@ -24,7 +24,7 @@ exports.getCompanyById = async (req, res) => {
   }
 };
 
-exports.createCompany = async (req, res) => {
+exports.createCompany =  async (req, res) => {
   try {
     const { name, email, phone, description, logo } = req.body;
     const company = await CompanyServices.createCompany({

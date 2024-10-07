@@ -16,7 +16,7 @@ module.exports = {
           email: "elbrus@gmail.vom",
           phone: '84999386824',
           description: 'Топ место',
-          logo: "/images/defAvatar.png",
+          logo: "/images/Elbrus.png",
         },
       ],
       {}

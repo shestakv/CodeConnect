@@ -67,23 +67,25 @@ export const createCompany = createAsyncThunk<
   }
 );
 
-export const updateCompany = createAsyncThunk<
-  CompanyResponse,
-  {
-    id: number;
-    name: string;
-    email: string;
-    phone: string;
-    description: string;
-    logo: string;
-  },
-  { rejectValue: RejectValue }
->(
-  "company/updateCompany",
-  async (
-    { id, name, email, phone, description, logo },
-    { rejectWithValue }
-  ) => {
+  export const createCompany = createAsyncThunk<
+    CompanyResponse,
+    { name: string; email: string; phone: string; description: string; logo: string },
+    { rejectValue: RejectValue }
+  >("company/createCompany", async ({ name, email, phone, description, logo }, { rejectWithValue }) => {
+    
+    try {        
+      return await CompanyServices.createCompany({ name, email, phone, description, logo });
+    } catch (error) {
+      const err = error as AxiosError<{ message: string }>;
+      return rejectWithValue({
+        message: err.response?.data.message || err.message,
+    })}})
+
+    export const updateCompany = createAsyncThunk<
+    CompanyResponse,
+    { id: number ; name?: string; email?: string; phone?: string; description?: string; logo?: string },
+    { rejectValue: RejectValue }
+  >("company/updateCompany", async ({ id, name, email, phone, description, logo }, { rejectWithValue }) => {
     try {
       return await CompanyServices.updateCompany(
         id,
