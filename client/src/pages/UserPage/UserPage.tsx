@@ -13,8 +13,11 @@ import { useParams } from "react-router-dom";
 export const UserPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { userPersonal } = useAppSelector((state) => state.userPersonal);
-  console.log(userPersonal, 101010101001);
+  console.log(userPersonal,1111111111);
+  
   const { user } = useAppSelector((state) => state.user);
+  console.log(user,2222222222);
+  
   const { id } = useParams();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 

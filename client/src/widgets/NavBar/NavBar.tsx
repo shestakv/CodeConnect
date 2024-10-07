@@ -66,7 +66,6 @@ export const NavBar: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.user);
   const { userPersonal } = useAppSelector((state) => state.userPersonal);
-  console.log(userPersonal, 'PERSONAL');
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
@@ -111,7 +110,7 @@ export const NavBar: React.FC = () => {
                 <Link to={ROUTES.USERS + `/${user.id}`}>
                   <UserCardNavBar
                     avatar={`${import.meta.env.VITE_IMG}${
-                      userPersonal?.avatar
+                      user.avatar
                     }`}
                     firstname={user.firstname}
                     surname={user.surname}
