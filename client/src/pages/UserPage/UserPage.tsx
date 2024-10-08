@@ -133,12 +133,10 @@ export const UserPage: React.FC = () => {
           />
           {user?.id === userPersonal?.id ? (
             <div className={styles.settingIconImg}>
-              <button
-                className={styles.buttonImg}
-                onClick={() => fileInputRef.current?.click()}
-              >
-                <SettingOutlined />
-              </button>
+                <SettingOutlined
+                  className={styles.buttonImg}
+                  onClick={() => fileInputRef.current?.click()}
+                />
               <input
                 type="file"
                 accept="image/*"
@@ -171,6 +169,7 @@ export const UserPage: React.FC = () => {
                 )}
                 {userStacks && userStacks.length > 0 ? (
                   <Button
+                    className={styles.userStacksButton}
                     type="default"
                     shape="round"
                     onClick={() => navigate(`/users/userStacks/${id}`)}
@@ -282,12 +281,10 @@ export const UserPage: React.FC = () => {
             {user?.id === userPersonal?.id && (
               <div className={styles.buttonContainer}>
                 <div className={styles.secondButtonContainer}>
-                  <button
-                    className={styles.button}
+                  <SettingOutlined
                     onClick={() => handleEditClick(field)}
-                  >
-                    <SettingOutlined className={styles.settingIcon} />
-                  </button>
+                    className={styles.settingIcon}
+                  />
                 </div>
               </div>
             )}

@@ -50,7 +50,6 @@ export const UserStackAddForm: React.FC<UserStackAddFormProps> = ({
   return (
     <>
       <div className={styles.modalBackground} onClick={onClose}></div>{" "}
-      {/* Фон для модального окна */}
       <div className={styles.container}>
         <h3 className={styles.title}>Выберите программу:</h3>
         {stacks ? (
