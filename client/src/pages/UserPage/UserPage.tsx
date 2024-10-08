@@ -236,7 +236,7 @@ export const UserPage: React.FC = () => {
                     active={isModalOpen}
                     setActive={() => setIsModalOpen(false)}
                   >
-                    <UserStackAddForm />
+                    <UserStackAddForm onClose={() => setIsModalOpen(false)} />
                   </ModalWindow>
                 </div>
               ) : (
