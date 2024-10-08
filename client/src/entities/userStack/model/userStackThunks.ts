@@ -41,16 +41,14 @@ export const getAllUserStacks = createAsyncThunk<
 export const createUserStack = createAsyncThunk<
   UserStackResponse,
   {
-    userId: number;
     stackId: number;
-    grade: number;
   },
   { rejectValue: RejectValue }
 >(
   "company/createUserStack",
-  async ({ userId, stackId, grade }, { rejectWithValue }) => {
+  async ({ stackId }, { rejectWithValue }) => {
     try {
-      return await UserStackService.createUserStack(userId, stackId, grade);
+      return await UserStackService.createUserStack(stackId);
     } catch (error) {
       const err = error as AxiosError<{ message: string }>;
       return rejectWithValue({

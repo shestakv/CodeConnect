@@ -267,3 +267,25 @@
   background-color: #fff;
   cursor: pointer;
 }
+
+.ButtonCloseIcon{
+    margin-top: 8px;
+    border: none;
+}
+
+.closeIcon {
+    color: #0000005d;
+}
+
+.closeIcon:hover {
+    color: red;
+}
+
+.stackSettingIcon {
+    margin-right: 25px;
+    font-size: 20px;
+}
+
+.stackSettingIcon:hover {
+    color: #578cec;
+}

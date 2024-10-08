@@ -4,6 +4,7 @@ import {
   PlusCircleOutlined,
   RightOutlined,
   SettingOutlined,
+  CloseOutlined,
 } from "@ant-design/icons";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -22,6 +23,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getAllUserStacks } from "@/entities/userStack";
 import { Button } from "antd";
 import TextArea from "antd/es/input/TextArea";
+import ModalWindow from "@/shared/ui/ModalWindow/Modal";
+import { UserStackAddForm } from "@/entities/userStack/ui/userStackAddForm";
+import { getAllStacks } from "@/entities/stack";
 
 export const UserPage: React.FC = () => {
   const navigate = useNavigate();
@@ -47,6 +51,12 @@ export const UserPage: React.FC = () => {
       const newEditing = { ...prev, [field]: !prev[field] };
       return newEditing;
     });
+  };
+
+  const [showCloseIcon, setShowCloseIcon] = useState(false);
+
+  const handleSettingClick = () => {
+    setShowCloseIcon((prev) => !prev);
   };
 
   const handleInputChange = (
@@ -96,11 +106,16 @@ export const UserPage: React.FC = () => {
     }
   }, [userPersonal]);
 
+  useEffect(() => {
+    dispatch(getAllStacks());
+  }, [dispatch]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const { userStacks } = useAppSelector((state) => state.userStacks);
   useEffect(() => {
     if (id) {
       dispatch(getAllUserStacks({ userId: +id }));
-      console.log(userStacks);
     }
   }, [id, dispatch]);
 
@@ -108,11 +123,7 @@ export const UserPage: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.titleHeader}>
         <div className={styles.avatarContainer}>
-          <img
-            className={styles.avatar}
-            src={`${import.meta.env.VITE_IMG}${userPersonal?.avatar}`}
-          />
-
+          <img className={styles.avatar} src={`${import.meta.env.VITE_IMG}${userPersonal?.avatar}`}/>
           {user?.id === userPersonal?.id ? (
             <div className={styles.settingIconImg}>
               <button
@@ -137,9 +148,6 @@ export const UserPage: React.FC = () => {
           {userPersonal && userPersonal.surname}{" "}
           {userPersonal && userPersonal.firstname}{" "}
           {userPersonal && userPersonal.patronymic}
-          {"\n\t"}
-          Возраст:
-          {userPersonal && userPersonal.age}{" "}
         </div>
       </div>
 
@@ -159,12 +167,6 @@ export const UserPage: React.FC = () => {
                     onChange={(e) => handleInputChange(e, field)}
                   />
                 ) : (
-                  // <textarea
-                  //   type="text"
-                  //   value={formData[field]}
-                  //   className={styles.input}
-                  //   onChange={(e) => handleInputChange(e, field)}
-                  // />
                   <h3
                     className={styles.secondTitle}
                     style={{ textOverflow: "ellipsis" }}
@@ -203,18 +205,24 @@ export const UserPage: React.FC = () => {
           <div className={styles.dividerStacks}>
             <div className={styles.topContainer}>
               <h3 className={styles.title}>Навыки:</h3>
-              {userStacks && userStacks.length > 0 ? (
-                <Button
-                  type="default"
-                  shape="round"
-                  onClick={() => navigate(`/users/userStacks/${id}`)}
-                >
-                  Подробнее
-                  <RightOutlined />
-                </Button>
-              ) : (
-                <></>
-              )}
+              <div>
+                <SettingOutlined
+                  onClick={handleSettingClick}
+                  className={styles.stackSettingIcon}
+                />
+                {userStacks && userStacks.length > 0 ? (
+                  <Button
+                    type="default"
+                    shape="round"
+                    onClick={() => navigate(`/users/userStacks/${id}`)}
+                  >
+                    Подробнее
+                    <RightOutlined />
+                  </Button>
+                ) : (
+                  <></>
+                )}
+              </div>
             </div>
             <div className={styles.userStacksContainer}>
               {userStacks && userStacks.length > 0 ? (
@@ -231,6 +239,14 @@ export const UserPage: React.FC = () => {
                         alt="Stack Icon"
                         className={styles.stackIcon}
                       />
+                      {showCloseIcon && (
+                        <span
+                          className={styles.ButtonCloseIcon}
+                          onClick={handleSettingClick}
+                        >
+                          <CloseOutlined className={styles.closeIcon} />
+                        </span>
+                      )}
                     </div>
                   </div>
                 ))
@@ -245,17 +261,25 @@ export const UserPage: React.FC = () => {
               )}
 
               {userPersonal?.id === user?.id ? (
-                <button
-                  className={styles.stackCard}
-                  onClick={() => navigate(-1)}
-                >
-                  <div className={styles.stackCardContent}>
-                    <div className={styles.stackCardTitle}>Добавить</div>
-                    <div className={styles.divIcon}>
-                      <PlusCircleOutlined className={styles.plusIcon} />
+                <div>
+                  <button
+                    className={styles.stackCard}
+                    onClick={() => setIsModalOpen(true)}
+                  >
+                    <div className={styles.stackCardContent}>
+                      <div className={styles.stackCardTitle}>Добавить</div>
+                      <div className={styles.divIcon}>
+                        <PlusCircleOutlined className={styles.plusIcon} />
+                      </div>
                     </div>
-                  </div>
-                </button>
+                  </button>
+                  <ModalWindow
+                    active={isModalOpen}
+                    setActive={() => setIsModalOpen(false)}
+                  >
+                    <UserStackAddForm />
+                  </ModalWindow>
+                </div>
               ) : (
                 <></>
               )}

@@ -149,7 +149,6 @@ const userSlice = createSlice({
         if (state.userPersonal?.id === action.payload.user?.id) {
           state.userPersonal = action.payload.user;
         }
-        console.log(action.payload,11111111111);
         
         state.user = action.payload.user;
         state.error = null;

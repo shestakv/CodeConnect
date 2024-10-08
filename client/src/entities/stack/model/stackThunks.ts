@@ -7,13 +7,15 @@ type RejectValue = {
     message: string
 }
 
-export const getStack = createAsyncThunk<
-    Stack,
-    {stackId: number},
+export const getAllStacks = createAsyncThunk<
+    Stack, 
+    void,
     { rejectValue: RejectValue }
->('stacks/getStack', async ({stackId}, { rejectWithValue }) => {
+>('stacks/getStack', async (_, { rejectWithValue }) => {
     try {
-        return await StackService.getStack(stackId)
+        const stacks = await StackService.getAllStacks()
+        
+        return stacks // Ensure that stacks is an array of Stack objects
     } catch (error) {
         const err = error as AxiosError<{message: string}>
         return rejectWithValue({
