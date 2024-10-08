@@ -22,6 +22,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getAllUserStacks } from "@/entities/userStack";
 import { Button } from "antd";
 import TextArea from "antd/es/input/TextArea";
+import ModalWindow from "@/shared/ui/ModalWindow/Modal";
 
 export const UserPage: React.FC = () => {
   const navigate = useNavigate();
@@ -95,6 +96,8 @@ export const UserPage: React.FC = () => {
       });
     }
   }, [userPersonal]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { userStacks } = useAppSelector((state) => state.userStacks);
   useEffect(() => {
@@ -245,17 +248,20 @@ export const UserPage: React.FC = () => {
               )}
 
               {userPersonal?.id === user?.id ? (
-                <button
-                  className={styles.stackCard}
-                  onClick={() => navigate(-1)}
-                >
-                  <div className={styles.stackCardContent}>
-                    <div className={styles.stackCardTitle}>Добавить</div>
-                    <div className={styles.divIcon}>
-                      <PlusCircleOutlined className={styles.plusIcon} />
+                <div>
+                  <button className={styles.stackCard} onClick={setIsModalOpen}>
+                    <div className={styles.stackCardContent}>
+                      <div className={styles.stackCardTitle}>Добавить</div>
+                      <div className={styles.divIcon}>
+                        <PlusCircleOutlined className={styles.plusIcon} />
+                      </div>
                     </div>
-                  </div>
-                </button>
+                  </button>
+                  <ModalWindow
+                    active={isModalOpen}
+                    setActive={() => setIsModalOpen(false)}
+                  ></ModalWindow>
+                </div>
               ) : (
                 <></>
               )}
