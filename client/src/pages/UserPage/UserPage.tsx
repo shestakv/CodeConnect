@@ -26,6 +26,7 @@ import TextArea from "antd/es/input/TextArea";
 import ModalWindow from "@/shared/ui/ModalWindow/Modal";
 import { UserStackAddForm } from "@/entities/userStack/ui/userStackAddForm";
 import { getAllStacks } from "@/entities/stack";
+import { deleteUserStack } from "@/entities/userStack/model/userStackThunks";
 
 export const UserPage: React.FC = () => {
   const navigate = useNavigate();
@@ -77,6 +78,9 @@ export const UserPage: React.FC = () => {
     }
   };
 
+  const handleDeletedStack = (stackId: number) => {
+    dispatch(deleteUserStack({ id: stackId }));
+  }
   const handleSave = async (field: keyof FormDataType) => {
     const userData = { [field]: formData[field] };
     const updatedUser = await dispatch(updateUserOnServer({ userData }));
@@ -123,7 +127,10 @@ export const UserPage: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.titleHeader}>
         <div className={styles.avatarContainer}>
-          <img className={styles.avatar} src={`${import.meta.env.VITE_IMG}${userPersonal?.avatar}`}/>
+          <img
+            className={styles.avatar}
+            src={`${import.meta.env.VITE_IMG}${userPersonal?.avatar}`}
+          />
           {user?.id === userPersonal?.id ? (
             <div className={styles.settingIconImg}>
               <button
@@ -206,11 +213,11 @@ export const UserPage: React.FC = () => {
             <div className={styles.topContainer}>
               <h3 className={styles.title}>Навыки:</h3>
               <div>
-                {user?.id === userPersonal?.id && (                  
-                <SettingOutlined
-                  onClick={handleSettingClick}
-                  className={styles.stackSettingIcon}
-                />
+                {user?.id === userPersonal?.id && (
+                  <SettingOutlined
+                    onClick={handleSettingClick}
+                    className={styles.stackSettingIcon}
+                  />
                 )}
                 {userStacks && userStacks.length > 0 ? (
                   <Button
@@ -244,7 +251,7 @@ export const UserPage: React.FC = () => {
                       {showCloseIcon && (
                         <span
                           className={styles.ButtonCloseIcon}
-                          onClick={handleSettingClick}
+                          onClick={() => handleDeletedStack(userStack.id)}
                         >
                           <CloseOutlined className={styles.closeIcon} />
                         </span>
