@@ -1,6 +1,6 @@
 import { axiosInstance } from "@/shared/lib/axiosInstance";
 import { FavoriteCompany } from "../model";
-
+//123456
 
 export class FavoriteCompanyServices {
     static async getFavoriteCompanies(): Promise<FavoriteCompany[]> {
