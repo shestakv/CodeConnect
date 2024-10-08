@@ -206,10 +206,12 @@ export const UserPage: React.FC = () => {
             <div className={styles.topContainer}>
               <h3 className={styles.title}>Навыки:</h3>
               <div>
+                {user?.id === userPersonal?.id && (                  
                 <SettingOutlined
                   onClick={handleSettingClick}
                   className={styles.stackSettingIcon}
                 />
+                )}
                 {userStacks && userStacks.length > 0 ? (
                   <Button
                     type="default"
