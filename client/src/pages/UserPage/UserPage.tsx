@@ -4,6 +4,7 @@ import {
   PlusCircleOutlined,
   RightOutlined,
   SettingOutlined,
+  CloseOutlined,
 } from "@ant-design/icons";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -53,6 +54,12 @@ export const UserPage: React.FC = () => {
     });
   };
 
+  const [showCloseIcon, setShowCloseIcon] = useState(false);
+
+  const handleSettingClick = () => {
+    setShowCloseIcon((prev) => !prev);
+  };
+
   const handleInputChange = (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
     field: string
@@ -66,11 +73,10 @@ export const UserPage: React.FC = () => {
     if (file) {
       const formData = new FormData();
       formData.append("avatar", file);
-      
+
       dispatch(updateAvatarUserOnServer({ formData }));
     }
   };
-  
 
   const handleSave = async (field: keyof FormDataType) => {
     const userData = { [field]: formData[field] };
@@ -206,18 +212,24 @@ export const UserPage: React.FC = () => {
           <div className={styles.dividerStacks}>
             <div className={styles.topContainer}>
               <h3 className={styles.title}>Навыки:</h3>
-              {userStacks && userStacks.length > 0 ? (
-                <Button
-                  type="default"
-                  shape="round"
-                  onClick={() => navigate(`/users/userStacks/${id}`)}
-                >
-                  Подробнее
-                  <RightOutlined />
-                </Button>
-              ) : (
-                <></>
-              )}
+              <div>
+                <SettingOutlined
+                  onClick={handleSettingClick}
+                  className={styles.stackSettingIcon}
+                />
+                {userStacks && userStacks.length > 0 ? (
+                  <Button
+                    type="default"
+                    shape="round"
+                    onClick={() => navigate(`/users/userStacks/${id}`)}
+                  >
+                    Подробнее
+                    <RightOutlined />
+                  </Button>
+                ) : (
+                  <></>
+                )}
+              </div>
             </div>
             <div className={styles.userStacksContainer}>
               {userStacks && userStacks.length > 0 ? (
@@ -234,6 +246,14 @@ export const UserPage: React.FC = () => {
                         alt="Stack Icon"
                         className={styles.stackIcon}
                       />
+                      {showCloseIcon && (
+                        <span
+                          className={styles.ButtonCloseIcon}
+                          onClick={handleSettingClick}
+                        >
+                          <CloseOutlined className={styles.closeIcon} />
+                        </span>
+                      )}
                     </div>
                   </div>
                 ))

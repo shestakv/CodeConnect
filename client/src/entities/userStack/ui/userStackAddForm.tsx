@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import styles from "./StackCard.module.css";
 import { Button } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
 import { createUserStack } from "../model/userStackThunks";
 
 export const UserStackAddForm: React.FC = () => {
@@ -12,7 +13,6 @@ export const UserStackAddForm: React.FC = () => {
   const handleAddSkill = () => {
     if (selectedStack) {
       dispatch(createUserStack({ stackId: selectedStack.id }));
-      console.log(selectedStack.id);
     }
   };
 
