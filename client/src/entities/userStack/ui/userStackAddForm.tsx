@@ -36,9 +36,11 @@ export const UserStackAddForm: React.FC<UserStackAddFormProps> = ({
   };
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedId = Number(event.target.value);
-    const stack = stacks.find((stack) => stack.id === selectedId);
-    setSelectedStack(stack || null);
+    if (stacks) {
+      const selectedId = Number(event.target.value);
+      const stack = stacks.find((stack) => stack.id === selectedId);
+      setSelectedStack(stack || null);
+    }
   };
 
   const existingStackTitles = userStacks.map(
@@ -46,29 +48,41 @@ export const UserStackAddForm: React.FC<UserStackAddFormProps> = ({
   );
 
   return (
-    <div className={styles.container}>
-      <h3 className={styles.title}>Выберите программу:</h3>
-      {stacks ? (
-        <>
-          <select onChange={handleSelectChange} value={selectedStack?.id || ""}>
-            <option value="" disabled>
-              Выберите программу
-            </option>
-            {stacks
-              .filter((stack) => !existingStackTitles.includes(stack.title))
-              .map((stack) => (
-                <option key={stack.id} value={stack.id}>
-                  {stack.title}
-                </option>
-              ))}
-          </select>
-          <Button onClick={handleAddSkill} disabled={!selectedStack}>
-            Добавить
-          </Button>
-        </>
-      ) : (
-        <p>Загрузка программ...</p>
-      )}
-    </div>
+    <>
+      <div className={styles.modalBackground} onClick={onClose}></div>{" "}
+      {/* Фон для модального окна */}
+      <div className={styles.container}>
+        <h3 className={styles.title}>Выберите программу:</h3>
+        {stacks ? (
+          <>
+            <select
+              className={styles.select}
+              onChange={handleSelectChange}
+              value={selectedStack?.id || ""}
+            >
+              <option className={styles.option} value="" disabled>
+                Выберите программу
+              </option>
+              {stacks
+                .filter((stack) => !existingStackTitles.includes(stack.title))
+                .map((stack) => (
+                  <option
+                    className={styles.option}
+                    key={stack.id}
+                    value={stack.id}
+                  >
+                    {stack.title}
+                  </option>
+                ))}
+            </select>
+            <Button className={styles.button} onClick={handleAddSkill} disabled={!selectedStack}>
+              Добавить
+            </Button>
+          </>
+        ) : (
+          <p>Загрузка программ...</p>
+        )}
+      </div>
+    </>
   );
 };
