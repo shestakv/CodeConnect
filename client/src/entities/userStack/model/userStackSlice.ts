@@ -57,6 +57,8 @@ const userStackSlice = createSlice({
       })
       .addCase(createUserStack.fulfilled, (state, action) => {
         state.loading = false;
+        console.log(action.payload,111111111111111);
+        
         state.userStacks.push(action.payload.userStack);
         state.error = null;
       })

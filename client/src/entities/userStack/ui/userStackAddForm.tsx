@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import styles from "./StackCard.module.css";
 import { Button } from "antd";
 import { createUserStack } from "../model/userStackThunks";
 
-
 export const UserStackAddForm: React.FC = () => {
-    const { stacks } = useAppSelector((state) => state.stack);
-    const [selectedStack, setSelectedStack] = useState(null);
-    const dispatch = useAppDispatch();
-    const handleAddSkill = (selectedStack) => {
-    
+  const { stacks } = useAppSelector((state) => state.stack);
+  const [selectedStack, setSelectedStack] = useState(null);
+  const dispatch = useAppDispatch();
+
+  const handleAddSkill = () => {
+    if (selectedStack) {
       dispatch(createUserStack({ stackId: selectedStack.id }));
       console.log(selectedStack.id);
-    };
+    }
+  };
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
@@ -27,7 +28,7 @@ export const UserStackAddForm: React.FC = () => {
       {stacks ? (
         <>
           <select onChange={handleSelectChange}>
-            <option value="" disabled selected>
+            <option value="" disabled>
               Выберите программу
             </option>
             {stacks.map((stack) => (
@@ -36,10 +37,7 @@ export const UserStackAddForm: React.FC = () => {
               </option>
             ))}
           </select>
-          <Button
-            onClick={() => handleAddSkill(selectedStack)}
-            disabled={!selectedStack}
-          >
+          <Button onClick={handleAddSkill} disabled={!selectedStack}>
             Добавить
           </Button>
         </>

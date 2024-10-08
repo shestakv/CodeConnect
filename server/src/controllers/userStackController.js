@@ -37,9 +37,15 @@ exports.createUserStack = async (req, res) => {
       grade,
     });
     console.log(userStack);
+    if (userStack) {
+      const newUserStack = await UserStackServices.getUserStackById(
+        userStack.id
+      )
+      
+      res.status(201).json({ message: "success", userStack: newUserStack });
+    }
     
 
-    res.status(201).json({ message: "success", userStack });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
