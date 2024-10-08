@@ -73,6 +73,21 @@
     margin-right: 15px; 
 }
 
+.cardButton {
+    position: relative; /* Относительное позиционирование для кнопки */
+}
+
+.favoritePosition {
+    position: absolute; /* Абсолютное позиционирование для звездочки */
+    top: 10px; /* Отступ от верхнего края */
+    right: 10px; /* Отступ от правого края */
+    cursor: pointer; /* Указываем, что элемент кликабельный */
+}
+
+.favoriteButton {
+    font-size: 24px; /* Увеличьте размер шрифта */
+    padding: 10px; /* Добавьте отступы */
+}
 
 
 
