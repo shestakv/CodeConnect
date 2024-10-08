@@ -6,9 +6,9 @@ export type Stack = {
   updatedAt: Date;
 };
 
-export type Stacks = {
-  stacks: Stack[];
-};
+// export type Stacks = {
+//   stacks: Stack[];
+// };
 
 export type StackId = Stack["id"];
 

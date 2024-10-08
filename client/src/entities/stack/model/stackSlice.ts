@@ -25,13 +25,16 @@ const stackSlice = createSlice({
       .addCase(getAllStacks.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getAllStacks.fulfilled, (state, action) => {
-        state.loading = false;
-        state.stacks = action.payload;
-        console.log(action.payload,4444444444);
-        
-        state.error = null;
-      })
+.addCase(getAllStacks.fulfilled, (state, action) => {
+  state.loading = false;
+  if (Array.isArray(action.payload)) {
+    state.stacks = action.payload;
+  } else {
+    console.error('Invalid payload:', action.payload);
+  }
+  console.log(action.payload, 4444444444);
+  state.error = null;
+})
       .addCase(getAllStacks.rejected, (state) => {
         state.loading = false
       })
