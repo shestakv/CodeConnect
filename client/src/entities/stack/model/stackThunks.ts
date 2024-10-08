@@ -14,7 +14,6 @@ export const getAllStacks = createAsyncThunk<
 >('stacks/getStack', async (_, { rejectWithValue }) => {
     try {
         const stacks = await StackService.getAllStacks()
-        console.log(stacks, 333333333);
         
         return stacks // Ensure that stacks is an array of Stack objects
     } catch (error) {

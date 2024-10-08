@@ -37,15 +37,11 @@ export class UserStackService {
   // }
 
   static async createUserStack(
-    userId: number,
     stackId: number,
-    grade: number
   ): Promise<UserStackResponse> {
     try {
       const response = await axiosInstance.post("/userStacks", {
-        userId,
         stackId,
-        grade,
       });
       return response.data
     } catch (error) {

@@ -28,13 +28,16 @@ exports.getAllUserStacks = async (req, res) => {
 
 exports.createUserStack = async (req, res) => {
   try {
-    const { stackId, grade = 0 } = req.body;
+    const { stackId, grade = 1 } = req.body;
+
 
     const userStack = await UserStackServices.createUserStack({
       userId: res.locals.user.id,
       stackId,
       grade,
     });
+    console.log(userStack);
+    
 
     res.status(201).json({ message: "success", userStack });
   } catch (error) {

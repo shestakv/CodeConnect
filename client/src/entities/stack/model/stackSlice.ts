@@ -32,7 +32,6 @@ const stackSlice = createSlice({
   } else {
     console.error('Invalid payload:', action.payload);
   }
-  console.log(action.payload, 4444444444);
   state.error = null;
 })
       .addCase(getAllStacks.rejected, (state) => {

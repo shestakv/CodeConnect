@@ -1,19 +1,48 @@
-import { getAllStacks } from "@/entities/stack";
-import { useAppSelector } from "@/shared/hooks/reduxHooks";
+import React, { useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
+import styles from "./StackCard.module.css";
+import { Button } from "antd";
+import { createUserStack } from "../model/userStackThunks";
+
 
 export const UserStackAddForm: React.FC = () => {
-  const { stacks } = useAppSelector((state) => state.stack);
-  console.log(stacks,2222222222);  
-  
+    const { stacks } = useAppSelector((state) => state.stack);
+    const [selectedStack, setSelectedStack] = useState(null);
+    const dispatch = useAppDispatch();
+    const handleAddSkill = (selectedStack) => {
+    
+      dispatch(createUserStack({ stackId: selectedStack.id }));
+      console.log(selectedStack.id);
+    };
+
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = event.target.value;
+    const stack = stacks.find((stack) => stack.title === selectedValue);
+    setSelectedStack(stack);
+  };
+
   return (
-    <div>
+    <div className={styles.container}>
+      <h3 className={styles.title}>Выберите программу:</h3>
       {stacks ? (
-        stacks.map((stack) => (
-          <div>
-            <p>{stack.title}</p>
-            <img src={stack.image} alt={stack.title} />
-          </div>
-        ))
+        <>
+          <select onChange={handleSelectChange}>
+            <option value="" disabled selected>
+              Выберите программу
+            </option>
+            {stacks.map((stack) => (
+              <option key={stack.id} value={stack.title}>
+                {stack.title}
+              </option>
+            ))}
+          </select>
+          <Button
+            onClick={() => handleAddSkill(selectedStack)}
+            disabled={!selectedStack}
+          >
+            Добавить
+          </Button>
+        </>
       ) : (
         <p>Загрузка программ...</p>
       )}

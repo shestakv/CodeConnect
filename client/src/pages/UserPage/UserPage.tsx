@@ -66,10 +66,11 @@ export const UserPage: React.FC = () => {
     if (file) {
       const formData = new FormData();
       formData.append("avatar", file);
-
+      
       dispatch(updateAvatarUserOnServer({ formData }));
     }
   };
+  
 
   const handleSave = async (field: keyof FormDataType) => {
     const userData = { [field]: formData[field] };
@@ -101,11 +102,9 @@ export const UserPage: React.FC = () => {
   }, [userPersonal]);
 
   const { stacks } = useAppSelector((state) => state.stack);
-  console.log(stacks,55555555555);
 
   useEffect(() => {
     dispatch(getAllStacks());
-    console.log(stacks,666666666666);
   }, [dispatch]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -169,12 +168,6 @@ export const UserPage: React.FC = () => {
                     onChange={(e) => handleInputChange(e, field)}
                   />
                 ) : (
-                  // <textarea
-                  //   type="text"
-                  //   value={formData[field]}
-                  //   className={styles.input}
-                  //   onChange={(e) => handleInputChange(e, field)}
-                  // />
                   <h3
                     className={styles.secondTitle}
                     style={{ textOverflow: "ellipsis" }}

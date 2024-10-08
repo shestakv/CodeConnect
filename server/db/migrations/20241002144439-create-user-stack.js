@@ -30,7 +30,7 @@ module.exports = {
         onUpdate: "cascade",
       },
       grade: {
-        allowNull: false,
+        defaultValue: 0,
         type: Sequelize.INTEGER,
       },
       createdAt: {

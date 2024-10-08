@@ -25,7 +25,6 @@ const CompanyForm: React.FC = () => {
         setIsLoading(true);
 
         try {
-            console.log(name, email, phone, description, logo);
             await dispatch(createCompany({ name, email, phone, description, logo }));
             setName("");
             setEmail("");
