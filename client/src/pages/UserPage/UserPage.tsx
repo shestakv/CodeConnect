@@ -8,7 +8,6 @@ import {
 } from "@ant-design/icons";
 import { useEffect, useRef, useState } from "react";
 import {
-  getAllUsers,
   getUserById,
   updateAvatarUserOnServer,
   updateUserOnServer,
@@ -107,8 +106,6 @@ export const UserPage: React.FC = () => {
     }
   }, [userPersonal]);
 
-  const { stacks } = useAppSelector((state) => state.stack);
-
   useEffect(() => {
     dispatch(getAllStacks());
   }, [dispatch]);
@@ -126,11 +123,7 @@ export const UserPage: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.titleHeader}>
         <div className={styles.avatarContainer}>
-          <img
-            className={styles.avatar}
-            src={`${import.meta.env.VITE_IMG}${userPersonal?.avatar}`}
-          />
-
+          <img className={styles.avatar} src={`${import.meta.env.VITE_IMG}${userPersonal?.avatar}`}/>
           {user?.id === userPersonal?.id ? (
             <div className={styles.settingIconImg}>
               <button
@@ -271,7 +264,7 @@ export const UserPage: React.FC = () => {
                 <div>
                   <button
                     className={styles.stackCard}
-                    onClick={(event) => setIsModalOpen(true)}
+                    onClick={() => setIsModalOpen(true)}
                   >
                     <div className={styles.stackCardContent}>
                       <div className={styles.stackCardTitle}>Добавить</div>

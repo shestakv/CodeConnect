@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import styles from "./StackCard.module.css";
 import { Button } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
 import { createUserStack } from "../model/userStackThunks";
+import { Stack } from "@/entities/stack";
 
 export const UserStackAddForm: React.FC = () => {
   const { stacks } = useAppSelector((state) => state.stack);
-  const [selectedStack, setSelectedStack] = useState(null);
+  const [selectedStack, setSelectedStack] = useState<Stack | null>(null);
   const dispatch = useAppDispatch();
 
   const handleAddSkill = () => {
@@ -16,11 +16,15 @@ export const UserStackAddForm: React.FC = () => {
     }
   };
 
-  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedValue = event.target.value;
-    const stack = stacks.find((stack) => stack.title === selectedValue);
+const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const selectedValue = event.target.value;
+  const stack = stacks?.find((stack) => stack.title === selectedValue);
+  if (stack) {
     setSelectedStack(stack);
-  };
+  } else {
+    setSelectedStack(null);
+  }
+};
 
   return (
     <div className={styles.container}>
