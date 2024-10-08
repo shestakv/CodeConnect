@@ -159,12 +159,6 @@ export const UserPage: React.FC = () => {
                     onChange={(e) => handleInputChange(e, field)}
                   />
                 ) : (
-                  // <textarea
-                  //   type="text"
-                  //   value={formData[field]}
-                  //   className={styles.input}
-                  //   onChange={(e) => handleInputChange(e, field)}
-                  // />
                   <h3
                     className={styles.secondTitle}
                     style={{ textOverflow: "ellipsis" }}

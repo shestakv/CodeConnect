@@ -98,7 +98,8 @@ export const UserStackPage: React.FC = () => {
                     </div>
                   </div>
                   <div className={styles.testResults}>
-                    <button className={styles.stackCard} onClick={() => navigate(`/tests/${id}/${userStack.id}`)}> 
+                    <button className={styles.stackCard} onClick={() => {
+                      if(userStack.userId === user?.id) navigate(`/tests/${id}/${userStack.id}`)}}> 
                       <h3>Тестирование</h3>
                       {handleDonePercents({stackId: userStack.id}) >= 100 ?  
                       (`Результат: ${userStack.grade}/10 баллов`) : 

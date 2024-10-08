@@ -15,6 +15,7 @@ import { CompanyPage } from "@/pages/CompanyPage";
 import CompanyDetails from "@/widgets/CompanyDetails/CompanyDetails";
 import { UsersPage } from "@/pages/UsersPage";
 import { TestPage } from "@/pages/TestPage";
+import { QuestionPage } from "@/pages/QuestionPage/QuestionPage";
 
 export const router = createBrowserRouter([
   {
@@ -88,6 +89,14 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <TestPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: ROUTES.QUESTIONS,
+        element: (
+          <ProtectedRoute>
+            <QuestionPage />
           </ProtectedRoute>
         ),
       },

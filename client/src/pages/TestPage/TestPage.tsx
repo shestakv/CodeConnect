@@ -37,10 +37,7 @@ export const TestPage: React.FC = () => {
 
   useEffect(() => {
     dispatch(getAllUserStacks({ userId: +userId! }));
-    console.log(userStack);
   }, [dispatch]);
-
-  
 
   return (
     <div className={styles.container}>

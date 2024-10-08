@@ -8,5 +8,6 @@ export enum ROUTES {
   USER_PERSONAL = "/users/:id",
   USER_STACKS = "/users/userStacks/:id",
   TESTS = "/tests/:userId/:stackId",
+  QUESTIONS = "/tests/:userId/:stackId/:questionId",
   ERROR = "*",
 }
