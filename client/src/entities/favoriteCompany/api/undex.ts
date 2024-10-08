@@ -10,7 +10,6 @@ export class FavoriteCompanyServices {
 
     static async addFavoriteCompany(userId: number, companyId: number): Promise<FavoriteCompany> {
         const response = await axiosInstance.post("/favoritescompany", { userId, companyId });
-        // console.log(response);
         return response.data;
     }
 

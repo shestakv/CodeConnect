@@ -37,7 +37,6 @@ export const addFavoriteCompany = createAsyncThunk<
     async ({ userId, companyId }, { rejectWithValue }) => {
         try {
             const response = await FavoriteCompanyServices.addFavoriteCompany(userId, companyId);
-            console.log(response);
             
             return response;
         } catch (error) {

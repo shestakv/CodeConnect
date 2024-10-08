@@ -19,7 +19,6 @@ export class UserStackService {
   static async getAllUserStacks(userId: number): Promise<UserStackResponse> {
     try {
       const response = await axiosInstance.get(`/users/userStacks/${userId}`);
-      console.log(response.data)
       return response.data
     } catch (error) {
       console.error("Error fetching all userStacks:", error);

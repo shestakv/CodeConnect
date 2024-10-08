@@ -1,15 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Stack } from ".";
-import { getStack } from "./stackThunks";
+import { getAllStacks } from "./stackThunks";
 
 type StackState = {
-  stack: Stack |null;
+  stack: Stack | null;
+  stacks: Stack[] | null;
   error: string | null;
   loading: boolean;
 };
 
 const initialState: StackState = {
   stack: null,
+  stacks: [],
   error: null,
   loading: false,
 };
@@ -20,15 +22,17 @@ const stackSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getStack.pending, (state) => {
+      .addCase(getAllStacks.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getStack.fulfilled, (state, action) => {
+      .addCase(getAllStacks.fulfilled, (state, action) => {
         state.loading = false;
-        state.stack = action.payload;
+        state.stacks = action.payload;
+        console.log(action.payload,4444444444);
+        
         state.error = null;
       })
-      .addCase(getStack.rejected, (state) => {
+      .addCase(getAllStacks.rejected, (state) => {
         state.loading = false
       })
   },

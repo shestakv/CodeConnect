@@ -5,17 +5,17 @@ class StackServices {
     try {
       const stacks = await Stack.findAll({
         where: query,
-        include: {
-          model: StackTask,
-          attributes: [
-            "description",
-            "stackId",
-            "answer1",
-            "answer2",
-            "answer3",
-            "answer4",
-          ],
-        },
+        // include: {
+        //   model: StackTask,
+        //   attributes: [
+        //     "description",
+        //     "stackId",
+        //     "answer1",
+        //     "answer2",
+        //     "answer3",
+        //     "answer4",
+        //   ],
+        // },
       });
       return stacks ? stacks.map((stack) => stack.get()) : null;
     } catch ({ message }) {

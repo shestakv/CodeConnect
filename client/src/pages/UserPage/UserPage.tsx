@@ -7,6 +7,7 @@ import {
 } from "@ant-design/icons";
 import { useEffect, useRef, useState } from "react";
 import {
+  getAllUsers,
   getUserById,
   updateAvatarUserOnServer,
   updateUserOnServer,
@@ -23,6 +24,8 @@ import { getAllUserStacks } from "@/entities/userStack";
 import { Button } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import ModalWindow from "@/shared/ui/ModalWindow/Modal";
+import { UserStackAddForm } from "@/entities/userStack/ui/userStackAddForm";
+import { getAllStacks } from "@/entities/stack";
 
 export const UserPage: React.FC = () => {
   const navigate = useNavigate();
@@ -97,13 +100,20 @@ export const UserPage: React.FC = () => {
     }
   }, [userPersonal]);
 
+  const { stacks } = useAppSelector((state) => state.stack);
+  console.log(stacks,55555555555);
+
+  useEffect(() => {
+    dispatch(getAllStacks());
+    console.log(stacks,666666666666);
+  }, [dispatch]);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { userStacks } = useAppSelector((state) => state.userStacks);
   useEffect(() => {
     if (id) {
       dispatch(getAllUserStacks({ userId: +id }));
-      console.log(userStacks);
     }
   }, [id, dispatch]);
 
@@ -140,9 +150,6 @@ export const UserPage: React.FC = () => {
           {userPersonal && userPersonal.surname}{" "}
           {userPersonal && userPersonal.firstname}{" "}
           {userPersonal && userPersonal.patronymic}
-          {"\n\t"}
-          Возраст:
-          {userPersonal && userPersonal.age}{" "}
         </div>
       </div>
 
@@ -249,7 +256,10 @@ export const UserPage: React.FC = () => {
 
               {userPersonal?.id === user?.id ? (
                 <div>
-                  <button className={styles.stackCard} onClick={setIsModalOpen}>
+                  <button
+                    className={styles.stackCard}
+                    onClick={(event) => setIsModalOpen(true)}
+                  >
                     <div className={styles.stackCardContent}>
                       <div className={styles.stackCardTitle}>Добавить</div>
                       <div className={styles.divIcon}>
@@ -260,7 +270,9 @@ export const UserPage: React.FC = () => {
                   <ModalWindow
                     active={isModalOpen}
                     setActive={() => setIsModalOpen(false)}
-                  ></ModalWindow>
+                  >
+                    <UserStackAddForm />
+                  </ModalWindow>
                 </div>
               ) : (
                 <></>
