@@ -157,56 +157,6 @@ export const UserPage: React.FC = () => {
           {userPersonal && userPersonal.patronymic}
         </div>
       </div>
-
-      {FIELDS_MAP.map((field) => (
-        <div key={field} className={styles.secondContainer}>
-          <div className={styles[field]}>
-            <div className={styles.divider}>
-              <h3 className={styles.title}>{`${
-                RUSSIAN_FIELDS[field as FIELDS]
-              }:`}</h3>
-              <div className={styles.inputWrapper}>
-                {isEditing[field] ? (
-                  <TextArea
-                    className={styles.input}
-                    value={formData[field]}
-                    autoSize
-                    onChange={(e) => handleInputChange(e, field)}
-                  />
-                ) : (
-                  <h3
-                    className={styles.secondTitle}
-                    style={{ textOverflow: "ellipsis" }}
-                  >
-                    {formData[field]}
-                  </h3>
-                )}
-              </div>
-              {isEditing[field] && (
-                <Button
-                  className={styles.inputButton}
-                  onClick={() => handleSave(field)}
-                >
-                  Сохранить
-                </Button>
-              )}
-            </div>
-            {user?.id === userPersonal?.id && (
-              <div className={styles.buttonContainer}>
-                <div className={styles.secondButtonContainer}>
-                  <button
-                    className={styles.button}
-                    onClick={() => handleEditClick(field)}
-                  >
-                    <SettingOutlined className={styles.settingIcon} />
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      ))}
-
       <div className={styles.secondContainer}>
         <div className={styles.userStacks}>
           <div className={styles.dividerStacks}>
@@ -296,6 +246,54 @@ export const UserPage: React.FC = () => {
           </div>
         </div>
       </div>
+      {FIELDS_MAP.map((field) => (
+        <div key={field} className={styles.secondContainer}>
+          <div className={styles[field]}>
+            <div className={styles.divider}>
+              <h3 className={styles.title}>{`${
+                RUSSIAN_FIELDS[field as FIELDS]
+              }:`}</h3>
+              <div className={styles.inputWrapper}>
+                {isEditing[field] ? (
+                  <TextArea
+                    className={styles.input}
+                    value={formData[field]}
+                    autoSize
+                    onChange={(e) => handleInputChange(e, field)}
+                  />
+                ) : (
+                  <h3
+                    className={styles.secondTitle}
+                    style={{ textOverflow: "ellipsis" }}
+                  >
+                    {formData[field]}
+                  </h3>
+                )}
+              </div>
+              {isEditing[field] && (
+                <Button
+                  className={styles.inputButton}
+                  onClick={() => handleSave(field)}
+                >
+                  Сохранить
+                </Button>
+              )}
+            </div>
+            {user?.id === userPersonal?.id && (
+              <div className={styles.buttonContainer}>
+                <div className={styles.secondButtonContainer}>
+                  <button
+                    className={styles.button}
+                    onClick={() => handleEditClick(field)}
+                  >
+                    <SettingOutlined className={styles.settingIcon} />
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
