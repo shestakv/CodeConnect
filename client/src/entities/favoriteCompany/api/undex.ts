@@ -1,6 +1,5 @@
 import { axiosInstance } from "@/shared/lib/axiosInstance";
 import { FavoriteCompany } from "../model";
-//123456
 
 export class FavoriteCompanyServices {
     static async getFavoriteCompanies(): Promise<FavoriteCompany[]> {
@@ -10,7 +9,6 @@ export class FavoriteCompanyServices {
 
     static async addFavoriteCompany(userId: number, companyId: number): Promise<FavoriteCompany> {
         const response = await axiosInstance.post("/favoritescompany", { userId, companyId });
-        // console.log(response);
         return response.data;
     }
 
