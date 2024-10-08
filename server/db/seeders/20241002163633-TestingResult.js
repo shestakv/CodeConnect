@@ -38,6 +38,14 @@ module.exports = {
           quantityFalse: 3,
           currentStackTaskId: 12,
         },
+        {
+          userId: 1,
+          stackId: 5,
+          quantityCorrect: 0,
+          quantityTrue: 0,
+          quantityFalse: 0,
+          currentStackTaskId: 1,
+        },
       ],
       {}
     );

@@ -62,7 +62,7 @@
   justify-content: space-around;
   align-items: center;
   background-color: #fff;
-  width: 80vw;
+  width: 60vw;
   margin-top: 25px;
   font-weight: 700;
   font-size: 24px;
@@ -75,40 +75,10 @@
   font-size: 24px;
 }
 
-.workExperience {
-  display: flex;
-  justify-content: space-between;
-  width: 80vw;
-  min-height: 150px;
-  background-color: #fff;
-  margin-top: 25px;
-  border-radius: 10px;
-}
-
-.education {
-  display: flex;
-  justify-content: space-between;
-  width: 80vw;
-  min-height: 150px;
-  background-color: #fff;
-  margin-top: 25px;
-  border-radius: 10px;
-}
-
-.bio {
-  display: flex;
-  justify-content: space-between;
-  width: 80vw;
-  min-height: 100px;
-  background-color: #fff;
-  margin-top: 25px;
-  border-radius: 10px;
-}
-
 .userStacks {
   display: flex;
   justify-content: space-between;
-  width: 80vw;
+  width: 60vw;
   min-height: 150px;
   background-color: #fff;
   margin-top: 25px;
@@ -119,26 +89,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-}
-
-.phone {
-  display: flex;
-  justify-content: space-between;
-  width: 80vw;
-  min-height: 50px;
-  background-color: #fff;
-  margin-top: 25px;
-  border-radius: 10px;
-}
-
-.location {
-  display: flex;
-  justify-content: space-between;
-  width: 80vw;
-  min-height: 50px;
-  background-color: #fff;
-  margin-top: 25px;
-  border-radius: 10px;
 }
 
 .topContainer {
@@ -199,7 +149,7 @@
   align-items: center;
   border-radius: 30px;
   margin-top: 25px;
-  width: 80vw;
+  width: 60vw;
   height: 60px;
 }
 

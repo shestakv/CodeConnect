@@ -3,11 +3,18 @@ import { ROUTES } from "./routes";
 import Layout from "./Layout/Layout";
 import { ProtectedRoute } from "@/shared/ui/ProtectedRoute";
 import { PublicRoute } from "@/shared/ui/PublicRoute";
-import { MainPage, SignInPage, SignUpPage, UserPage, UserStackPage } from "@/pages";
+import {
+  MainPage,
+  SignInPage,
+  SignUpPage,
+  UserPage,
+  UserStackPage,
+} from "@/pages";
 import { ErrorPage } from "@/pages/ErrorPage";
 import { CompanyPage } from "@/pages/CompanyPage";
 import CompanyDetails from "@/widgets/CompanyDetails/CompanyDetails";
 import { UsersPage } from "@/pages/UsersPage";
+import { TestPage } from "@/pages/TestPage";
 
 export const router = createBrowserRouter([
   {
@@ -76,18 +83,18 @@ export const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
-      
+      {
+        path: ROUTES.TESTS,
+        element: (
+          <ProtectedRoute>
+            <TestPage />
+          </ProtectedRoute>
+        ),
+      },
       {
         path: ROUTES.ERROR,
         element: <ErrorPage />,
       },
-      // {
-      //   path: "test",
-      //   async lazy() {
-      //     const { GamePage } = await import("@/pages/GamePage");
-      //     return { Component: GamePage };
-      //   },
-      // },
     ],
   },
 ]);

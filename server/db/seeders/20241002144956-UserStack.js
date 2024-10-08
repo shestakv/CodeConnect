@@ -26,6 +26,11 @@ module.exports = {
           stackId: 4,
           grade: 4,
         },
+        {
+          userId: 1,
+          stackId: 5,
+          grade: 0,
+        },
       ],
       {}
     );
