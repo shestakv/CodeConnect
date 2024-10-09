@@ -1,5 +1,5 @@
 import { axiosInstance } from "@/shared/lib/axiosInstance";
-import { CompanyId, CompanyResponse, CompanyWithoutIdAndUserId } from "../model";
+import { CompanyEmail, CompanyId, CompanyResponse, CompanyWithoutIdAndUserIdAndLogoAndDescription } from "../model";
 
 
 
@@ -9,11 +9,23 @@ export class CompanyServices {
         return response.data;
     }
 
-    static async createCompany({  name, email, phone, description, logo }: CompanyWithoutIdAndUserId): Promise<CompanyResponse> {        
-        const response = await axiosInstance.post("/companies",{  name, email, phone, description, logo });
-        
+    static async getCompanyByEmail(email: string): Promise<CompanyEmail> {
+        const response = await axiosInstance.get(`/companies`, {
+            params: { email }
+        });
         return response.data;
+    }
 
+    static async createCompany({  name, email, phone }: CompanyWithoutIdAndUserIdAndLogoAndDescription): Promise<CompanyResponse> {
+        if (!email) {
+            throw new Error("Email не может быть пустым.");
+        }     
+        const uniqueEmail = await this.getCompanyByEmail( email );
+        if (!uniqueEmail) {
+            throw new Error("Email уже занят. Пожалуйста, используйте другой email.") 
+        }   
+        const response = await axiosInstance.post("/companies",{  name, email, phone });
+        return response.data;
     }
 
     static async updateCompany( id: number, name?:string, email?:string, phone?:string, description?:string, logo?:string ): Promise<CompanyResponse> {

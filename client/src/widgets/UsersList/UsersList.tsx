@@ -6,7 +6,7 @@ import styles from "./UsersList.module.css";
 
 export const UsersList: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { users, loading, error } = useAppSelector((state) => state.user);
+  const { users, loading } = useAppSelector((state) => state.user);
 
   useEffect(() => {
     if (!loading && users.length === 0) {
@@ -15,22 +15,22 @@ export const UsersList: React.FC = () => {
   }, [dispatch, loading, users.length]);
 
   if (loading) {
-    return <p>Загрузка компаний...</p>;
+    return <p>Загрузка кодеров...</p>;
   }
 
   if (error) {
-    return <p>Ошибка при загрузке компаний: {error}</p>;
+    return <p>Ошибка при загрузке кодеров: {error}</p>;
   }
 
   if (users.length === 0) {
-    return <p>Компаний нет.</p>;
+    return <p>Кодеров нет.</p>;
   }
 
   return (
     <div className={styles.container}>
       <div className={styles.cardContainer}>
         {users.map((user) => (
-          <UserCard key={user.id} user={user} />
+            <UserCard key={user.id} user={user} />
         ))}
       </div>
     </div>

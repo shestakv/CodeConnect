@@ -1,24 +1,42 @@
-
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+}
 
 .cardContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
     opacity: 1;
-    width: 70%; 
-    margin: 0 auto; 
+    width: 100vw; 
+    margin: 20px 0 0 0; 
+    border-radius: 30px;
 }
 
 .cardContainer.hidden {
     opacity: 0;
 }
 
-
+.card {
+    width: 300px;
+    height: 200px;
+    box-sizing: border-box;
+    background: lightgray;
+    text-align: center;
+    border-radius: 30px;
+    transition: background 0.5s;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
 .card:hover {
-    background: darkgray;
+    background: #578cec;
 }
 
 .card h3 {

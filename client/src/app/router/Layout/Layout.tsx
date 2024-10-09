@@ -4,8 +4,10 @@ import { useAppDispatch } from "@/shared/hooks/reduxHooks";
 import { refreshAccessToken } from "@/entities/user";
 import { FooterComponent } from "@/widgets/Footer";
 import { NavBar } from "@/widgets/NavBar";
+import { Layout } from "antd";
 
-const Layout: React.FC = () => {
+const { Content } = Layout;
+const AppLayout: React.FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -14,13 +16,15 @@ const Layout: React.FC = () => {
 
   return (
     <>
-      <NavBar />
-      <main>
-        <Outlet />
-      </main>
-      <FooterComponent />
+      <Layout className="layout">
+        <NavBar />
+        <Content>
+          <Outlet />
+        </Content>
+        <FooterComponent />
+      </Layout>
     </>
   );
 };
 
-export default Layout;
+export default AppLayout;

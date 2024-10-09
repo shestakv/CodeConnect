@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./FavoriteCompanyItem.module.css"; // Измените имя файла на нужное
+import styles from "./FavoriteCompanyItem.module.css";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "@/app/router/routes";
 import { Company } from "@/entities/company";

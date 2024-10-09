@@ -19,8 +19,6 @@ const processImages = async (buffer) => {
 
   // Создание директории, если её нет
   const dir = path.join(__dirname, "..", "public/images");
-  console.log(dir, 1111111);
-
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
   }

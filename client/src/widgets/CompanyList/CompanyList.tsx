@@ -11,8 +11,9 @@ interface FavoriteCompanyState {
 }
 
 export const CompanyList: React.FC = () => {
+    const {user} = useAppSelector((state) => state.user);
     const dispatch = useAppDispatch();
-    const { companies, loading, error } = useAppSelector((state) => state.company);
+    const { companies } = useAppSelector((state) => state.company);
     const { favoriteCompanies }: FavoriteCompanyState = useAppSelector((state) => state.favoriteCompanies);
     const userId = useAppSelector((state) => state.user.user?.id);
     const [isVisible, setIsVisible] = useState<boolean>(true);
@@ -52,31 +53,21 @@ export const CompanyList: React.FC = () => {
 
     }, [dispatch]);
 
-    if (loading) {
-        return <p>Загрузка компаний...</p>;
-    }
-
-    if (error) {
-        return <p>Ошибка при загрузке компаний: {error}</p>;
-    }
-
-    if (companies.length === 0) {
-        return <p>Компаний нет.</p>;
-    }
-
 
     return (
         <div className={styles.container}>
+            {!user ? (<></>) : (
             <div className={styles.radioGroup}>
-                <Radio.Group 
-                    value={filter} 
-                    onChange={handleRadioChange}
-                >
-                    <Radio.Button value="all">Показать все компании</Radio.Button>
-                    <Radio.Button value="user">Показать мои компании</Radio.Button>
-                    <Radio.Button value="favorites">Показать избранные</Radio.Button>
-                </Radio.Group>
-            </div>
+            <Radio.Group 
+                value={filter} 
+                onChange={handleRadioChange}
+            >
+                <Radio.Button value="all">Показать все компании</Radio.Button>
+                <Radio.Button value="user">Показать мои компании</Radio.Button>
+                <Radio.Button value="favorites">Показать избранные</Radio.Button>
+            </Radio.Group>
+        </div>
+            )}
             <div className={`${styles.cardContainer} ${!isVisible ? styles.hidden : ''}`}>
                 {filteredCompanies.map((company) => (
                     <CompanyItem key={company.id} company={company} />

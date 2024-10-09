@@ -4,6 +4,7 @@ import {
   PlusCircleOutlined,
   RightOutlined,
   SettingOutlined,
+  CloseOutlined,
 } from "@ant-design/icons";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -22,6 +23,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getAllUserStacks } from "@/entities/userStack";
 import { Button } from "antd";
 import TextArea from "antd/es/input/TextArea";
+import ModalWindow from "@/shared/ui/ModalWindow/Modal";
+import { UserStackAddForm } from "@/entities/userStack/ui/userStackAddForm";
+import { getAllStacks } from "@/entities/stack";
+import { deleteUserStack } from "@/entities/userStack/model/userStackThunks";
 
 export const UserPage: React.FC = () => {
   const navigate = useNavigate();
@@ -49,6 +54,12 @@ export const UserPage: React.FC = () => {
     });
   };
 
+  const [showCloseIcon, setShowCloseIcon] = useState(false);
+
+  const handleSettingClick = () => {
+    setShowCloseIcon((prev) => !prev);
+  };
+
   const handleInputChange = (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
     field: string
@@ -67,6 +78,9 @@ export const UserPage: React.FC = () => {
     }
   };
 
+  const handleDeletedStack = (stackId: number) => {
+    dispatch(deleteUserStack({ id: stackId }));
+  }
   const handleSave = async (field: keyof FormDataType) => {
     const userData = { [field]: formData[field] };
     const updatedUser = await dispatch(updateUserOnServer({ userData }));
@@ -96,11 +110,16 @@ export const UserPage: React.FC = () => {
     }
   }, [userPersonal]);
 
+  useEffect(() => {
+    dispatch(getAllStacks());
+  }, [dispatch]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const { userStacks } = useAppSelector((state) => state.userStacks);
   useEffect(() => {
     if (id) {
       dispatch(getAllUserStacks({ userId: +id }));
-      console.log(userStacks);
     }
   }, [id, dispatch]);
 
@@ -112,15 +131,12 @@ export const UserPage: React.FC = () => {
             className={styles.avatar}
             src={`${import.meta.env.VITE_IMG}${userPersonal?.avatar}`}
           />
-
           {user?.id === userPersonal?.id ? (
             <div className={styles.settingIconImg}>
-              <button
-                className={styles.buttonImg}
-                onClick={() => fileInputRef.current?.click()}
-              >
-                <SettingOutlined />
-              </button>
+                <SettingOutlined
+                  className={styles.buttonImg}
+                  onClick={() => fileInputRef.current?.click()}
+                />
               <input
                 type="file"
                 accept="image/*"
@@ -137,12 +153,98 @@ export const UserPage: React.FC = () => {
           {userPersonal && userPersonal.surname}{" "}
           {userPersonal && userPersonal.firstname}{" "}
           {userPersonal && userPersonal.patronymic}
-          {"\n\t"}
-          Возраст:
-          {userPersonal && userPersonal.age}{" "}
         </div>
       </div>
+      <div className={styles.secondContainer}>
+        <div className={styles.userStacks}>
+          <div className={styles.dividerStacks}>
+            <div className={styles.topContainer}>
+              <h3 className={styles.title}>Навыки:</h3>
+              <div>
+                {user?.id === userPersonal?.id && (
+                  <SettingOutlined
+                    onClick={handleSettingClick}
+                    className={styles.stackSettingIcon}
+                  />
+                )}
+                {userStacks && userStacks.length > 0 ? (
+                  <Button
+                    className={styles.userStacksButton}
+                    type="default"
+                    shape="round"
+                    onClick={() => navigate(`/users/userStacks/${id}`)}
+                  >
+                    Подробнее
+                    <RightOutlined />
+                  </Button>
+                ) : (
+                  <></>
+                )}
+              </div>
+            </div>
+            <div className={styles.userStacksContainer}>
+              {userStacks && userStacks.length > 0 ? (
+                userStacks.map((userStack) => (
+                  <div key={userStack.id} className={styles.stackCard}>
+                    <div className={styles.stackCardContent}>
+                      <div className={styles.stackCardTitle}>
+                        {userStack.Stack.title}
+                      </div>
+                      <img
+                        src={`${import.meta.env.VITE_IMG}${
+                          userStack.Stack.image
+                        }`}
+                        alt="Stack Icon"
+                        className={styles.stackIcon}
+                      />
+                      {showCloseIcon && (
+                        <span
+                          className={styles.ButtonCloseIcon}
+                          onClick={() => handleDeletedStack(userStack.id)}
+                        >
+                          <CloseOutlined className={styles.closeIcon} />
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div>
+                  {userPersonal?.id === user?.id ? (
+                    <></>
+                  ) : (
+                    <h3>Навыки не добавлены</h3>
+                  )}
+                </div>
+              )}
 
+              {userPersonal?.id === user?.id ? (
+                <div>
+                  <button
+                    className={styles.stackCard}
+                    onClick={() => setIsModalOpen(true)}
+                  >
+                    <div className={styles.stackCardContent}>
+                      <div className={styles.stackCardTitle}>Добавить</div>
+                      <div className={styles.divIcon}>
+                        <PlusCircleOutlined className={styles.plusIcon} />
+                      </div>
+                    </div>
+                  </button>
+                  <ModalWindow
+                    active={isModalOpen}
+                    setActive={() => setIsModalOpen(false)}
+                  >
+                    <UserStackAddForm onClose={() => setIsModalOpen(false)} />
+                  </ModalWindow>
+                </div>
+              ) : (
+                <></>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
       {FIELDS_MAP.map((field) => (
         <div key={field} className={styles.secondContainer}>
           <div className={styles[field]}>
@@ -179,84 +281,16 @@ export const UserPage: React.FC = () => {
             {user?.id === userPersonal?.id && (
               <div className={styles.buttonContainer}>
                 <div className={styles.secondButtonContainer}>
-                  <button
-                    className={styles.button}
+                  <SettingOutlined
                     onClick={() => handleEditClick(field)}
-                  >
-                    <SettingOutlined className={styles.settingIcon} />
-                  </button>
+                    className={styles.settingIcon}
+                  />
                 </div>
               </div>
             )}
           </div>
         </div>
       ))}
-
-      <div className={styles.secondContainer}>
-        <div className={styles.userStacks}>
-          <div className={styles.dividerStacks}>
-            <div className={styles.topContainer}>
-              <h3 className={styles.title}>Навыки:</h3>
-              {userStacks && userStacks.length > 0 ? (
-                <Button
-                  type="default"
-                  shape="round"
-                  onClick={() => navigate(`/users/userStacks/${id}`)}
-                >
-                  Подробнее
-                  <RightOutlined />
-                </Button>
-              ) : (
-                <></>
-              )}
-            </div>
-            <div className={styles.userStacksContainer}>
-              {userStacks && userStacks.length > 0 ? (
-                userStacks.map((userStack) => (
-                  <div key={userStack.id} className={styles.stackCard}>
-                    <div className={styles.stackCardContent}>
-                      <div className={styles.stackCardTitle}>
-                        {userStack.Stack.title}
-                      </div>
-                      <img
-                        src={`${import.meta.env.VITE_IMG}${
-                          userStack.Stack.image
-                        }`}
-                        alt="Stack Icon"
-                        className={styles.stackIcon}
-                      />
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <div>
-                  {userPersonal?.id === user?.id ? (
-                    <></>
-                  ) : (
-                    <h3>Навыки не добавлены</h3>
-                  )}
-                </div>
-              )}
-
-              {userPersonal?.id === user?.id ? (
-                <button
-                  className={styles.stackCard}
-                  onClick={() => navigate(-1)}
-                >
-                  <div className={styles.stackCardContent}>
-                    <div className={styles.stackCardTitle}>Добавить</div>
-                    <div className={styles.divIcon}>
-                      <PlusCircleOutlined className={styles.plusIcon} />
-                    </div>
-                  </div>
-                </button>
-              ) : (
-                <></>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

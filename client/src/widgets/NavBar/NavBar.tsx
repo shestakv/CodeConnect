@@ -48,10 +48,17 @@ const App: React.FC = () => {
       }}
     >
       <Space>
-        <Button type="primary" size="large" icon={<AntDesignOutlined />}>
+        <Button
+          className={style.navButton}
+          type="primary"
+          size="large"
+          icon={<AntDesignOutlined />}
+        >
           Gradient Button
         </Button>
-        <Button size="large">Button</Button>
+        <Button className={style.navButton} size="large">
+          Button
+        </Button>
       </Space>
     </ConfigProvider>
   );
@@ -77,67 +84,98 @@ export const NavBar: React.FC = () => {
         className: styles.linearGradientButton,
       }}
     >
-      <Header className={style.header}>
-        <Menu
-          className={style.menu}
-          mode="horizontal"
-          defaultSelectedKeys={["/"]}
-        >
-          <Menu.Item key="/">
-            <Space>
-              <Button shape="round" onClick={() => navigate("/")}>
-                Главная
+      <div className={style.container}>
+        <Header className={style.header}>
+          <Menu
+            className={style.menu}
+            mode="horizontal"
+            defaultSelectedKeys={["/"]}
+          >
+            {!user && (
+              <Menu.Item className={style.menuItem} key="/">
+                <Button
+                  className={style.navButton}
+                  shape="round"
+                  onClick={() => navigate("/")}
+                >
+                  Главная
+                </Button>
+              </Menu.Item>
+            )}
+            <Menu.Item className={style.menuItem} key="/users">
+              <Button
+                className={style.navButton}
+                shape="round"
+                onClick={() => navigate("/users")}
+              >
+                Кодеры
               </Button>
-            </Space>
-          </Menu.Item>
+            </Menu.Item>
+            <Menu.Item className={style.menuItem} key="/companies">
+              <Button
+                className={style.navButton}
+                shape="round"
+                onClick={() => navigate("/companies")}
+              >
+                Компании
+              </Button>
+            </Menu.Item>
 
-          <Menu.Item key="/users">
-            <Button shape="round" onClick={() => navigate("/users")}>
-              Кодеры
-            </Button>
-          </Menu.Item>
+            {user ? (
+              <>
+                <Menu.Item
+                  className={style.menuItem}
+                  key={ROUTES.USERS + `/${user.id}`}
+                >
+                  <Link to={ROUTES.USERS + `/${user.id}`}>
+                    <UserCardNavBar
+                      avatar={`${import.meta.env.VITE_IMG}${user?.avatar}`}
+                      firstname={user.firstname}
+                      surname={user.surname}
+                    />
+                  </Link>
+                </Menu.Item>
 
-          <Menu.Item key="/companies">
-            <Button shape="round" onClick={() => navigate("/companies")}>
-              Компании
-            </Button>
-          </Menu.Item>
+                <Menu.Item
+                  className={style.menuItem}
+                  key="/logout"
+                  onClick={handleLogout}
+                >
+                  <Button
+                    className={style.navButton}
+                    shape="round"
+                    onClick={() => navigate("/")}
+                  >
+                    Выйти
+                  </Button>
+                </Menu.Item>
+              </>
+            ) : (
+              <>
+                <Menu.Item className={style.menuItem} key="/signin">
+                  <Button
+                    className={style.navButton}
+                    shape="round"
+                    onClick={() => navigate("/signin")}
+                  >
+                    Вход
+                  </Button>
+                </Menu.Item>
 
-          {user ? (
-            <>
-              <Menu.Item key={ROUTES.USERS + `/${user.id}`}>
-                <Link to={ROUTES.USERS + `/${user.id}`}>
-                  <UserCardNavBar
-                    avatar={`${import.meta.env.VITE_IMG}${user?.avatar}`}
-                    firstname={user.firstname}
-                    surname={user.surname}
-                  />
-                </Link>
-              </Menu.Item>
-
-              <Menu.Item key="/logout" onClick={handleLogout}>
-                <Button shape="round" onClick={() => navigate("/")}>
-                  Выйти
-                </Button>
-              </Menu.Item>
-            </>
-          ) : (
-            <>
-              <Menu.Item key="/signin">
-                <Button shape="round" onClick={() => navigate("/signin")}>
-                  Вход
-                </Button>
-              </Menu.Item>
-
-              <Menu.Item key="/signup">
-                <Button shape="round" onClick={() => navigate("/signup")}>
-                  Регистрация
-                </Button>
-              </Menu.Item>
-            </>
-          )}
-        </Menu>
-      </Header>
+                <Menu.Item className={style.menuItem} key="/signup">
+                  <Button
+                    className={style.navButton}
+                    shape="round"
+                    onClick={() => navigate("/signup")}
+                  >
+                    Регистрация
+                  </Button>
+                </Menu.Item>
+              </>
+            )}
+          </Menu>
+        </Header>
+      </div>
     </ConfigProvider>
   );
 };

@@ -27,6 +27,49 @@ class UserStackServices {
     }
   };
 
+  static getUserStackById = async (id) => {
+    try {
+      const userStacks = await UserStack.findOne({
+        where: { id },
+        include: [
+          {
+            model: Stack,
+            include: [
+              {
+                model: StackTask,
+                attributes: [
+                  "id",
+                  "description",
+                  "stackId",
+                  "answer1",
+                  "answer2",
+                  "answer3",
+                  "answer4",
+                ],
+              },
+              {
+                model: TestingResult,
+                attributes: [
+                  "id",
+                  "userId",
+                  "quantityCorrect",
+                  "quantityTrue",
+                  "quantityFalse",
+                  "currentStackTaskId",
+                ],
+              },
+            ],
+            attributes: ["id", "title", "image"],
+          },
+        ],
+      });
+      return userStacks.get()
+    } catch ({ message }) {
+      console.log(message);
+    }
+  };
+
+  
   static getAllUserStacks = async (userId) => {
     try {
       const userStacks = await UserStack.findAll({
