@@ -5,6 +5,9 @@ const {
   StackTask,
 } = require("../../db/models");
 const user = require("../../db/models/user");
+const {
+  createTestingResult,
+} = require("../controllers/testingResultController");
 
 class UserStackServices {
   static createUserStack = async ({ userId, stackId, grade } = {}) => {
@@ -14,6 +17,10 @@ class UserStackServices {
         stackId,
         grade,
       });
+
+      if (userStack) {
+        await createTestingResult({ stackId: userStack.stackId });
+      }
       return userStack.get();
     } catch ({ message }) {
       console.log(message);
@@ -88,7 +95,6 @@ class UserStackServices {
                 attributes: [
                   "id",
                   "userId",
-                  "quantityCorrect",
                   "quantityTrue",
                   "quantityFalse",
                   "currentStackTaskId",

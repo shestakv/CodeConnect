@@ -4,7 +4,6 @@ class TestingResultServices {
   static createTestingResult = async ({
     userId,
     stackId,
-    quantityCorrect,
     quantityTrue,
     quantityFalse,
     currentStackId,
@@ -13,23 +12,11 @@ class TestingResultServices {
       const testingResult = await TestingResult.create({
         userId,
         stackId,
-        quantityCorrect,
         quantityTrue,
         quantityFalse,
         currentStackId,
       });
       return testingResult.get();
-    } catch ({ message }) {
-      console.log(message);
-    }
-  };
-
-  static getAllTestingResults = async (query) => {
-    try {
-      const testingResults = await TestingResult.findAll({ where: query });
-      return testingResults
-        ? testingResults.map((testingResult) => testingResult.get())
-        : null;
     } catch ({ message }) {
       console.log(message);
     }
@@ -45,18 +32,21 @@ class TestingResultServices {
   };
 
   static updateTestingResult = async (data) => {
-    const { id, userId, name, email, phone, description, logo } = data;
+    const { id, userId, stackId, quantityTrue, quantityFalse, currentStackTaskId } =
+      data;
     const testingResult = await TestingResult.findOne({
       where: { id, userId },
     });
+
+    console.log(testingResult);
     if (testingResult) {
       return testingResult.update({
+        id,
         userId,
-        name,
-        email,
-        phone,
-        description,
-        logo,
+        stackId,
+        quantityTrue,
+        quantityFalse,
+        currentStackTaskId,
       });
     }
     return null;
