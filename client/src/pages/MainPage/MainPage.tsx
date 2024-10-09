@@ -1,5 +1,5 @@
 import { useAppSelector } from "@/shared/hooks/reduxHooks";
-import { Flex, Button } from "antd";
+import { Flex } from "antd";
 import React, { useEffect } from "react";
 import style from "./MainPage.module.css";
 import { Link, useNavigate } from "react-router-dom";
