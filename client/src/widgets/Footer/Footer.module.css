@@ -1,11 +1,12 @@
 .container {
-    width: 100vw;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .footer {
     display: flex;
+    position: relative;
     justify-content: space-between;
     bottom: 0;
     right: 0;
@@ -13,7 +14,6 @@
     width: 100vw;
     background-color: #fff;
     color: #578cec;
-    position: relative;
     text-align: center;
     font-size: 25px;
     margin-top: 20px;

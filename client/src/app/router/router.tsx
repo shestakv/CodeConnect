@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import { ROUTES } from "./routes";
-import Layout from "./Layout/Layout";
 import { ProtectedRoute } from "@/shared/ui/ProtectedRoute";
 import { PublicRoute } from "@/shared/ui/PublicRoute";
 import { MainPage, SignInPage, SignUpPage, UserPage, UserStackPage } from "@/pages";
@@ -8,11 +7,12 @@ import { ErrorPage } from "@/pages/ErrorPage";
 import { CompanyPage } from "@/pages/CompanyPage";
 import CompanyDetails from "@/widgets/CompanyDetails/CompanyDetails";
 import { UsersPage } from "@/pages/UsersPage";
+import AppLayout from "./Layout/Layout";
 
 export const router = createBrowserRouter([
   {
     path: ROUTES.HOME,
-    element: <Layout />,
+    element: <AppLayout />,
     children: [
       {
         path: ROUTES.HOME,
