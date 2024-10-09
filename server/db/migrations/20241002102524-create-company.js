@@ -36,8 +36,8 @@ module.exports = {
         type: Sequelize.TEXT,
       },
       logo: {
-        defaultValue: "/images/defAvatar.png",
-        type: Sequelize.TEXT
+        defaultValue: "/images/defCompanyAvatar.jpeg",
+        type: Sequelize.TEXT,
       },
       createdAt: {
         defaultValue: new Date(),
