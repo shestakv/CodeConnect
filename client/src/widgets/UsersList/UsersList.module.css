@@ -2,8 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* height: 100vh; */
-    width: 100%;
+    width: 100vw;
 }
 
 
@@ -12,10 +11,11 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
     opacity: 1;
-    width: 70%; 
-    margin: 0 auto; 
+    width: 100vw; 
+    margin: 20px 0 0 0; 
+    border-radius: 30px;
 }
 
 .cardContainer.hidden {
@@ -23,14 +23,13 @@
 }
 
 .card {
-    width: 250px;
+    width: 300px;
     height: 200px;
     box-sizing: border-box;
     background: lightgray;
-    /* padding: 10px; */
     text-align: center;
-    border-radius: 5px;
-    transition: background 0.3s;
+    border-radius: 30px;
+    transition: background 0.5s;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -38,7 +37,7 @@
 }
 
 .card:hover {
-    background: darkgray;
+    background: #578cec;
 }
 
 .card h3 {
