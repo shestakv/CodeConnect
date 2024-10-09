@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout } from "antd";
+import { Button, Layout } from "antd";
 import style from "./Footer.module.css";
 import {
   YoutubeOutlined,
@@ -12,25 +12,54 @@ import {
 const { Footer } = Layout;
 
 export const FooterComponent: React.FC = () => {
+  const handleExternalLink = (url: string) => {
+    window.open(url, "_blank"); // открывает в новой вкладке
+  };
+
   return (
     <div className={style.container}>
       <Footer className={style.footer}>
         <p> © {new Date().getFullYear()} CodeConnect</p>
         <div className={style.secondContainer}>
           <div className={style.icons}>
-            <YoutubeOutlined />
+            <Button
+              className={style.button}
+              onClick={() => handleExternalLink("https://www.youtube.com")}
+            >
+              <YoutubeOutlined />
+            </Button>
           </div>
           <div className={style.icons}>
-            <XOutlined />
+            <Button
+              className={style.button}
+              onClick={() => handleExternalLink("https://www.x.com")} // Замените на правильный URL
+            >
+              <XOutlined />
+            </Button>
           </div>
           <div className={style.icons}>
-            <InstagramOutlined />
+            <Button
+              className={style.button}
+              onClick={() => handleExternalLink("https://www.instagram.com")}
+            >
+              <InstagramOutlined />
+            </Button>
           </div>
           <div className={style.icons}>
-            <FacebookOutlined />
+            <Button
+              className={style.button}
+              onClick={() => handleExternalLink("https://www.facebook.com")}
+            >
+              <FacebookOutlined />
+            </Button>
           </div>
           <div className={style.icons}>
-            <LinkedinOutlined />
+            <Button
+              className={style.button}
+              onClick={() => handleExternalLink("https://www.linkedin.com")}
+            >
+              <LinkedinOutlined />
+            </Button>
           </div>
         </div>
       </Footer>
