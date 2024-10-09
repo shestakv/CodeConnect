@@ -27,6 +27,12 @@ exports.getCompanyById = async (req, res) => {
 exports.createCompany =  async (req, res) => {
   try {
     const { name, email, phone, description, logo } = req.body;
+    const findCompany = await CompanyServices.getCompanyByEmail({
+      email
+    })
+    if(findCompany) {
+      return res.status(400).json({ message: "Company already exists" });
+    }
     const company = await CompanyServices.createCompany({
       userId: res.locals.user.id,
       name,
@@ -35,8 +41,7 @@ exports.createCompany =  async (req, res) => {
       description,
       logo
     });
-console.log(company);
-
+  
     res.status(201).json({ message: "success", company });
   } catch (error) {
     res.status(500).json({ error: error.message });

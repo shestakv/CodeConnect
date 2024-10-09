@@ -1,103 +1,128 @@
 import { createCompany } from "@/entities/company";
-import { useAppDispatch } from "@/shared/hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import React, { useState } from "react";
 import styles from "./CompanyForm.module.css";
+import { Form, Input, Button, Spin } from "antd";
+import type { FormProps } from "antd";
+import { CompanyWithoutIdAndUserIdAndLogo } from "@/entities/company/model";
+import { unwrapResult } from "@reduxjs/toolkit";
+import { MailOutlined, PhoneOutlined, TeamOutlined } from "@ant-design/icons";
 
 const CompanyForm: React.FC = () => {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState('');
-    const [description, setDescription] = useState("");
-    const [logo, setLogo] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
-    const [isFormVisible, setFormVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFormVisible, setFormVisible] = useState(false);
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.user);
+  const [form] = Form.useForm();
 
-    const dispatch = useAppDispatch();
+  const handleToggleForm = () => {
+    setFormVisible(!isFormVisible);
+  };
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-
-        if (!name || !email || !phone || !description) {
-            console.error("All fields are required");
-            return;
-        }
-
-        setIsLoading(true);
-
-        try {
-            await dispatch(createCompany({ name, email, phone, description, logo }));
-            setName("");
-            setEmail("");
-            setPhone('');
-            setDescription("");
-            setLogo("");
-        } catch (error) {
-            console.error("Error creating company:", error);
-        } finally {
-            setIsLoading(false);
-        }
+  const onFinish: FormProps<CompanyWithoutIdAndUserIdAndLogo>["onFinish"] =
+    async (values) => {
+      setIsLoading(true);
+      try {
+        const sanitizedValues = {
+          name: values.name || "",
+          email: values.email || "",
+          phone: values.phone || "",
+          description: values.description || "",
+        };
+        const resultAction = await dispatch(createCompany(sanitizedValues));
+        unwrapResult(resultAction);
+        form.resetFields();
+        setFormVisible(false);
+      } catch (error) {
+        console.error("Ошибка при создании компании:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
-    const handleToggleForm = () => {
-        setFormVisible(!isFormVisible);
-    };
+  if (!user) {
+    return <></>;
+  }
 
-    return (
-        <div className={styles.container}>
-            <div className={styles.buttonContainer}>
-                <button onClick={handleToggleForm} className={styles.toggleButton}>
-                    {isFormVisible ? "Скрыть" : "Создать компанию"}
-                </button>
-            </div>
-            <div className={`${styles.formContainer} ${isFormVisible ? styles.show : ''}`}>
-                <form onSubmit={handleSubmit} className={styles.form}>
-                    <input
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="Название компании"
-                        required
-                        className={styles.input}
-                    />
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Email компании"
-                        required
-                        className={styles.input}
-                    />
-                    <input
-                        type="text"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        placeholder="Телефон"
-                        required
-                        className={styles.input}
-                    />
-                    <input
-                        type="text"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        placeholder="Описание компании"
-                        required
-                        className={styles.input}
-                    />
-                    <input
-                        type="text"
-                        value={logo}
-                        onChange={(e) => setLogo(e.target.value)}
-                        placeholder="URL логотипа"
-                        className={styles.input}
-                    />
-                    <button type="submit" disabled={isLoading} className={styles.button}>
-                        {isLoading ? "Создание..." : "Создать"}
-                    </button>
-                </form>
-            </div>
+  return (
+    <div
+      className={`${styles.container} ${
+        isFormVisible ? styles.showContainer : ""
+      }`}
+    >
+      <div className={styles.buttonContainer}>
+        <Button
+          shape="round"
+          onClick={handleToggleForm}
+          className={styles.toggleButton}
+        >
+          {isFormVisible ? "Скрыть" : "Создать компанию"}
+        </Button>
+      </div>
+
+      {isLoading && (
+        <div className={styles.loadingOverlay}>
+          <Spin size="large" />
         </div>
-    );
+      )}
+
+      {isFormVisible && (
+        <Form
+          form={form}
+          name="basic"
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 16 }}
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+          autoComplete="off"
+          disabled={isLoading}
+          className={`${styles.formContainer} ${
+            isFormVisible ? styles.show : ""
+          }`}
+        >
+          <Form.Item
+            name="name"
+            hasFeedback
+            validateDebounce={800}
+            className={styles.formItem}
+            rules={[{ required: true, message: "Введите название компании!" }]}
+            noStyle
+          >
+            <Input prefix={<TeamOutlined />} placeholder="Название компании" />
+          </Form.Item>
+          <Form.Item
+            name="email"
+            hasFeedback
+            validateDebounce={800}
+            rules={[{ required: true, message: "Введите почту!" }]}
+            className={styles.formItem}
+            noStyle
+          >
+            <Input prefix={<MailOutlined />} placeholder="Почта компании" />
+          </Form.Item>
+          <Form.Item
+            name="phone"
+            hasFeedback
+            validateDebounce={800}
+            rules={[{ required: true, message: "Введите номер телефона!" }]}
+            className={styles.formItem}
+            noStyle
+          >
+            <Input prefix={<PhoneOutlined />} placeholder="Телефон компании" />
+          </Form.Item>
+          <Button
+            shape="round"
+            type="primary"
+            htmlType="submit"
+            disabled={isLoading}
+            className={styles.button}
+          >
+            {isLoading ? "Создание..." : "Создать"}
+          </Button>
+        </Form>
+      )}
+    </div>
+  );
 };
-    
 
 export const MemorizedCompanyForm = React.memo(CompanyForm);
