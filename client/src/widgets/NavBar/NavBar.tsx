@@ -83,6 +83,7 @@ export const NavBar: React.FC = () => {
           mode="horizontal"
           defaultSelectedKeys={["/"]}
         >
+          {!user && (            
           <Menu.Item key="/">
             <Space>
               <Button shape="round" onClick={() => navigate("/")}>
@@ -90,6 +91,7 @@ export const NavBar: React.FC = () => {
               </Button>
             </Space>
           </Menu.Item>
+          )}
 
           <Menu.Item key="/users">
             <Button shape="round" onClick={() => navigate("/users")}>
