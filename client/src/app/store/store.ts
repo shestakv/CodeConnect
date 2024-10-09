@@ -3,7 +3,8 @@ import { userReducer } from "@/entities/user";
 import { companyReducer } from "@/entities/company";
 import { userStackReducer } from "@/entities/userStack";
 import { configureStore } from "@reduxjs/toolkit";
-import { favooriteCompanyReducer } from '@/entities/favoriteCompany';
+import { favooriteCompanyReducer } from "@/entities/favoriteCompany";
+import { stackTaskReducer } from "@/entities/stackTask";
 
 //? редуктор пользователя из файла userSlice.ts. Редуктор отвечает за управление состоянием пользователя в приложении.
 
@@ -13,6 +14,7 @@ const store = configureStore({
     company: companyReducer,
     userStacks: userStackReducer,
     favoriteCompanies: favooriteCompanyReducer,
+    checkAnswerResult: stackTaskReducer,
   },
 });
 

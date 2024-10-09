@@ -1,15 +1,27 @@
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import styles from "./QuestionPage.module.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "antd";
-import { CheckCircleOutlined, LeftOutlined, ProfileOutlined, RightOutlined } from "@ant-design/icons";
+import {
+  CheckCircleOutlined,
+  LeftOutlined,
+  ProfileOutlined,
+  RightOutlined,
+} from "@ant-design/icons";
 import { getAllUserStacks } from "@/entities/userStack";
+import { checkAnswer } from "@/entities/stackTask/model/stackTaskThunks";
 
 export const QuestionPage: React.FC = () => {
   const { userId, stackId, questionId } = useParams();
   const { user } = useAppSelector((state) => state.user);
   const { userStacks } = useAppSelector((state) => state.userStacks);
+  const { checkAnswerResult } = useAppSelector(
+    (state) => state.checkAnswerResult
+  );
+
+  // const [result, setResult] = useState(checkAnswerResult?.result)
+  const [time, setTime] = useState(30);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -59,13 +71,32 @@ export const QuestionPage: React.FC = () => {
     }
   }
 
-  const handleSendQuestion = (answer) => {
-    dispatch(getAllUserStacks(answer));
+  const handleCheckAnswer = ({
+    answer,
+    id,
+  }: {
+    answer: string;
+    id: number;
+  }) => {
+    dispatch(checkAnswer({ answer, id }));
+    // setResult(checkAnswerResult?.result);
+    handleNextQuestion();
   };
-
+  
+  console.log('============',checkAnswerResult?.result);
   useEffect(() => {
     dispatch(getAllUserStacks({ userId: +userId! }));
   }, [dispatch]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime((prev)=>prev-1)
+    },1000)
+    return () => {
+      setTime(30)
+      clearInterval(interval)
+    }
+  }, []);
 
   console.log(+questionId, handleGetNumberOfQuestion());
 
@@ -87,6 +118,7 @@ export const QuestionPage: React.FC = () => {
               onMouseOver={disableCopy}
               onMouseOut={enableCopy}
             >
+              {/* <div className={styles.title}>Осталось {time} секунд</div> */}
               <div className={styles.title}>Вопрос №{questionId}:</div>
 
               <p>
@@ -175,9 +207,11 @@ export const QuestionPage: React.FC = () => {
                   type="default"
                   shape="round"
                   onClick={() =>
-                    handleSendQuestion(
-                      handleGetQuestion({ questionId: +questionId! })?.answer1
-                    )
+                    handleCheckAnswer({
+                      answer: handleGetQuestion({ questionId: +questionId! })
+                        ?.answer1,
+                      id: handleGetQuestion({ questionId: +questionId! })?.id,
+                    })
                   }
                 >
                   <CheckCircleOutlined />
@@ -189,9 +223,11 @@ export const QuestionPage: React.FC = () => {
                   type="default"
                   shape="round"
                   onClick={() =>
-                    handleSendQuestion(
-                      handleGetQuestion({ questionId: +questionId! })?.answer2
-                    )
+                    handleCheckAnswer({
+                      answer: handleGetQuestion({ questionId: +questionId! })
+                        ?.answer2,
+                      id: handleGetQuestion({ questionId: +questionId! })?.id,
+                    })
                   }
                 >
                   <CheckCircleOutlined />
@@ -203,9 +239,11 @@ export const QuestionPage: React.FC = () => {
                   type="default"
                   shape="round"
                   onClick={() =>
-                    handleSendQuestion(
-                      handleGetQuestion({ questionId: +questionId! })?.answer3
-                    )
+                    handleCheckAnswer({
+                      answer: handleGetQuestion({ questionId: +questionId! })
+                        ?.answer3,
+                      id: handleGetQuestion({ questionId: +questionId! })?.id,
+                    })
                   }
                 >
                   <CheckCircleOutlined />
@@ -217,9 +255,11 @@ export const QuestionPage: React.FC = () => {
                   type="default"
                   shape="round"
                   onClick={() =>
-                    handleSendQuestion(
-                      handleGetQuestion({ questionId: +questionId! })?.answer4
-                    )
+                    handleCheckAnswer({
+                      answer: handleGetQuestion({ questionId: +questionId! })
+                        ?.answer4,
+                      id: handleGetQuestion({ questionId: +questionId! })?.id,
+                    })
                   }
                 >
                   <CheckCircleOutlined />
