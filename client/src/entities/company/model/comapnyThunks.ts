@@ -40,12 +40,12 @@ type RejectValue = {
 
   export const createCompany = createAsyncThunk<
     CompanyResponse,
-    { name: string; email: string; phone: string; description: string; logo: string },
+    { name: string; email: string; phone: string; description: string; },
     { rejectValue: RejectValue }
-  >("company/createCompany", async ({ name, email, phone, description, logo }, { rejectWithValue }) => {
+  >("company/createCompany", async ({ name, email, phone }, { rejectWithValue }) => {
     
     try {        
-      return await CompanyServices.createCompany({ name, email, phone, description, logo });
+      return await CompanyServices.createCompany({ name, email, phone });
     } catch (error) {
       const err = error as AxiosError<{ message: string }>;
       return rejectWithValue({

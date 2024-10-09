@@ -13,6 +13,7 @@ type Props = {
 }
 
 const CompanyItem: React.FC<Props> = ({ company }) => {
+    const {user} =  useAppSelector((state) => state.user);
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { favoriteCompanies } = useAppSelector((state) => state.favoriteCompanies)
@@ -38,7 +39,6 @@ const CompanyItem: React.FC<Props> = ({ company }) => {
     };
 
     return (
-
 <div className="container">
     <button 
         onClick={handleCardClick} 
@@ -46,13 +46,12 @@ const CompanyItem: React.FC<Props> = ({ company }) => {
     >
         <img 
             className="companyLogo" 
-            src={`${import.meta.env.VITE_IMG}${company.logo}`} 
-            alt={`${company.name} логотип`} 
+            src={`${import.meta.env.VITE_IMG}${company?.logo}`} 
+            // alt={`${company.name} логотип`} 
             style={{ width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover' }}
         />
         <h3 className={styles.companyName}>{company.name}</h3>
-        
-        
+        {!user ? (<></>) : (
         <span 
             onClick={(e) => {
                 e.stopPropagation();
@@ -62,16 +61,18 @@ const CompanyItem: React.FC<Props> = ({ company }) => {
                     handleAddToFavorites();
                 }
             }} 
-            className={`${styles.favoriteButton} ${styles.favoritePosition}`} // Добавляем новый класс
-            title={isFavorite ? "Удалить из избранного" : "Добавить в избранное"}
+            className={`${styles.favoriteButton} ${styles.favoritePosition}`}
         >
             {isFavorite ? (
                 <StarFilled style={{ color: 'blue' }} />
             ) : (
                 <StarOutlined style={{ color: 'grey' }} />
             )}
+            <span className={styles.tooltip}>
+                {isFavorite ? "Удалить из избранного" : "Добавить в избранное"}
+            </span>
         </span>
-
+                  )}
         {error && <p className={styles.error}>{error}</p>}
     </button>
 </div>
