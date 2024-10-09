@@ -44,6 +44,15 @@ class CompanyServices {
     }
   };
 
+  static getCompanyByEmail = async (email) => {
+    try{
+    const company = await Company.findOne({where: email});
+    return company ? company.get() : null;
+    } catch ({ message }) {
+    console.log(message);
+    }
+  };
+
   static updateCompany = async (data) => {
     const { id, userId, name, email, phone, description, logo } =
       data;
