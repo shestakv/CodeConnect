@@ -88,7 +88,7 @@ export const companySlice = createSlice({
             })
             .addCase(updateCompanyLogo.fulfilled, (state, action) => {
                 state.loading = false;
-                state.company = action.payload as unknown as Company;
+                state.company = action.payload.company 
                 state.error = null;
               })
             .addCase(updateCompanyLogo.rejected, (state) => {

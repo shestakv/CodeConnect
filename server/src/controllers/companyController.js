@@ -91,7 +91,7 @@ exports.updateCompanyLogo = async (req, res) => {
     }
 
     const updatedCompany = await CompanyServices.updateLogo(company.id, `/images/${avatarPath}`);
-
+    
     res.status(200).json({ company: updatedCompany });
   } catch (error) {
     console.error("Ошибка при обновлении логотипа компании:", error);

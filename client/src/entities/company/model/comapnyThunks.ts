@@ -107,7 +107,7 @@ export const deleteCompany = createAsyncThunk<
 });
 
 export const updateCompanyLogo = createAsyncThunk<
-  CompanyId,
+  CompanyResponse,
   { companyData: FormData },
   { rejectValue: RejectValue }
 >("company/updateCompanyLogo", async ({ companyData }, { rejectWithValue }) => {

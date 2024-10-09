@@ -60,6 +60,7 @@ export class CompanyServices {
               "Content-Type": "multipart/form-data",
             },
           });
+          console.log("Логотип компании обновлен:", response.data);
           
           return response.data;
         } catch (error) {
