@@ -52,4 +52,20 @@ export class CompanyServices {
         const response = await axiosInstance.get(`/companies/${id}`);
         return response.data;
     }
+
+    static async updateCompanyLogo( companyData: FormData) {
+        try {
+          const response = await axiosInstance.put(`/companies/logo`, companyData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+          console.log("Логотип компании обновлен:", response.data);
+          
+          return response.data;
+        } catch (error) {
+          console.error("Ошибка при обновлении логотипа компании:", error);
+          throw error;
+        }
+      }
 }

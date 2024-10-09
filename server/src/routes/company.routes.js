@@ -1,7 +1,11 @@
 const router = require("express").Router();
 const companyController = require('../controllers/companyController')
 const verifyAccessToken = require("../middleware/verifyAccessToken");
+const { upload } = require("../utils/upload");
 
+router.route('/logo')
+    .put(verifyAccessToken,
+      upload.single("logo"), companyController.updateCompanyLogo)
 
 router.route('/')
     .get(companyController.getAllCompanies)

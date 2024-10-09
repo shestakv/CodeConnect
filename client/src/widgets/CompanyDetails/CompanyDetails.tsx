@@ -5,12 +5,13 @@ import {
 } from "@/entities/company";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import ModalWindow from "@/shared/ui/ModalWindow/Modal";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./CompanyDetails.module.css";
 import { DownOutlined, SettingOutlined, UserOutlined } from "@ant-design/icons";
 import { ClientCompany } from "@/entities/company/model";
 import { Button, Dropdown, MenuProps, Space } from "antd";
+import { updateCompanyLogo } from "@/entities/company/model/comapnyThunks";
 
 enum FIELDS {
   NAME = "name",
@@ -37,7 +38,7 @@ const RUSSIAN_FIELDS: Record<FIELDS, string> = {
 };
 
 const CompanyDetails = () => {
-  //   const [isHovering, setIsHovering] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -128,6 +129,17 @@ const CompanyDetails = () => {
     onClick: toggleDeleteModal,
   };
 
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+
+    if (file) {
+      const companyData = new FormData();
+      companyData.append("logo", file);
+
+      dispatch(updateCompanyLogo({ companyData }));
+    }
+  };
+
   return (
     <div className={styles.formContainer}>
       <div className={styles.centeredContainer}>
@@ -139,12 +151,16 @@ const CompanyDetails = () => {
           />
           {user && user.id === company.userId && (
             <div className={styles.settingIconImg}>
-              <button
-                className={styles.buttonImg}
-                onClick={() => handleEditClick(FIELDS.LOGO)}
-              >
-                <SettingOutlined />
-              </button>
+                <SettingOutlined 
+                  className={styles.buttonImg}
+                  onClick={() => fileInputRef.current?.click()}/>
+              <input
+                type="file"
+                accept="image/*"
+                style={{ display: "none" }}
+                ref={fileInputRef}
+                onChange={handleFileChange}
+              />
             </div>
           )}
         </div>

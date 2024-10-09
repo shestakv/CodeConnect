@@ -1,5 +1,5 @@
 const CompanyServices = require("../services/CompanyServices");
-
+const { processImages } = require("../utils/upload");
 
 exports.getAllCompanies = async (req, res) => {
   try {
@@ -24,13 +24,13 @@ exports.getCompanyById = async (req, res) => {
   }
 };
 
-exports.createCompany =  async (req, res) => {
+exports.createCompany = async (req, res) => {
   try {
     const { name, email, phone, description, logo } = req.body;
     const findCompany = await CompanyServices.getCompanyByEmail({
-      email
-    })
-    if(findCompany) {
+      email,
+    });
+    if (findCompany) {
       return res.status(400).json({ message: "Company already exists" });
     }
     const company = await CompanyServices.createCompany({
@@ -39,9 +39,9 @@ exports.createCompany =  async (req, res) => {
       email,
       phone,
       description,
-      logo
+      logo,
     });
-  
+
     res.status(201).json({ message: "success", company });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -51,19 +51,19 @@ exports.createCompany =  async (req, res) => {
 exports.updateCompanyId = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, email, phone, description, logo} = req.body;
+    const { name, email, phone, description, logo } = req.body;
 
     let company = await CompanyServices.getCompanyById(id);
 
     if (company) {
-        company = await CompanyServices.updateCompany({
+      company = await CompanyServices.updateCompany({
         id,
         userId: res.locals.user.id,
         name,
         email,
         phone,
         description,
-        logo
+        logo,
       });
       res.status(200).json({ message: "success", company });
     } else {
@@ -74,13 +74,38 @@ exports.updateCompanyId = async (req, res) => {
   }
 };
 
+exports.updateCompanyLogo = async (req, res) => {
+  try {
+    const userId = res.locals.user.id;
+
+    if (!req.file) {
+      return res.status(400).json({ message: "Файл не загружен" });
+    }
+
+    const avatarPath = await processImages(req.file.buffer);
+
+    const company = await CompanyServices.getCompanyById(userId);
+
+    if (!company) {
+      return res.status(404).json({ message: "Компания не найдена" });
+    }
+
+    const updatedCompany = await CompanyServices.updateLogo(company.id, `/images/${avatarPath}`);
+    
+    res.status(200).json({ company: updatedCompany });
+  } catch (error) {
+    console.error("Ошибка при обновлении логотипа компании:", error);
+    return res.status(500).json({ error: error.message });
+  }
+};
+
 exports.deleteCompany = async (req, res) => {
   try {
     const { id } = req.params;
     const userId = res.locals.user.id;
-    
+
     let company = await CompanyServices.getCompanyById(id);
-    
+
     if (company) {
       company = await CompanyServices.deleteCompany(id, userId);
       res.status(200).json({ message: "success" });
