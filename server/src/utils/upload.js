@@ -8,6 +8,7 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 const processImages = async (buffer) => {
+  
   const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
   const outputFileName = `${uniqueSuffix}.jpeg`;
   const outputPath = path.join(__dirname, "../../", "public/images", outputFileName);

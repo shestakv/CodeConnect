@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Company } from ".";
-import { createCompany, deleteCompany, getAllCompanies, getCompanyById, updateCompany } from "./comapnyThunks";
+import { createCompany, deleteCompany, getAllCompanies, getCompanyById, updateCompany, updateCompanyLogo } from "./comapnyThunks";
 
 
 type CompanyState = {
@@ -16,6 +16,7 @@ const initialState: CompanyState = {
     loading: false,
     error: null,
 };
+
 
 export const companySlice = createSlice({
     name: "company",
@@ -81,7 +82,18 @@ export const companySlice = createSlice({
             })
             .addCase(deleteCompany.rejected, (state) => {
                 state.loading = false;
-            });
+            })
+            .addCase(updateCompanyLogo.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(updateCompanyLogo.fulfilled, (state, action) => {
+                state.loading = false;
+                state.company = action.payload as unknown as Company;
+                state.error = null;
+              })
+            .addCase(updateCompanyLogo.rejected, (state) => {
+                state.loading = false;
+            })
     },
 });
 

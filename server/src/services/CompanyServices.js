@@ -13,11 +13,12 @@ class CompanyServices {
   } = {}) => {
     try {
       const company = await Company.create({
+        userId,
         name,
         email,
         phone,
         description,
-        logo, userId
+        logo,
       });
       console.log("Компания создана");
       return company.get();
@@ -53,10 +54,22 @@ class CompanyServices {
     }
   };
 
+  static async updateLogo(id, logoPath) {
+    const company = await Company.findByPk(id);
+    if (!company) {
+      throw new Error("Компания не найдена");
+    }
+    company.logo = logoPath;
+    await company.save();
+    return company;
+  }
+
+
   static updateCompany = async (data) => {
     const { id, userId, name, email, phone, description, logo } =
       data;
-    const company = await Company.findOne({ where: { id, userId } });
+      
+    const company = await Company.findOne({ where: { id, userId } });    
     if (company) {
       return company.update({
         userId,
@@ -69,6 +82,8 @@ class CompanyServices {
     }
     return null;
   };
+
+  
 
   static deleteCompany = async (id, userId) => {
     try {
