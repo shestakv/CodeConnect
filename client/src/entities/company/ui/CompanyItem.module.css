@@ -1,117 +1,73 @@
-.container { 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-}
-
 .companyCard {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    width: 350px;
-    height: 150px;
+    width: 250px !important;
+    height: 120px;
     margin: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    padding: 20px;
+    border: 3px solid #84848400;
+    border-radius: 30px;
     background-color: #f9f9f9;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.visible {
+    transition: 0.35s ease-in-out;
     opacity: 1;
     transform: translateY(0);
 }
 
-.hidden {
-    opacity: 0;
-    transform: translateY(20px);
-}
-
 .companyCard:hover {
+    border: 3px solid #578cec;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.companyName {
-    font-size: 1.5em;
-    margin: 0;
-    flex-grow: 1;
-    text-align: center;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    max-width: 150px;  
+.avatarContainer {
+    display: flex;
+    align-items: center;
 }
 
-.companyDescription,
-.companyEmail,
-.companyPhone {
-    margin: 5px 0;
-}
-
-.deleteButton {
-    padding: 10px;
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.deleteButton:hover {
-    background-color: #ff1a1a;
-}
-
-.noPermission {
-    color: #888;
-}
-
-.companyLogo {
-    width: 40px;
-    height: 40px;
+.avatar {
+    margin-right: 10px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    object-fit: cover;
-    margin-right: 15px; 
+    overflow: hidden;
 }
 
-.cardButton {
+.companyName {
+    flex-grow: 1;
+    margin: 0;
+    font-size: 1.5em;
+    text-align: left;
+}
+
+.starContainer {
     position: relative;
 }
 
-.favoritePosition {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+.favoriteButton {
+    position: relative;
+    font-size: 24px;
     cursor: pointer;
 }
 
-.favoriteButton {
-    font-size: 24px;
-    padding: 10px;
-}
-
-.favoriteButton .tooltip {
+.tooltip {
     position: absolute;
-    right: 110%;
-    top: 50%;
-    transform: translateY(-50%);
+    left: 50%;
+    bottom: 100%;
+    transform: translateX(-50%) translateY(-5px);
     background-color: white;
     color: rgba(0, 0, 0, 0.7);
     padding: 3px 6px;
     border-radius: 4px;
     border: 1px solid rgba(0, 0, 0, 0.7);
-    white-space: nowrap;
     opacity: 0;
     transition: opacity 0.2s;
     pointer-events: none;
     font-size: 1.0rem;
+    z-index: 1;
 }
 
 .favoriteButton:hover .tooltip {
     opacity: 1;
 }
 
+  
 
 
