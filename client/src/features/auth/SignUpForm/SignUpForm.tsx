@@ -43,11 +43,27 @@ export const SignUpForm: React.FC = () => {
   };
 
   const prefixSelector = (
-    <Form.Item name="prefix" noStyle>
-      <Select defaultValue={"+7"} style={{ width: 70 }}>
-        <Option value="+7">+7</Option>
-      </Select>
-    </Form.Item>
+    <>
+      <Form.Item name="prefix" noStyle>
+        <Select title="Код Страны" defaultValue={"+7"} style={{ width: 90 }}>
+          <Option value="+7">
+            +7
+          </Option>
+          <Option value="+374">
+            +374
+          </Option>
+          <Option value="+375">
+            +375
+          </Option>
+          <Option value="+995">
+            +995
+          </Option>
+          <Option value="+996">
+            +996
+          </Option>
+        </Select>
+      </Form.Item>
+    </>
   );
   return (
     <div className={styles.container}>
@@ -69,6 +85,11 @@ export const SignUpForm: React.FC = () => {
             rules={[
               { required: true, message: "Введите Имя!" },
               { type: "string", message: "Введен некорректное Имя!" },
+              {
+                pattern: /^[A-Za-zА-Яа-яёЁ]+$/,
+                message:
+                  "Имя может содержать только латиницу и кириллицу без пробелов!",
+              },
             ]}
             className={styles.input}
           >
@@ -81,6 +102,11 @@ export const SignUpForm: React.FC = () => {
             rules={[
               { required: true, message: "Введите Фамилию!" },
               { type: "string", message: "Введен некорректное Имя!" },
+              {
+                pattern: /^[A-Za-zА-Яа-яёЁ]+$/,
+                message:
+                  "Фамилия может содержать только латиницу и кириллицу без пробелов!",
+              },
             ]}
           >
             <Input prefix={<UserOutlined />} placeholder="Введите Фамилию" />
@@ -89,7 +115,14 @@ export const SignUpForm: React.FC = () => {
             name="patronymic"
             hasFeedback
             validateDebounce={800}
-            rules={[{ required: true, message: "Введите Отчество!" }]}
+            rules={[
+              { required: true, message: "Введите Отчество!" },
+              {
+                pattern: /^[A-Za-zА-Яа-яёЁ]+$/,
+                message:
+                  "Отчество может содержать только латиницу и кириллицу без пробелов!",
+              },
+            ]}
           >
             <Input prefix={<UserOutlined />} placeholder="Введите Отчество" />
           </Form.Item>
@@ -98,7 +131,13 @@ export const SignUpForm: React.FC = () => {
             name="phone"
             hasFeedback
             validateDebounce={800}
-            rules={[{ required: true, message: "Введите номер телефона!" }]}
+            rules={[
+              { required: true, message: "Введите номер телефона!" },
+              {
+                pattern: /^\d{10}$/,
+                message: "Номер телефона должен содержать 10 цифр!",
+              },
+            ]}
           >
             <Input
               addonBefore={prefixSelector}
@@ -127,7 +166,17 @@ export const SignUpForm: React.FC = () => {
             name="password"
             hasFeedback
             validateDebounce={800}
-            rules={[{ required: true, message: "Введите Пароль!" }]}
+            rules={[
+              { required: true, message: "Введите Пароль!" },
+              {
+                min: 6,
+                message: "Пароль должен содержать не менее 6 символов",
+              },
+              {
+                pattern: /^(?=.*[A-Za-zА-Яа-я])(?=.*\d)[A-Za-z\d\W]{5,}$/,
+                message: "Пароль должен содержать как буквы, так и цифры!",
+              },
+            ]}
           >
             <Input.Password
               prefix={<LockFilled />}
