@@ -13,18 +13,18 @@ export const UserCard: React.FC<UserCardProps> = ({ user }) => {
   return (
     <div className={styles.container}>
       <button
-      onClick={() => navigate(`/users/${user.id}`)}
+        onClick={() => navigate(`/users/${user.id}`)}
         className={styles.userCard}
         style={{ cursor: "pointer", width: "100%", textAlign: "left" }}
       >
         <div className={styles.avatarContainer}>
-        <img
+          <img
             className={styles.avatar}
             src={`${import.meta.env.VITE_IMG}${user?.avatar}`}
             alt={`${user.firstname} ${user.surname}`}
           />
-          <h3 className={styles.firstname}>{user.firstname}</h3>
-          <h3 className={styles.surname}>{user.surname}</h3>
+          <h3 className={styles.firstname}> {user.firstname} </h3>
+          <h3 className={styles.surname}> {user.surname} </h3>
         </div>
       </button>
     </div>
