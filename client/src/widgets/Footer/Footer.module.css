@@ -6,6 +6,7 @@
 
 .footer {
     display: flex;
+    align-items: center;
     position: relative;
     justify-content: space-between;
     bottom: 0;
@@ -15,7 +16,7 @@
     background-color: #fff;
     color: #578cec;
     text-align: center;
-    font-size: 25px;
+    font-size: 14px;
     margin-top: 20px;
     border-radius: 60px;
 }

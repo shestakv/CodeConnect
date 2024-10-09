@@ -44,15 +44,15 @@
 
 .img {
     display: flex;
-    width: 200px;
+    width: 12vw;
     height: 60vw;
     margin-top: -25vw;
-    margin-bottom: -23vw;
+    margin-bottom: -22vw;
     transform: rotate(90deg);
 }
 
 .title {
-    margin: 0px 150px 50px 150px;
+    margin: 0vw 5vw 2vw 5vw;
     font-size: 22px;
     line-height: 35px;
 }
