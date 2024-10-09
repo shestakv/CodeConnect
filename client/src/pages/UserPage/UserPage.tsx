@@ -261,12 +261,12 @@ export const UserPage: React.FC = () => {
                     onChange={(e) => handleInputChange(e, field)}
                   />
                 ) : (
-                  <h3
+                  <pre
                     className={styles.secondTitle}
                     style={{ textOverflow: "ellipsis" }}
                   >
-                    {formData[field]}
-                  </h3>
+                    {formData[field] }
+                  </pre>
                 )}
               </div>
               {isEditing[field] && (

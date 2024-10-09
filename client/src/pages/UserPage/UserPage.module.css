@@ -56,10 +56,14 @@
 }
 
 .secondTitle {
-  margin: 10px 50px 35px 60px;
-  font-size: 18px;
-  line-height: 25px;
-  text-overflow: inherit;
+  font-family: 'Gill Sans', Calibri, 'Trebuchet MS', sans-serif;
+  display: flex;
+  text-wrap: wrap;
+  margin: 0px 0px 0px 50px;
+  width: 55vw;
+  border-radius: 10px;
+  padding: 2vw;
+  font-size: 20px;
 }
 
 .inputWrapper {
@@ -126,7 +130,7 @@
 }
 
 .title {
-  margin: 15px 10px 10px 15px;
+  margin: 15px 10px 0px 15px;
   font-size: 24px;
 }
 
@@ -246,13 +250,13 @@
 
 .input {
   display: flex;
-  margin: 10px 0px 10px 50px;
-  width: 55vw;
-  min-height: 30vw;
-  border-radius: 10px;
-  border: 1px solid #00000043;
-  padding-left: 1vw;
-  font-size: 20px;
+    margin: 10px 0px 10px 50px;
+    width: 55vw;
+    min-height: 30vw;
+    border-radius: 10px;
+    border: 1px solid #00000043;
+    padding-left: 1vw;
+    font-size: 20px;
 }
 
 .inputButton {
