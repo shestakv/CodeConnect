@@ -53,6 +53,11 @@ export const QuestionPage: React.FC = () => {
     navigate(`/users/userStacks/${userId}`);
   };
 
+  if (handleGetCurrentQuestion() > handleGetNumberOfQuestion()) {
+    console.log(handleGetCurrentQuestion(), handleGetNumberOfQuestion());
+    handleFinishTest();
+  }
+
   function disableCopy() {
     const noCopyElement = document.querySelector(
       `.${styles.titleTest}`
@@ -74,31 +79,51 @@ export const QuestionPage: React.FC = () => {
   const handleCheckAnswer = ({
     answer,
     id,
+    testingResultId,
   }: {
     answer: string;
     id: number;
+    testingResultId: number;
   }) => {
-    dispatch(checkAnswer({ answer, id }));
-    // setResult(checkAnswerResult?.result);
+    dispatch(checkAnswer({ answer, id, testingResultId }));
     handleNextQuestion();
   };
-  
-  console.log('============',checkAnswerResult?.result);
+
+  const handleGetFalseAnswer = () => {
+    handleCheckAnswer({
+      answer: "",
+      id: handleGetQuestion({ questionId: +questionId! })?.id,
+      testingResultId: userStack?.Stack.TestingResults[0].id,
+    });
+    setTime(30);
+  };
+
+  const handleBackNavigation = () => {
+    handleGetFalseAnswer();
+    navigate(`/users/userStacks/${userId}`);
+  };
+
   useEffect(() => {
     dispatch(getAllUserStacks({ userId: +userId! }));
-  }, [dispatch]);
+  }, [dispatch, checkAnswerResult]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTime((prev)=>prev-1)
-    },1000)
+      setTime((prev) => prev - 1);
+    }, 1000);
     return () => {
-      setTime(30)
-      clearInterval(interval)
-    }
+      setTime(30);
+      clearInterval(interval);
+    };
   }, []);
 
-  console.log(+questionId, handleGetNumberOfQuestion());
+  useEffect(() => {
+    if (time <= 0) {
+      handleGetFalseAnswer();
+      setTime(30);
+      handleNextQuestion();
+    }
+  }, [time]);
 
   return (
     <div className={styles.container}>
@@ -107,7 +132,7 @@ export const QuestionPage: React.FC = () => {
           <Button
             type="default"
             shape="round"
-            onClick={() => navigate(`/users/userStacks/${userId}`)}
+            onClick={() => handleBackNavigation()}
           >
             <LeftOutlined />
             Вернуться к навыкам
@@ -118,7 +143,7 @@ export const QuestionPage: React.FC = () => {
               onMouseOver={disableCopy}
               onMouseOut={enableCopy}
             >
-              {/* <div className={styles.title}>Осталось {time} секунд</div> */}
+              <div className={styles.title}>Осталось {time} секунд</div>
               <div className={styles.title}>Вопрос №{questionId}:</div>
 
               <p>
@@ -211,6 +236,7 @@ export const QuestionPage: React.FC = () => {
                       answer: handleGetQuestion({ questionId: +questionId! })
                         ?.answer1,
                       id: handleGetQuestion({ questionId: +questionId! })?.id,
+                      testingResultId: userStack?.Stack.TestingResults[0].id,
                     })
                   }
                 >
@@ -227,6 +253,7 @@ export const QuestionPage: React.FC = () => {
                       answer: handleGetQuestion({ questionId: +questionId! })
                         ?.answer2,
                       id: handleGetQuestion({ questionId: +questionId! })?.id,
+                      testingResultId: userStack?.Stack.TestingResults[0].id,
                     })
                   }
                 >
@@ -243,6 +270,7 @@ export const QuestionPage: React.FC = () => {
                       answer: handleGetQuestion({ questionId: +questionId! })
                         ?.answer3,
                       id: handleGetQuestion({ questionId: +questionId! })?.id,
+                      testingResultId: userStack?.Stack.TestingResults[0].id,
                     })
                   }
                 >
@@ -259,6 +287,7 @@ export const QuestionPage: React.FC = () => {
                       answer: handleGetQuestion({ questionId: +questionId! })
                         ?.answer4,
                       id: handleGetQuestion({ questionId: +questionId! })?.id,
+                      testingResultId: userStack?.Stack.TestingResults[0].id,
                     })
                   }
                 >
@@ -269,8 +298,7 @@ export const QuestionPage: React.FC = () => {
             </div>
             {handleGetCurrentQuestion() && handleGetNumberOfQuestion() && (
               <>
-                {/* {handleGetCurrentQuestion() === handleGetNumberOfQuestion() ? ( */}
-                {+questionId > handleGetNumberOfQuestion() - 1 ? (
+                {handleGetCurrentQuestion() === handleGetNumberOfQuestion() ? (
                   <Button
                     type="default"
                     shape="round"

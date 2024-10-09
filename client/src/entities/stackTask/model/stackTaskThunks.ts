@@ -11,9 +11,9 @@ export const checkAnswer = createAsyncThunk<
   CheckAnswer,
   CheckAnswerResponse,
   { rejectValue: RejectValue }
->("company/getAllStackTasks", async ({ answer, id }, { rejectWithValue }) => {
+>("company/getAllStackTasks", async ({ answer, id, testingResultId }, { rejectWithValue }) => {
   try {
-    return await StackTaskService.checkAnswer({ answer, id });
+    return await StackTaskService.checkAnswer({ answer, id, testingResultId });
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;
     return rejectWithValue({

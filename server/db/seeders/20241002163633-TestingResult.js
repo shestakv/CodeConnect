@@ -9,7 +9,6 @@ module.exports = {
         {
           userId: 1,
           stackId: 1,
-          quantityCorrect: 17,
           quantityTrue: 13,
           quantityFalse: 4,
           currentStackTaskId: 16,
@@ -17,7 +16,6 @@ module.exports = {
         {
           userId: 1,
           stackId: 2,
-          quantityCorrect: 14,
           quantityTrue: 10,
           quantityFalse: 4,
           currentStackTaskId: 13,
@@ -25,7 +23,6 @@ module.exports = {
         {
           userId: 1,
           stackId: 3,
-          quantityCorrect: 15,
           quantityTrue: 10,
           quantityFalse: 5,
           currentStackTaskId: 14,
@@ -33,7 +30,6 @@ module.exports = {
         {
           userId: 1,
           stackId: 4,
-          quantityCorrect: 13,
           quantityTrue: 10,
           quantityFalse: 3,
           currentStackTaskId: 12,
@@ -41,7 +37,6 @@ module.exports = {
         {
           userId: 1,
           stackId: 5,
-          quantityCorrect: 0,
           quantityTrue: 0,
           quantityFalse: 0,
           currentStackTaskId: 1,

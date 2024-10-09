@@ -29,9 +29,6 @@ module.exports = {
         onDelete: "cascade",
         onUpdate: "cascade",
       },
-      quantityCorrect: {
-        type: Sequelize.INTEGER,
-      },
       quantityTrue: {
         type: Sequelize.INTEGER,
       },

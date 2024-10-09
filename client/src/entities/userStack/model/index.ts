@@ -15,7 +15,6 @@ export type UserStack = {
 type TestingResult = {
   id: number;
   userId: number;
-  quantityCorrect: number;
   quantityTrue: number;
   quantityFalse: number;
   currentStackTaskId: number;

@@ -5,4 +5,5 @@ export type CheckAnswer = {
 export type CheckAnswerResponse = {
   answer: string;
   id: number;
+  testingResultId: number;
 }

@@ -1,23 +1,14 @@
+const user = require("../../db/models/user");
 const TestingResultServices = require("../services/TestingResultServices");
 
-
-exports.getAllTestingResults = async (req, res) => {
+exports.getTestingResultById = async (id) => {
   try {
-    const testingResults = await TestingResultServices.getAllTestingResults(req.query);
-    res.status(200).json({ message: "success", testingResults });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-exports.getTestingResultById = async (req, res) => {
-  try {
-    const { id } = req.params;
+    console.log(id);
     const testingResult = await TestingResultServices.getTestingResultById(id);
     if (testingResult) {
-      res.status(200).json({ message: "success", testingResult });
+      return testingResult;
     } else {
-      res.status(404).json({ message: "Testing Result not found" });
+      return null;
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -26,15 +17,14 @@ exports.getTestingResultById = async (req, res) => {
 
 exports.createTestingResult = async (req, res) => {
   try {
-    const { name, email, phone, description, logo } = req.body;
+    const { stackId } = req.body;
 
     const testingResult = await TestingResultServices.createTestingResult({
       userId: res.locals.user.id,
-      name,
-      email,
-      phone,
-      description,
-      logo
+      stackId,
+      quantityTrue: 0,
+      quantityFalse: 0,
+      currentStackId: 1,
     });
 
     res.status(201).json({ message: "success", testingResult });
@@ -43,26 +33,32 @@ exports.createTestingResult = async (req, res) => {
   }
 };
 
-exports.updateTestingResultId = async (req, res) => {
+exports.updateTestingResult = async (data, res) => {
   try {
-    const { id } = req.params;
-    const { name, email, phone, description, logo} = req.body;
-
+    const {
+      id,
+      stackId,
+      userId,
+      quantityTrue,
+      quantityFalse,
+      currentStackTaskId,
+    } = data;
+console.log(id, stackId, userId, quantityTrue, quantityFalse, currentStackTaskId);
     let testingResult = await TestingResultServices.getTestingResultById(id);
-
+   
     if (testingResult) {
-        testingResult = await TestingResultServices.updateTestingResult({
+      testingResult = await TestingResultServices.updateTestingResult({
         id,
-        userId: res.locals.user.id,
-        name,
-        email,
-        phone,
-        description,
-        logo
+        stackId,
+        userId,
+        quantityTrue,
+        quantityFalse,
+        currentStackTaskId,
       });
-      res.status(200).json({ message: "success", testingResult });
-    } else {
-      res.status(404).json({ message: "Testing Result not found" });
+      return;
+      //   res.status(200).json({ message: "success", testingResult });
+      // } else {
+      //   res.status(404).json({ message: "Testing Result not found" });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -73,7 +69,7 @@ exports.deleteTestingResult = async (req, res) => {
   try {
     const { id } = req.params;
     const userId = res.locals.user.id;
-    
+
     let testingResult = await TestingResultServices.getTestingResultById(id);
     if (testingResult) {
       await TestingResultServices.deleteTestingResult(id, userId);

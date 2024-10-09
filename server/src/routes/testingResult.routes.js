@@ -4,12 +4,12 @@ const verifyAccessToken = require("../middleware/verifyAccessToken");
 
 router
   .route("/")
-  .get(testingResultController.getAllTestingResults)
   .post(verifyAccessToken, testingResultController.createTestingResult);
 
 router
   .route("/:id")
   .get(testingResultController.getTestingResultById)
+  .put(verifyAccessToken, testingResultController.updateTestingResult)
   .delete(verifyAccessToken, testingResultController.deleteTestingResult);
 
 module.exports = router;

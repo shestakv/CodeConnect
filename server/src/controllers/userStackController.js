@@ -3,7 +3,6 @@ const UserStackServices = require("../services/UserStackServices");
 exports.getAllUserStacks = async (req, res) => {
   try {
     const { userId } = req.params;
-    console.log(userId)
 
     const userStacks = await UserStackServices.getAllUserStacks(userId);
     res.status(200).json({ message: "success", userStacks });
