@@ -6,7 +6,7 @@ class TestingResultServices {
     stackId,
     quantityTrue,
     quantityFalse,
-    currentStackId,
+    currentStackTaskId,
   } = {}) => {
     try {
       const testingResult = await TestingResult.create({
@@ -14,7 +14,7 @@ class TestingResultServices {
         stackId,
         quantityTrue,
         quantityFalse,
-        currentStackId,
+        currentStackTaskId,
       });
       return testingResult.get();
     } catch ({ message }) {
@@ -32,8 +32,14 @@ class TestingResultServices {
   };
 
   static updateTestingResult = async (data) => {
-    const { id, userId, stackId, quantityTrue, quantityFalse, currentStackTaskId } =
-      data;
+    const {
+      id,
+      userId,
+      stackId,
+      quantityTrue,
+      quantityFalse,
+      currentStackTaskId,
+    } = data;
     const testingResult = await TestingResult.findOne({
       where: { id, userId },
     });
@@ -52,11 +58,14 @@ class TestingResultServices {
     return null;
   };
 
-  static deleteTestingResult = async (id, userId) => {
+  static deleteTestingResult = async (data) => {
     try {
+      const { stackId, userId } = data;
+      console.log(stackId, userId);
       const testingResult = await TestingResult.destroy({
-        where: { id, userId },
+        where: { stackId, userId },
       });
+      console.log(testingResult);
       return;
     } catch ({ message }) {
       console.log(message);

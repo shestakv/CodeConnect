@@ -4,10 +4,6 @@ const {
   Stack,
   StackTask,
 } = require("../../db/models");
-const user = require("../../db/models/user");
-const {
-  createTestingResult,
-} = require("../controllers/testingResultController");
 
 class UserStackServices {
   static createUserStack = async ({ userId, stackId, grade } = {}) => {
@@ -17,11 +13,18 @@ class UserStackServices {
         stackId,
         grade,
       });
-
-      if (userStack) {
-        await createTestingResult({ stackId: userStack.stackId });
-      }
       return userStack.get();
+    } catch ({ message }) {
+      console.log(message);
+    }
+  };
+
+  static getOneUserStackById = async (id) => {
+    try {
+      const userStacks = await UserStack.findOne({
+        where: { id },
+      });
+      return userStacks.get();
     } catch ({ message }) {
       console.log(message);
     }
@@ -29,6 +32,7 @@ class UserStackServices {
 
   static getUserStackById = async (id) => {
     try {
+      console.log(id);
       const userStacks = await UserStack.findOne({
         where: { id },
         include: [
@@ -52,7 +56,6 @@ class UserStackServices {
                 attributes: [
                   "id",
                   "userId",
-                  "quantityCorrect",
                   "quantityTrue",
                   "quantityFalse",
                   "currentStackTaskId",
@@ -63,13 +66,13 @@ class UserStackServices {
           },
         ],
       });
-      return userStacks.get()
+      console.log(userStacks.get());
+      return userStacks.get();
     } catch ({ message }) {
       console.log(message);
     }
   };
 
-  
   static getAllUserStacks = async (userId) => {
     try {
       const userStacks = await UserStack.findAll({
