@@ -45,7 +45,7 @@ const CompanyItem: React.FC<Props> = ({ company }) => {
   };
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       <button onClick={handleCardClick} className={styles.companyCard}>
         <div className={styles.avatarContainer}>
           <img
@@ -68,7 +68,7 @@ const CompanyItem: React.FC<Props> = ({ company }) => {
                 className={styles.favoriteButton}
               >
                 {isFavorite ? (
-                  <StarFilled style={{ color: "#578cec" }} />
+                  <StarFilled className={styles.starFilled} style={{ color: "#578cec" }} />
                 ) : (
                   <StarOutlined style={{ color: "grey" }} />
                 )}

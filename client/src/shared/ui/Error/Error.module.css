@@ -5,3 +5,17 @@
     align-items: center;
     width: 100vw;
 }
+
+.title {
+    margin: 22px;
+    font-size: 50px;
+    font-weight: 350;
+    color: var(--progress-blue);
+}
+
+.elbrus {
+    position: absolute;
+    margin: 365px 470px 0 0vw;
+    width: 180px;
+    height: 180px;
+}

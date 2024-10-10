@@ -8,6 +8,10 @@ body {
   background-color: #fff;
 }
 
+.ant-layout {
+  background-color: rgb(225, 225, 225);
+}
+
 .layout {
   display: flex;
   flex-direction: column;
