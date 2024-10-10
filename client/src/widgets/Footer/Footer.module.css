@@ -1,7 +1,9 @@
 .container {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .footer {
@@ -12,13 +14,14 @@
     bottom: 0;
     right: 0;
     left: 0;
-    width: 100vw;
+    width: 70vw;
     background-color: #fff;
     color: #578cec;
     text-align: center;
     font-size: 14px;
     margin-top: 20px;
     border-radius: 60px;
+    padding: 16px 30px;
 }
 
 .icons {

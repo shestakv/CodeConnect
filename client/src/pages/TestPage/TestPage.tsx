@@ -31,9 +31,9 @@ export const TestPage: React.FC = () => {
 
   const handleStartTest = () => {
     navigate(`/tests/${userId}/${stackId}/${questionId}`);
-  }
+  };
 
-  const questionId = handleGetCurrentQuestion()
+  const questionId = handleGetCurrentQuestion();
 
   useEffect(() => {
     dispatch(getAllUserStacks({ userId: +userId! }));
@@ -42,51 +42,69 @@ export const TestPage: React.FC = () => {
   return (
     <div className={styles.container}>
       <Button type="default" shape="round" onClick={() => navigate(-1)}>
-            <LeftOutlined />
-            Вернуться к навыкам
-          </Button>
-        <>
-          <div>
-            <div className={styles.titleTest}>
-              Добро пожаловать на страницу тестирования навыков по стеку{" "}
-              {userStack?.Stack.title}!
-            </div>
-
-            {handleGetCurrentQuestion() === 1 ? (<></>) : (
-              <div className={styles.titleTest}>
-              В прошлый раз вы остановились на {handleGetCurrentQuestion()} вопросе.
-            </div>
-            )}
-
-            <div className={styles.textTest}>
-              Обратите внимание на следующие важные моменты:
-              <ol>
-              <li><span className={styles.highlight}>Тест можно пройти лишь один раз.</span></li>
-                <li>Количество вопросов: <span className={styles.highlight}>{handleGetNumberOfQuestion()}</span>.</li>
-                <li>
-                  Время на ответ: на каждый вопрос дается <span className={styles.highlight}>30 секунд</span>. Если вы не
-                  успеете ответить, вопрос будет засчитан как неверный.
-                </li>
-                <li>
-                  Пропуск вопроса: если вы пропустите вопрос, он также будет
-                  <span className={styles.highlight}>считаться неверным</span>.
-                </li>
-                <li>
-                  Выход со страницы тестирования: если вы покинете страницу,
-                  тест продолжится со следующего вопроса, но <span className={styles.highlight}>предыдущий будет
-                  считаться неверным</span>.
-                </li>
-              </ol>
-              Удачи!
-            </div>
+        <LeftOutlined />
+        Вернуться к навыкам
+      </Button>
+      <>
+        <div>
+          <div className={styles.titleTest}>
+            Добро пожаловать на страницу тестирования навыков по стеку{" "}
+            {userStack?.Stack.title}!
           </div>
-          
-          <Button type="default" shape="round" onClick={() => handleStartTest()}>
-          {handleGetCurrentQuestion() === 1 ? ('Начать тестирование') : ('Продолжить тестирование')}
-            <ProfileOutlined />
-          </Button>
-        </>
-      
+
+          {handleGetCurrentQuestion() === 0 ? (
+            <></>
+          ) : (
+            <div className={styles.titleTest}>
+              В прошлый раз вы остановились на {handleGetCurrentQuestion()}{" "}
+              вопросе.
+            </div>
+          )}
+
+          <div className={styles.textTest}>
+            Обратите внимание на следующие важные моменты:
+            <ol>
+              <li>
+                <span className={styles.highlight}>
+                  Тест можно пройти лишь один раз.
+                </span>
+              </li>
+              <li>
+                Количество вопросов:{" "}
+                <span className={styles.highlight}>
+                  {handleGetNumberOfQuestion()}
+                </span>
+                .
+              </li>
+              <li>
+                Время на ответ: на каждый вопрос дается{" "}
+                <span className={styles.highlight}>30 секунд</span>. Если вы не
+                успеете ответить, вопрос будет засчитан как неверный.
+              </li>
+              <li>
+                Пропуск вопроса: если вы пропустите вопрос, он также будет
+                <span className={styles.highlight}>считаться неверным</span>.
+              </li>
+              <li>
+                Выход со страницы тестирования: если вы покинете страницу, тест
+                продолжится со следующего вопроса, но{" "}
+                <span className={styles.highlight}>
+                  предыдущий будет считаться неверным
+                </span>
+                .
+              </li>
+            </ol>
+            Удачи!
+          </div>
+        </div>
+
+        <Button type="default" shape="round" onClick={() => handleStartTest()}>
+          {handleGetCurrentQuestion() === 0
+            ? "Начать тестирование"
+            : "Продолжить тестирование"}
+          <ProfileOutlined />
+        </Button>
+      </>
     </div>
   );
 };

@@ -17,6 +17,7 @@ export const FooterComponent: React.FC = () => {
   };
 
   return (
+    <div className={style.container}>
       <Footer className={style.footer}>
         <p> © {new Date().getFullYear()} CodeConnect</p>
         <div className={style.secondContainer}>
@@ -62,5 +63,6 @@ export const FooterComponent: React.FC = () => {
           </div>
         </div>
       </Footer>
+    </div>
   );
 };
