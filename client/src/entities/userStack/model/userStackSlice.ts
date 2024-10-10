@@ -33,6 +33,7 @@ const userStackSlice = createSlice({
       })
       .addCase(getAllUserStacks.fulfilled, (state, action) => {
         state.loading = false;
+        console.log(action.payload.userStacks);
         state.userStacks = action.payload.userStacks;
         state.error = null;
       })
@@ -57,6 +58,7 @@ const userStackSlice = createSlice({
       })
       .addCase(createUserStack.fulfilled, (state, action) => {
         state.loading = false;
+        console.log(action.payload);
         
         state.userStacks.push(action.payload.userStack);
         state.error = null;

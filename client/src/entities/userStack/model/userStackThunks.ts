@@ -23,25 +23,12 @@ export const getAllUserStacks = createAsyncThunk<
   }
 });
 
-// export const getUserStackById = createAsyncThunk<
-//   UserStackResponse,
-//   { id: number },
-//   { rejectValue: RejectValue }
-// >("company/getUserStackById", async ({ id }, { rejectWithValue }) => {
-//   try {
-//     return await UserStackService.getUserStackById(id);
-//   } catch (error) {
-//     const err = error as AxiosError<{ message: string }>;
-//     return rejectWithValue({
-//       message: err.response?.data.message || err.message,
-//     });
-//   }
-// });
-
 export const createUserStack = createAsyncThunk<
   UserStackResponse,
   {
+    userId: number;
     stackId: number;
+    grade: number;
   },
   { rejectValue: RejectValue }
 >(
