@@ -68,7 +68,7 @@ const CompanyItem: React.FC<Props> = ({ company }) => {
                 className={styles.favoriteButton}
               >
                 {isFavorite ? (
-                  <StarFilled style={{ color: "#578cec" }} />
+                  <StarFilled className={styles.starFilled} style={{ color: "#578cec" }} />
                 ) : (
                   <StarOutlined style={{ color: "grey" }} />
                 )}
