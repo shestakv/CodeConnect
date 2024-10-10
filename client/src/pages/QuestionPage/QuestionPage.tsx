@@ -38,7 +38,7 @@ export const QuestionPage: React.FC = () => {
   };
 
   const handleGetNumberOfQuestion = () => {
-    return userStack?.Stack.StackTasks.length - 1;
+    return userStack?.Stack.StackTasks.length;
   };
 
   const handleGetQuestion = ({ questionId }: { questionId: number }) => {

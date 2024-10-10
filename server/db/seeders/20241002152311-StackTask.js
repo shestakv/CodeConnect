@@ -14,16 +14,17 @@ module.exports = {
           answer2: "Функции поднимаются в верхнюю область видимости.",
           answer3: "Код выполняется до его определения.",
           answer4: "Все вышеперечисленное.",
-          trueAnswer: "Все вышеперечисленное."
+          trueAnswer: "Все вышеперечисленное.",
         },
         {
-          description: "Какой метод используется для добавления элемента в конец массива?",
+          description:
+            "Какой метод используется для добавления элемента в конец массива?",
           stackId: 1,
           answer1: "push()",
           answer2: "pop()",
           answer3: "shift()",
           answer4: "unshift()",
-          trueAnswer: "push()"
+          trueAnswer: "push()",
         },
         {
           description: "Что вернёт выражение 'typeof null'?",
@@ -32,7 +33,7 @@ module.exports = {
           answer2: "undefined",
           answer3: "object",
           answer4: "boolean",
-          trueAnswer: "object"
+          trueAnswer: "object",
         },
         {
           description: "Как создать объект в JavaScript?",
@@ -41,25 +42,27 @@ module.exports = {
           answer2: "let obj = new Object();",
           answer3: "let obj = Object.create();",
           answer4: "Все вышеперечисленное.",
-          trueAnswer: "Все вышеперечисленное."
+          trueAnswer: "Все вышеперечисленное.",
         },
         {
-          description: "Какой метод используется для преобразования JSON-строки в объект?",
+          description:
+            "Какой метод используется для преобразования JSON-строки в объект?",
           stackId: 1,
           answer1: "JSON.stringify()",
           answer2: "JSON.parse()",
           answer3: "Object.fromJSON()",
           answer4: "Object.parse()",
-          trueAnswer: "JSON.parse()"
+          trueAnswer: "JSON.parse()",
         },
         {
-          description: "Какой метод используется для удаления последнего элемента массива?",
+          description:
+            "Какой метод используется для удаления последнего элемента массива?",
           stackId: 1,
           answer1: "pop()",
           answer2: "push()",
           answer3: "shift()",
           answer4: "unshift()",
-          trueAnswer: "pop()"
+          trueAnswer: "pop()",
         },
         {
           description: "Что такое 'closure'?",
@@ -68,34 +71,37 @@ module.exports = {
           answer2: "Функция, которая возвращает другую функцию.",
           answer3: "Функция, которая вызывает себя.",
           answer4: "Все вышеперечисленное.",
-          trueAnswer: "Функция, которая имеет доступ к своей внешней функции."
+          trueAnswer: "Функция, которая имеет доступ к своей внешней функции.",
         },
         {
-          description: "Какое значение будет возвращено при выполнении 'Boolean(0)'?",
+          description:
+            "Какое значение будет возвращено при выполнении 'Boolean(0)'?",
           stackId: 1,
           answer1: "true",
           answer2: "false",
           answer3: "undefined",
           answer4: "null",
-          trueAnswer: "false"
+          trueAnswer: "false",
         },
         {
-          description: "Какой оператор используется для проверки на равенство без приведения типов?",
+          description:
+            "Какой оператор используется для проверки на равенство без приведения типов?",
           stackId: 1,
           answer1: "==",
           answer2: "===",
           answer3: "!=",
           answer4: "!==",
-          trueAnswer: "==="
+          trueAnswer: "===",
         },
         {
           description: "Что такое 'event delegation'?",
           stackId: 1,
           answer1: "Обработка события на родительском элементе.",
           answer2: "Создание события для каждого элемента.",
-          answer3: "Событие, которое делегируется от одного элемента к другому.",
+          answer3:
+            "Событие, которое делегируется от одного элемента к другому.",
           answer4: "Ничего из вышеперечисленного.",
-          trueAnswer: "Обработка события на родительском элементе."
+          trueAnswer: "Обработка события на родительском элементе.",
         },
         {
           description: "Как создать функцию в JavaScript?",
@@ -104,7 +110,7 @@ module.exports = {
           answer2: "let myFunc = function() {}",
           answer3: "const myFunc = () => {}",
           answer4: "Все вышеперечисленное.",
-          trueAnswer: "Все вышеперечисленное."
+          trueAnswer: "Все вышеперечисленное.",
         },
         {
           description: "Какой метод используется для сортировки массива?",
@@ -113,7 +119,7 @@ module.exports = {
           answer2: "order()",
           answer3: "arrange()",
           answer4: "filter()",
-          trueAnswer: "sort()"
+          trueAnswer: "sort()",
         },
         {
           description: "Что такое 'this' в JavaScript?",
@@ -122,7 +128,7 @@ module.exports = {
           answer2: "Указывает на глобальный объект.",
           answer3: "Значение undefined.",
           answer4: "Ничего из вышеперечисленного.",
-          trueAnswer: "Ссылка на текущий объект."
+          trueAnswer: "Ссылка на текущий объект.",
         },
         {
           description: "Какой метод позволяет перебрать элементы массива?",
@@ -131,7 +137,7 @@ module.exports = {
           answer2: "map()",
           answer3: "filter()",
           answer4: "Все вышеперечисленное.",
-          trueAnswer: "Все вышеперечисленное."
+          trueAnswer: "Все вышеперечисленное.",
         },
         {
           description: "Что такое 'promise'?",
@@ -140,7 +146,7 @@ module.exports = {
           answer2: "Функция для обработки ошибок.",
           answer3: "Тип данных.",
           answer4: "Ничего из вышеперечисленного.",
-          trueAnswer: "Объект для работы с асинхронными операциями."
+          trueAnswer: "Объект для работы с асинхронными операциями.",
         },
         {
           description: "Как проверить, является ли переменная массивом?",
@@ -149,27 +155,59 @@ module.exports = {
           answer2: "isArray()",
           answer3: "instanceof Array",
           answer4: "Все вышеперечисленное.",
-          trueAnswer: "Все вышеперечисленное."
+          trueAnswer: "Все вышеперечисленное.",
         },
         {
-          description: "Какой метод используется для создания нового массива из существующего?",
+          description:
+            "Какой метод используется для создания нового массива из существующего?",
           stackId: 1,
           answer1: "map()",
           answer2: "reduce()",
           answer3: "filter()",
           answer4: "Все вышеперечисленное.",
-          trueAnswer: "Все вышеперечисленное."
+          trueAnswer: "Все вышеперечисленное.",
         },
-      
+        {
+          description:
+            "Какой метод используется для объединения двух или более массивов?",
+          stackId: 1,
+          answer1: "concat()",
+          answer2: "join()",
+          answer3: "slice()",
+          answer4: "splice()",
+          trueAnswer: "concat()",
+        },
+        {
+          description:
+            "Какой оператор используется для сравнения значений и типов?",
+          stackId: 1,
+          answer1: "==",
+          answer2: "===",
+          answer3: "!=",
+          answer4: "!==",
+          trueAnswer: "===",
+        },
+        {
+          description:
+            "Какой метод используется для добавления нового элемента в конец массива?",
+          stackId: 1,
+          answer1: "push()",
+          answer2: "pop()",
+          answer3: "shift()",
+          answer4: "unshift()",
+          trueAnswer: "push()",
+        },
+
         // CSS
         {
-          description: "Какой из этих селекторов выбирает все <p> элементы внутри <div>?",
+          description:
+            "Какой из этих селекторов выбирает все <p> элементы внутри <div>?",
           stackId: 2,
           answer1: "div p",
           answer2: "div > p",
           answer3: "p div",
           answer4: "div + p",
-          trueAnswer: "div p"
+          trueAnswer: "div p",
         },
         {
           description: "Какой из этих свойств CSS задает цвет текста?",
@@ -178,25 +216,27 @@ module.exports = {
           answer2: "color",
           answer3: "text-color",
           answer4: "font-color",
-          trueAnswer: "color"
+          trueAnswer: "color",
         },
         {
-          description: "Какое свойство используется для изменения шрифта элемента?",
+          description:
+            "Какое свойство используется для изменения шрифта элемента?",
           stackId: 2,
           answer1: "font-family",
           answer2: "font-size",
           answer3: "text-font",
           answer4: "font-style",
-          trueAnswer: "font-family"
+          trueAnswer: "font-family",
         },
         {
-          description: "Какой из этих единиц измерения не является относительным?",
+          description:
+            "Какой из этих единиц измерения не является относительным?",
           stackId: 2,
           answer1: "px",
           answer2: "em",
           answer3: "rem",
           answer4: "vw",
-          trueAnswer: "px"
+          trueAnswer: "px",
         },
         {
           description: "Как задать цвет фона элемента?",
@@ -205,7 +245,7 @@ module.exports = {
           answer2: "color: #fff;",
           answer3: "bg-color: #fff;",
           answer4: "background: #fff;",
-          trueAnswer: "background-color: #fff;"
+          trueAnswer: "background-color: #fff;",
         },
         {
           description: "Как задать отступ для элемента?",
@@ -214,7 +254,7 @@ module.exports = {
           answer2: "margin: 10px;",
           answer3: "spacing: 10px;",
           answer4: "padding-top: 10px;",
-          trueAnswer: "padding: 10px;"
+          trueAnswer: "padding: 10px;",
         },
         {
           description: "Что делает свойство 'display: none;'?",
@@ -223,7 +263,7 @@ module.exports = {
           answer2: "Убирает элемент из потока документа.",
           answer3: "Оба варианта верны.",
           answer4: "Ничего не делает.",
-          trueAnswer: "Оба варианта верны."
+          trueAnswer: "Оба варианта верны.",
         },
         {
           description: "Как изменить цвет текста при наведении на элемент?",
@@ -232,7 +272,7 @@ module.exports = {
           answer2: "element:active { color: red; }",
           answer3: "element:focus { color: red; }",
           answer4: "element:visited { color: red; }",
-          trueAnswer: "element:hover { color: red; }"
+          trueAnswer: "element:hover { color: red; }",
         },
         {
           description: "Как задать ширину элемента?",
@@ -241,7 +281,7 @@ module.exports = {
           answer2: "size: 100px;",
           answer3: "height: 100px;",
           answer4: "length: 100px;",
-          trueAnswer: "width: 100px;"
+          trueAnswer: "width: 100px;",
         },
         {
           description: "Какой из этих селекторов выбирает все <li> элементы?",
@@ -250,7 +290,7 @@ module.exports = {
           answer2: ".li",
           answer3: "#li",
           answer4: "li *",
-          trueAnswer: "li"
+          trueAnswer: "li",
         },
         {
           description: "Как задать изображение фона?",
@@ -259,7 +299,7 @@ module.exports = {
           answer2: "img: url('image.jpg');",
           answer3: "background: 'image.jpg';",
           answer4: "background-url: 'image.jpg';",
-          trueAnswer: "background-image: url('image.jpg');"
+          trueAnswer: "background-image: url('image.jpg');",
         },
         {
           description: "Как задать стиль для первого элемента списка?",
@@ -268,7 +308,7 @@ module.exports = {
           answer2: "li:first { }",
           answer3: "li:first-item { }",
           answer4: "li:first-child-item { }",
-          trueAnswer: "li:first-child { }"
+          trueAnswer: "li:first-child { }",
         },
         {
           description: "Что делает свойство 'float'?",
@@ -277,18 +317,77 @@ module.exports = {
           answer2: "Изменяет положение элемента.",
           answer3: "Скрывает элемент.",
           answer4: "Выравнивает текст.",
-          trueAnswer: "Позволяет элементу 'плыть' влево или вправо."
+          trueAnswer: "Позволяет элементу 'плыть' влево или вправо.",
         },
         {
-          description: "Какой из этих значений для свойства 'position' позволяет элементу быть фиксированным?",
+          description:
+            "Какой из этих значений для свойства 'position' позволяет элементу быть фиксированным?",
           stackId: 2,
           answer1: "absolute",
           answer2: "relative",
           answer3: "fixed",
           answer4: "sticky",
-          trueAnswer: "fixed"
+          trueAnswer: "fixed",
         },
-        
+        {
+          description:
+            "Какой селектор используется для выбора всех элементов с определенным классом?",
+          stackId: 2,
+          answer1: ".classname { }",
+          answer2: "#classname { }",
+          answer3: "classname { }",
+          answer4: "*classname { }",
+          trueAnswer: ".classname { }",
+        },
+        {
+          description: "Какое свойство изменяет цвет текста элемента?",
+          stackId: 2,
+          answer1: "background-color",
+          answer2: "color",
+          answer3: "text-color",
+          answer4: "font-color",
+          trueAnswer: "color",
+        },
+        {
+          description:
+            "Какое значение свойства 'display' делает элемент блочным?",
+          stackId: 2,
+          answer1: "inline",
+          answer2: "block",
+          answer3: "flex",
+          answer4: "grid",
+          trueAnswer: "block",
+        },
+        {
+          description:
+            "Какое свойство используется для создания отступов внутри элемента?",
+          stackId: 2,
+          answer1: "margin",
+          answer2: "padding",
+          answer3: "border",
+          answer4: "spacing",
+          trueAnswer: "padding",
+        },
+        {
+          description:
+            "Какой селектор позволяет выбрать элемент с определенным идентификатором?",
+          stackId: 2,
+          answer1: ".idname { }",
+          answer2: "#idname { }",
+          answer3: "idname { }",
+          answer4: "*idname { }",
+          trueAnswer: "#idname { }",
+        },
+        {
+          description: "Какое свойство позволяет задать шрифт текста?",
+          stackId: 2,
+          answer1: "font-family",
+          answer2: "text-font",
+          answer3: "font-style",
+          answer4: "font-weight",
+          trueAnswer: "font-family",
+        },
+
         // HTML
         {
           description: "Какой атрибут используется для указания адреса ссылки?",
@@ -297,34 +396,37 @@ module.exports = {
           answer2: "src",
           answer3: "link",
           answer4: "url",
-          trueAnswer: "href"
+          trueAnswer: "href",
         },
         {
-          description: "Какой элемент используется для создания ненумерованного списка?",
+          description:
+            "Какой элемент используется для создания ненумерованного списка?",
           stackId: 3,
           answer1: "<ol>",
           answer2: "<ul>",
           answer3: "<list>",
           answer4: "<item>",
-          trueAnswer: "<ul>"
+          trueAnswer: "<ul>",
         },
         {
-          description: "Какой атрибут используется для указания альтернативного текста изображения?",
+          description:
+            "Какой атрибут используется для указания альтернативного текста изображения?",
           stackId: 3,
           answer1: "alt",
           answer2: "title",
           answer3: "src",
           answer4: "desc",
-          trueAnswer: "alt"
+          trueAnswer: "alt",
         },
         {
-          description: "Какой элемент используется для создания заголовка уровня 1?",
+          description:
+            "Какой элемент используется для создания заголовка уровня 1?",
           stackId: 3,
           answer1: "<h1>",
           answer2: "<header>",
           answer3: "<title>",
           answer4: "<heading>",
-          trueAnswer: "<h1>"
+          trueAnswer: "<h1>",
         },
         {
           description: "Какой тег используется для создания формы?",
@@ -333,16 +435,17 @@ module.exports = {
           answer2: "<input>",
           answer3: "<button>",
           answer4: "<textarea>",
-          trueAnswer: "<form>"
+          trueAnswer: "<form>",
         },
         {
-          description: "Какой элемент используется для создания текста в столбик?",
+          description:
+            "Какой элемент используется для создания текста в столбик?",
           stackId: 3,
           answer1: "<p>",
           answer2: "<div>",
           answer3: "<br>",
           answer4: "<span>",
-          trueAnswer: "<p>"
+          trueAnswer: "<p>",
         },
         {
           description: "Какой тег используется для вставки стиля?",
@@ -351,25 +454,27 @@ module.exports = {
           answer2: "<style>",
           answer3: "<css>",
           answer4: "<link>",
-          trueAnswer: "<style>"
+          trueAnswer: "<style>",
         },
         {
-          description: "Какой атрибут используется для указания целевого окна ссылки?",
+          description:
+            "Какой атрибут используется для указания целевого окна ссылки?",
           stackId: 3,
           answer1: "target",
           answer2: "window",
           answer3: "frame",
           answer4: "href",
-          trueAnswer: "target"
+          trueAnswer: "target",
         },
         {
-          description: "Какой элемент используется для создания текстового поля?",
+          description:
+            "Какой элемент используется для создания текстового поля?",
           stackId: 3,
           answer1: "<input type='text'>",
           answer2: "<textarea>",
           answer3: "<input type='textarea'>",
           answer4: "<field>",
-          trueAnswer: "<input type='text'>"
+          trueAnswer: "<input type='text'>",
         },
         {
           description: "Какой тег используется для вставки изображения?",
@@ -378,25 +483,27 @@ module.exports = {
           answer2: "<picture>",
           answer3: "<src>",
           answer4: "<image>",
-          trueAnswer: "<img>"
+          trueAnswer: "<img>",
         },
         {
-          description: "Какой элемент используется для создания раздела на странице?",
+          description:
+            "Какой элемент используется для создания раздела на странице?",
           stackId: 3,
           answer1: "<section>",
           answer2: "<div>",
           answer3: "<area>",
           answer4: "<block>",
-          trueAnswer: "<section>"
+          trueAnswer: "<section>",
         },
         {
-          description: "Какой атрибут используется для ссылки на внешний файл CSS?",
+          description:
+            "Какой атрибут используется для ссылки на внешний файл CSS?",
           stackId: 3,
           answer1: "rel",
           answer2: "href",
           answer3: "src",
           answer4: "link",
-          trueAnswer: "rel"
+          trueAnswer: "rel",
         },
         {
           description: "Какой элемент используется для создания таблицы?",
@@ -405,27 +512,76 @@ module.exports = {
           answer2: "<tab>",
           answer3: "<tbody>",
           answer4: "<row>",
-          trueAnswer: "<table>"
+          trueAnswer: "<table>",
         },
         {
-          description: "Какой атрибут указывает, что элемент является обязательным?",
+          description:
+            "Какой атрибут указывает, что элемент является обязательным?",
           stackId: 3,
           answer1: "required",
           answer2: "mandatory",
           answer3: "must",
           answer4: "need",
-          trueAnswer: "required"
+          trueAnswer: "required",
         },
         {
-          description: "Какой элемент используется для создания выпадающего списка?",
+          description:
+            "Какой элемент используется для создания выпадающего списка?",
           stackId: 3,
           answer1: "<select>",
           answer2: "<dropdown>",
           answer3: "<list>",
           answer4: "<option>",
-          trueAnswer: "<select>"
+          trueAnswer: "<select>",
         },
-        
+        {
+          description:
+            "Какое свойство используется для изменения прозрачности элемента?",
+          stackId: 3,
+          answer1: "opacity",
+          answer2: "visibility",
+          answer3: "transparent",
+          answer4: "filter",
+          trueAnswer: "opacity",
+        },
+        {
+          description: "Какой способ выравнивания текста по центру?",
+          stackId: 3,
+          answer1: "text-align: center;",
+          answer2: "align: center;",
+          answer3: "text-center;",
+          answer4: "center-align;",
+          trueAnswer: "text-align: center;",
+        },
+        {
+          description: "Как задать фон для элемента?",
+          stackId: 3,
+          answer1: "background-color",
+          answer2: "color",
+          answer3: "background-image",
+          answer4: "bgcolor",
+          trueAnswer: "background-color",
+        },
+        {
+          description: "Какой свойство позволяет задать размер шрифта?",
+          stackId: 3,
+          answer1: "font-size",
+          answer2: "text-size",
+          answer3: "size-font",
+          answer4: "text-font-size",
+          trueAnswer: "font-size",
+        },
+        {
+          description:
+            "Какой стиль используется для создания границ вокруг элемента?",
+          stackId: 3,
+          answer1: "border",
+          answer2: "outline",
+          answer3: "margin",
+          answer4: "padding",
+          trueAnswer: "border",
+        },
+
         // TypeScript
         {
           description: "Что такое TypeScript?",
@@ -434,7 +590,7 @@ module.exports = {
           answer2: "Суперсет JavaScript",
           answer3: "Язык разметки",
           answer4: "Стилевой язык",
-          trueAnswer: "Суперсет JavaScript"
+          trueAnswer: "Суперсет JavaScript",
         },
         {
           description: "Какой тип данных не существует в TypeScript?",
@@ -443,7 +599,7 @@ module.exports = {
           answer2: "string",
           answer3: "boolean",
           answer4: "character",
-          trueAnswer: "character"
+          trueAnswer: "character",
         },
         {
           description: "Как объявить переменную в TypeScript?",
@@ -452,16 +608,17 @@ module.exports = {
           answer2: "var x: number;",
           answer3: "const x: number;",
           answer4: "Все вышеперечисленное.",
-          trueAnswer: "Все вышеперечисленное."
+          trueAnswer: "Все вышеперечисленное.",
         },
         {
-          description: "Какой оператор используется для указания типа переменной?",
+          description:
+            "Какой оператор используется для указания типа переменной?",
           stackId: 4,
           answer1: ":",
           answer2: "=",
           answer3: "=>",
           answer4: "=>",
-          trueAnswer: ":"
+          trueAnswer: ":",
         },
         {
           description: "Что такое интерфейс в TypeScript?",
@@ -470,16 +627,17 @@ module.exports = {
           answer2: "Класс в TypeScript.",
           answer3: "Функция.",
           answer4: "Переменная.",
-          trueAnswer: "Описание структуры объекта."
+          trueAnswer: "Описание структуры объекта.",
         },
         {
-          description: "Какой тип данных используется для хранения булевых значений?",
+          description:
+            "Какой тип данных используется для хранения булевых значений?",
           stackId: 4,
           answer1: "boolean",
           answer2: "bool",
           answer3: "int",
           answer4: "string",
-          trueAnswer: "boolean"
+          trueAnswer: "boolean",
         },
         {
           description: "Как объявить массив в TypeScript?",
@@ -488,16 +646,17 @@ module.exports = {
           answer2: "let arr: Array<number>;",
           answer3: "Все вышеперечисленное.",
           answer4: "let arr: [number];",
-          trueAnswer: "Все вышеперечисленное."
+          trueAnswer: "Все вышеперечисленное.",
         },
         {
-          description: "Какой синтаксис используется для объявления функции в TypeScript?",
+          description:
+            "Какой синтаксис используется для объявления функции в TypeScript?",
           stackId: 4,
           answer1: "function myFunc() {}",
           answer2: "const myFunc = () => {}",
           answer3: "let myFunc: () => void = () => {}; ",
           answer4: "Все вышеперечисленное.",
-          trueAnswer: "Все вышеперечисленное."
+          trueAnswer: "Все вышеперечисленное.",
         },
         {
           description: "Какой оператор используется для объединения строк?",
@@ -506,7 +665,7 @@ module.exports = {
           answer2: "concat()",
           answer3: "join()",
           answer4: "add()",
-          trueAnswer: "+"
+          trueAnswer: "+",
         },
         {
           description: "Что такое 'type alias' в TypeScript?",
@@ -515,7 +674,7 @@ module.exports = {
           answer2: "Переменная.",
           answer3: "Класс.",
           answer4: "Интерфейс.",
-          trueAnswer: "Синоним для типа."
+          trueAnswer: "Синоним для типа.",
         },
         {
           description: "Как сделать свойство объекта необязательным?",
@@ -524,7 +683,7 @@ module.exports = {
           answer2: "С помощью *",
           answer3: "С помощью +",
           answer4: "С помощью -",
-          trueAnswer: "С помощью ?"
+          trueAnswer: "С помощью ?",
         },
         {
           description: "Что такое 'enum' в TypeScript?",
@@ -533,7 +692,7 @@ module.exports = {
           answer2: "Тип данных.",
           answer3: "Класс.",
           answer4: "Функция.",
-          trueAnswer: "Перечисление значений."
+          trueAnswer: "Перечисление значений.",
         },
         {
           description: "Какой оператор используется для обработки исключений?",
@@ -542,9 +701,75 @@ module.exports = {
           answer2: "throw",
           answer3: "catch",
           answer4: "handle",
-          trueAnswer: "try-catch"
+          trueAnswer: "try-catch",
         },
-        
+        {
+          description:
+            "Какой тип используется для обозначения истинного или ложного значения?",
+          stackId: 4,
+          answer1: "string",
+          answer2: "boolean",
+          answer3: "number",
+          answer4: "any",
+          trueAnswer: "boolean",
+        },
+        {
+          description:
+            "Какой синтаксис используется для определения интерфейса в TypeScript?",
+          stackId: 4,
+          answer1: "interface MyInterface { }",
+          answer2: "type MyInterface = { }",
+          answer3: "class MyInterface { }",
+          answer4: "MyInterface: { }",
+          trueAnswer: "interface MyInterface { }",
+        },
+        {
+          description: "Какой тип используется для обозначения массива чисел?",
+          stackId: 4,
+          answer1: "number[]",
+          answer2: "Array<number>",
+          answer3: "both",
+          answer4: "none",
+          trueAnswer: "both",
+        },
+        {
+          description: "Какой оператор используется для объединения типов?",
+          stackId: 4,
+          answer1: "&",
+          answer2: "|",
+          answer3: "+",
+          answer4: "*",
+          trueAnswer: "|",
+        },
+        {
+          description: "Что такое 'Union Type' в TypeScript?",
+          stackId: 4,
+          answer1: "Тип, который может быть одним из нескольких типов.",
+          answer2: "Тип, который объединяет все возможные значения.",
+          answer3: "Тип, который зависит от других типов.",
+          answer4: "Тип, который не может быть изменен.",
+          trueAnswer: "Тип, который может быть одним из нескольких типов.",
+        },
+        {
+          description:
+            "Какой метод используется для создания класса в TypeScript?",
+          stackId: 4,
+          answer1: "function MyClass() { }",
+          answer2: "class MyClass { }",
+          answer3: "new MyClass() { }",
+          answer4: "MyClass() { }",
+          trueAnswer: "class MyClass { }",
+        },
+        {
+          description: "Какой ключевое слово используется для импорта модулей?",
+          stackId: 4,
+          answer1: "require",
+          answer2: "import",
+          answer3: "include",
+          answer4: "using",
+          trueAnswer: "import",
+        },
+
         // Node.js
         {
           description: "Что такое Node.js?",
@@ -553,25 +778,27 @@ module.exports = {
           answer2: "Язык программирования",
           answer3: "Библиотека для работы с HTML",
           answer4: "Система управления базами данных",
-          trueAnswer: "Серверная платформа на JavaScript"
+          trueAnswer: "Серверная платформа на JavaScript",
         },
         {
-          description: "Какой модуль используется для работы с файловой системой в Node.js?",
+          description:
+            "Какой модуль используется для работы с файловой системой в Node.js?",
           stackId: 5,
           answer1: "http",
           answer2: "fs",
           answer3: "path",
           answer4: "os",
-          trueAnswer: "fs"
+          trueAnswer: "fs",
         },
         {
-          description: "Какой метод используется для создания HTTP-сервера в Node.js?",
+          description:
+            "Какой метод используется для создания HTTP-сервера в Node.js?",
           stackId: 5,
           answer1: "http.createServer()",
           answer2: "http.Server()",
           answer3: "createServer()",
           answer4: "new http()",
-          trueAnswer: "http.createServer()"
+          trueAnswer: "http.createServer()",
         },
         {
           description: "Какой пакет используется для управления зависимостями?",
@@ -580,7 +807,7 @@ module.exports = {
           answer2: "yarn",
           answer3: "bower",
           answer4: "Все вышеперечисленное.",
-          trueAnswer: "Все вышеперечисленное."
+          trueAnswer: "Все вышеперечисленное.",
         },
         {
           description: "Что такое 'callback'?",
@@ -589,7 +816,7 @@ module.exports = {
           answer2: "Метод объекта.",
           answer3: "Промис.",
           answer4: "Класс.",
-          trueAnswer: "Функция, переданная другой функции."
+          trueAnswer: "Функция, переданная другой функции.",
         },
         {
           description: "Как создать сервер в Node.js?",
@@ -598,7 +825,7 @@ module.exports = {
           answer2: "const server = new http();",
           answer3: "const server = http.Server();",
           answer4: "Все вышеперечисленное.",
-          trueAnswer: "const server = http.createServer();"
+          trueAnswer: "const server = http.createServer();",
         },
         {
           description: "Какой метод используется для чтения файла?",
@@ -607,16 +834,17 @@ module.exports = {
           answer2: "fs.read()",
           answer3: "fs.open()",
           answer4: "fs.createFile()",
-          trueAnswer: "fs.readFile()"
+          trueAnswer: "fs.readFile()",
         },
         {
-          description: "Какой объект используется для обработки запросов в Node.js?",
+          description:
+            "Какой объект используется для обработки запросов в Node.js?",
           stackId: 5,
           answer1: "request",
           answer2: "response",
           answer3: "http",
           answer4: "server",
-          trueAnswer: "request"
+          trueAnswer: "request",
         },
         {
           description: "Как установить новый пакет с помощью npm?",
@@ -625,7 +853,7 @@ module.exports = {
           answer2: "npm get package-name",
           answer3: "npm add package-name",
           answer4: "npm new package-name",
-          trueAnswer: "npm install package-name"
+          trueAnswer: "npm install package-name",
         },
         {
           description: "Как запустить сервер на определенном порту?",
@@ -634,16 +862,17 @@ module.exports = {
           answer2: "server.run(port);",
           answer3: "server.start(port);",
           answer4: "server.bind(port);",
-          trueAnswer: "server.listen(port);"
+          trueAnswer: "server.listen(port);",
         },
         {
-          description: "Какой метод используется для обработки ошибок в Node.js?",
+          description:
+            "Какой метод используется для обработки ошибок в Node.js?",
           stackId: 5,
           answer1: "try-catch",
           answer2: "catch",
           answer3: "errorHandler()",
           answer4: "onError()",
-          trueAnswer: "try-catch"
+          trueAnswer: "try-catch",
         },
         {
           description: "Что такое 'middleware'?",
@@ -652,7 +881,7 @@ module.exports = {
           answer2: "Метод работы с базами данных.",
           answer3: "Класс в Node.js.",
           answer4: "Ничего из вышеперечисленного.",
-          trueAnswer: "Функция, которая обрабатывает запросы."
+          trueAnswer: "Функция, которая обрабатывает запросы.",
         },
         {
           description: "Как подключить модуль в Node.js?",
@@ -661,7 +890,76 @@ module.exports = {
           answer2: "import module from 'module-name';",
           answer3: "load module from 'module-name';",
           answer4: "include module from 'module-name';",
-          trueAnswer: "const module = require('module-name');"
+          trueAnswer: "const module = require('module-name');",
+        },
+        {
+          description:
+            "Какой метод используется для создания HTTP-сервера в Node.js?",
+          stackId: 5,
+          answer1: "http.createServer()",
+          answer2: "server.create()",
+          answer3: "http.startServer()",
+          answer4: "new http.Server()",
+          trueAnswer: "http.createServer()",
+        },
+        {
+          description:
+            "Какой модуль используется для работы с файловой системой?",
+          stackId: 5,
+          answer1: "fs",
+          answer2: "file",
+          answer3: "filesystem",
+          answer4: "path",
+          trueAnswer: "fs",
+        },
+        {
+          description: "Какой метод используется для чтения файла асинхронно?",
+          stackId: 5,
+          answer1: "fs.readFileSync()",
+          answer2: "fs.readFile()",
+          answer3: "fs.read()",
+          answer4: "fs.openFile()",
+          trueAnswer: "fs.readFile()",
+        },
+        {
+          description:
+            "Какой метод используется для установки зависимостей в проекте?",
+          stackId: 5,
+          answer1: "npm install",
+          answer2: "npm add",
+          answer3: "npm setup",
+          answer4: "npm get",
+          trueAnswer: "npm install",
+        },
+        {
+          description:
+            "Какой объект используется для работы с запросами в Express?",
+          stackId: 5,
+          answer1: "req",
+          answer2: "request",
+          answer3: "http",
+          answer4: "query",
+          trueAnswer: "req",
+        },
+        {
+          description:
+            "Какой модуль используется для работы с маршрутами в Express?",
+          stackId: 5,
+          answer1: "express.Router()",
+          answer2: "express.Route()",
+          answer3: "express.Path()",
+          answer4: "express.RouteManager()",
+          trueAnswer: "express.Router()",
+        },
+        {
+          description:
+            "Какой метод используется для отправки ответа клиенту в Express?",
+          stackId: 5,
+          answer1: "res.send()",
+          answer2: "res.response()",
+          answer3: "res.output()",
+          answer4: "res.write()",
+          trueAnswer: "res.send()",
         },
       ],
       {}
