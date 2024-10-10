@@ -41,7 +41,7 @@ export const TestPage: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <Button type="default" shape="round" onClick={() => navigate(-1)}>
+      <Button type="default" shape="round" onClick={() => navigate(`/users/userStacks/${userId}`)}>
         <LeftOutlined />
         Вернуться к навыкам
       </Button>
