@@ -140,10 +140,10 @@ const handleDonePercents = ({ stackId }: { stackId: number }) => {
                             handleDonePercents({ stackId: userStack.id })
                           }
                           success={{
-                            percent: handleQuantityFalsePercents({
+                            percent: handleQuantityTruePercents({
                               stackId: userStack.id,
                             }),
-                            strokeColor: "red",
+                            strokeColor: '#52c41a',
                           }}
                           type="circle"
                         />

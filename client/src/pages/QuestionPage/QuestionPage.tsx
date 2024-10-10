@@ -38,11 +38,11 @@ export const QuestionPage: React.FC = () => {
   };
 
   const handleGetNumberOfQuestion = () => {
-    return userStack?.Stack.StackTasks.length;
+    return userStack?.Stack.StackTasks.length - 1;
   };
 
   const handleGetQuestion = ({ questionId }: { questionId: number }) => {
-    console.log(userStack?.Stack.StackTasks[questionId])
+    console.log(userStack?.Stack.StackTasks[questionId]);
     return userStack?.Stack.StackTasks[questionId];
   };
 
@@ -50,11 +50,21 @@ export const QuestionPage: React.FC = () => {
     navigate(`/tests/${userId}/${stackId}/${+questionId! + 1}`);
   };
 
+  const handleNextQuestionWithFalse = () => {
+    handleGetFalseAnswer();
+    handleNextQuestion();
+  };
+
   const handleFinishTest = () => {
     navigate(`/users/userStacks/${userId}`);
   };
 
-  if (handleGetCurrentQuestion() + 1 > handleGetNumberOfQuestion()) {
+  const handleFinishTestWithFalse = () => {
+    handleGetFalseAnswer();
+    handleFinishTest();
+  };
+
+  if (handleGetCurrentQuestion() > handleGetNumberOfQuestion()) {
     handleFinishTest();
   }
 
@@ -130,7 +140,6 @@ export const QuestionPage: React.FC = () => {
   }, [time]);
 
   console.log(handleGetCurrentQuestion(), handleGetNumberOfQuestion());
-  
 
   return (
     <div className={styles.container}>
@@ -151,7 +160,7 @@ export const QuestionPage: React.FC = () => {
               onMouseOut={enableCopy}
             >
               <div className={styles.title}>Осталось {time} секунд</div>
-              <div className={styles.title}>Вопрос №{+questionId!+1}:</div>
+              <div className={styles.title}>Вопрос №{+questionId! + 1}:</div>
 
               <p>
                 <p>
@@ -303,25 +312,26 @@ export const QuestionPage: React.FC = () => {
                 </Button>
               </div>
             </div>
-            {handleGetCurrentQuestion() && handleGetNumberOfQuestion() && (
+            {(handleGetCurrentQuestion(), handleGetNumberOfQuestion()) && (
               <>
-                {handleGetCurrentQuestion() > handleGetNumberOfQuestion() ? (
+                {handleGetCurrentQuestion() < handleGetNumberOfQuestion() ||
+                handleGetCurrentQuestion() === 0 ? (
                   <Button
                     type="default"
                     shape="round"
-                    onClick={() => handleFinishTest()}
+                    onClick={() => handleNextQuestionWithFalse()}
                   >
-                    Завершить тестирование
-                    <ProfileOutlined />
+                    Следующий вопрос
+                    <RightOutlined />
                   </Button>
                 ) : (
                   <Button
                     type="default"
                     shape="round"
-                    onClick={() => handleNextQuestion()}
+                    onClick={() => handleFinishTestWithFalse()}
                   >
-                    Следующий вопрос
-                    <RightOutlined />
+                    Завершить тестирование
+                    <ProfileOutlined />
                   </Button>
                 )}
               </>
