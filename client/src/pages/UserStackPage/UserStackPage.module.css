@@ -79,16 +79,18 @@
   display: flex;
   justify-content: space-between;
   width: 60vw;
-  min-height: 150px;
+  min-height: 250px;
   background-color: #fff;
   margin-top: 25px;
   border-radius: 10px;
+  padding-bottom: 8px;
 }
 
 .divider {
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: auto;
 }
 
 .topContainer {
@@ -96,12 +98,12 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 30px;
+  height: auto;
+  margin: 8px, 8px, 0, 8px;
 }
 
 .stackTitle {
   display: flex;
-  margin-top: 10px;
   flex-direction: row;
   align-items: center;
 }
@@ -111,22 +113,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-  justify-content: center;
-}
-
-.stackCard {
-  border: 1px solid #d9d9d9; /* Цвет рамки */
-  border-radius: 10px; /* Закругление углов */
-  padding: 8px; /* Уменьшенные внутренние отступы */
-  margin: 8px; /* Уменьшенные внешние отступы */
-  background-color: #fff; /* Цвет фона карточки */
-  /* box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); Уменьшенная тень */
-  transition: transform 0.2s; /* Плавный эффект при наведении */
-  width: 100px; /* Уменьшенная ширина карточки */
-}
-
-.stackCard:hover {
-  transform: scale(1.03); /* Уменьшенный эффект увеличения при наведении */
+  justify-content: space-evenly;
 }
 
 .stackCardContent {
@@ -154,17 +141,27 @@
 }
 
 .stackCard {
-    border: 1px solid #d9d9d9; /* Цвет рамки */
-    border-radius: 4px; /* Закругление углов */
-    padding: 8px; /* Уменьшенные внутренние отступы */
-    margin: 8px; /* Уменьшенные внешние отступы */
-    background-color: #fff; /* Цвет фона карточки */
-    /* box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); Уменьшенная тень */
-    transition: transform 0.2s; /* Плавный эффект при наведении */
-    width: 200px; /* Уменьшенная ширина карточки */
-    height: 100px;
-  }
-  
-  .stackCard:hover {
-    transform: scale(1.03); /* Уменьшенный эффект увеличения при наведении */
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* justify-content: space-around; */
+  border: 6px solid #d9d9d900;
+  border-radius: 30px; /* Закругление углов */
+  padding: 8px; /* Уменьшенные внутренние отступы */
+  margin: 8px; /* Уменьшенные внешние отступы */
+  background-color: #fff; /* Цвет фона карточки */
+  /* box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); Уменьшенная тень */
+  /* transition: transform 0.2s; Плавный эффект при наведении */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: 0.35s ease-in-out;
+  width: 40%; /* Уменьшенная ширина карточки */
+  min-width: 200px;
+  height: 180px; /* Уменьшенная высота карточки */
+}
+
+.stackCard:hover {
+  transform: scale(1.02); /* Уменьшенный эффект увеличения при наведении */
+  border: 3px solid #578cec;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}

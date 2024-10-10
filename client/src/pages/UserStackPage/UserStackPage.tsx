@@ -31,15 +31,11 @@ export const UserStackPage: React.FC = () => {
   };
 
   const handleQuantityTrue = ({ stackId }: { stackId: number }) => {
-    console.log(userStacks?.filter((userStack) => userStack.id === stackId)[0].Stack
-    .TestingResults[0].quantityTrue)
     return userStacks?.filter((userStack) => userStack.id === stackId)[0].Stack
       .TestingResults[0].quantityTrue;
   };
 
   const handleQuantityFalse = ({ stackId }: { stackId: number }) => {
-    console.log(userStacks?.filter((userStack) => userStack.id === stackId)[0].Stack
-    .TestingResults[0].quantityFalse)
     return userStacks?.filter((userStack) => userStack.id === stackId)[0].Stack
       .TestingResults[0].quantityFalse;
   };
@@ -75,16 +71,6 @@ const handleDonePercents = ({ stackId }: { stackId: number }) => {
 
     return quantityTruePercents + quantityFalsePercents;
 };
-
-  const handleGetCurrentQuestion = ({ stackId }: { stackId: number }) => {
-    return userStacks?.filter((userStack) => userStack.id === stackId)[0].Stack
-    .TestingResults[0].currentStackTaskId;
-  };
-
-  const handleGetNumberOfQuestion = ({ stackId }: { stackId: number }) => {
-    return userStacks?.filter((userStack) => userStack.id === stackId)[0].Stack
-    .StackTasks.length;
-  };
 
   return (
     <>
@@ -137,8 +123,8 @@ const handleDonePercents = ({ stackId }: { stackId: number }) => {
                       {handleDonePercents({ stackId: userStack.id }) >= 100  
                         ? `Результат: ${handleQuantityTruePercents({ stackId: userStack.id })/10}/10 баллов`
                         : handleDonePercents({ stackId: userStack.id }) === 0
-                        ? "Начать тест"
-                        : `Продолжить`}
+                        ? <h3 className={styles.h3}>Начать тест</h3>
+                        : <h3 className={styles.h3}>Продолжить</h3>}
                       <Tooltip
                         title={`Правильных ответов: ${handleQuantityTruePercents(
                           {
@@ -159,6 +145,7 @@ const handleDonePercents = ({ stackId }: { stackId: number }) => {
                             }),
                             strokeColor: "red",
                           }}
+                          type="circle"
                         />
                       </Tooltip>
                     </button>
@@ -169,7 +156,7 @@ const handleDonePercents = ({ stackId }: { stackId: number }) => {
                         title={`Правильных ответов: 0%  
                       Неправильных ответов: 0%`}
                       >
-                        <Progress percent={0} />
+                        <Progress percent={0} type="circle"/>
                       </Tooltip>
                     </button>
                   </div>

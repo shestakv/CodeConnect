@@ -52,7 +52,7 @@ export const TestPage: React.FC = () => {
             {userStack?.Stack.title}!
           </div>
 
-          {handleGetCurrentQuestion() === 1 ? (
+          {handleGetCurrentQuestion() === 0 ? (
             <></>
           ) : (
             <div className={styles.titleTest}>
@@ -99,7 +99,7 @@ export const TestPage: React.FC = () => {
         </div>
 
         <Button type="default" shape="round" onClick={() => handleStartTest()}>
-          {handleGetCurrentQuestion() === 1
+          {handleGetCurrentQuestion() === 0
             ? "Начать тестирование"
             : "Продолжить тестирование"}
           <ProfileOutlined />
