@@ -67,7 +67,7 @@ const handleDonePercents = ({ stackId }: { stackId: number }) => {
 
     // Считаем проценты правильных и неправильных
     const quantityTruePercents = Math.round((quantityTrue / quantityQuestion) * 100);
-    const quantityFalsePercents = Math.round((quantityFalse / quantityQuestion) * 100,10 );
+    const quantityFalsePercents = Math.round((quantityFalse / quantityQuestion) * 100);
 
     return quantityTruePercents + quantityFalsePercents;
 };
