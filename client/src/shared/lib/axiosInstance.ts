@@ -3,7 +3,7 @@ import axios, {
   AxiosResponse,
   AxiosError,
   InternalAxiosRequestConfig,
-} from 'axios';
+} from "axios";
 
 //FIX - 1) Расширяем InternalAxiosRequestConfig для добавления свойства sent
 interface ExtendedAxiosRequestConfig extends InternalAxiosRequestConfig {
@@ -17,7 +17,7 @@ export const axiosInstance: AxiosInstance = axios.create({
 });
 
 //* Глобальная переменная для хранения токена доступа.
-let accessToken: string = '';
+let accessToken: string = "";
 
 //* Функция для установки токена доступа.
 export function setAccessToken(token: string): void {
@@ -45,7 +45,9 @@ axiosInstance.interceptors.response.use(
     if (error.response?.status === 403 && prevRequest && !prevRequest.sent) {
       try {
         //? Делаем запрос на обновление токенов.
-        const response = await axios.get('http://localhost:3000/api/tokens/refresh');
+        const response = await axios.get(
+          `${import.meta.env.VITE_API}tokens/refresh`
+        );
 
         //? Достаём новый токен из ответа.
         accessToken = response.data.accessToken;
