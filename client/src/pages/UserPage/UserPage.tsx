@@ -1,3 +1,4 @@
+import React, { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import styles from "./UserPage.module.css";
 import {
@@ -6,7 +7,6 @@ import {
   SettingOutlined,
   CloseOutlined,
 } from "@ant-design/icons";
-import { useEffect, useRef, useState } from "react";
 import {
   getUserById,
   updateAvatarUserOnServer,
@@ -18,7 +18,6 @@ import {
   type FormDataType,
   RUSSIAN_FIELDS,
 } from "@/entities/user";
-
 import { useNavigate, useParams } from "react-router-dom";
 import { getAllUserStacks } from "@/entities/userStack";
 import { Button } from "antd";
@@ -48,10 +47,10 @@ export const UserPage: React.FC = () => {
   });
 
   const handleEditClick = (field: string) => {
-    setIsEditing((prev) => {
-      const newEditing = { ...prev, [field]: !prev[field] };
-      return newEditing;
-    });
+    setIsEditing((prev) => ({
+      ...prev,
+      [field]: !prev[field],
+    }));
   };
 
   const [showCloseIcon, setShowCloseIcon] = useState(false);
@@ -69,18 +68,17 @@ export const UserPage: React.FC = () => {
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-
     if (file) {
       const formData = new FormData();
       formData.append("avatar", file);
-
       dispatch(updateAvatarUserOnServer({ formData }));
     }
   };
 
   const handleDeletedStack = (stackId: number) => {
     dispatch(deleteUserStack({ id: stackId }));
-  }
+  };
+
   const handleSave = async (field: keyof FormDataType) => {
     const userData = { [field]: formData[field] };
     const updatedUser = await dispatch(updateUserOnServer({ userData }));
@@ -89,6 +87,16 @@ export const UserPage: React.FC = () => {
       dispatch(getUserById({ id: +id! }));
     }
     setIsEditing((prev) => ({ ...prev, [field]: false }));
+  };
+
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLTextAreaElement>,
+    field: keyof FormDataType
+  ) => {
+    if (e.key === "Enter" && e.ctrlKey) {
+      e.preventDefault(); 
+      handleSave(field);
+    }
   };
 
   useEffect(() => {
@@ -115,8 +123,8 @@ export const UserPage: React.FC = () => {
   }, [dispatch]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const { userStacks } = useAppSelector((state) => state.userStacks);
+
   useEffect(() => {
     if (id) {
       dispatch(getAllUserStacks({ userId: +id }));
@@ -133,10 +141,10 @@ export const UserPage: React.FC = () => {
           />
           {user?.id === userPersonal?.id ? (
             <div className={styles.settingIconImg}>
-                <SettingOutlined
-                  className={styles.buttonImg}
-                  onClick={() => fileInputRef.current?.click()}
-                />
+              <SettingOutlined
+                className={styles.buttonImg}
+                onClick={() => fileInputRef.current?.click()}
+              />
               <input
                 type="file"
                 accept="image/*"
@@ -145,9 +153,7 @@ export const UserPage: React.FC = () => {
                 onChange={handleFileChange}
               />
             </div>
-          ) : (
-            <></>
-          )}
+          ) : null}
         </div>
         <div>
           {userPersonal && userPersonal.surname}{" "}
@@ -177,9 +183,7 @@ export const UserPage: React.FC = () => {
                     Подробнее
                     <RightOutlined />
                   </Button>
-                ) : (
-                  <></>
-                )}
+                ) : null}
               </div>
             </div>
             <div className={styles.userStacksContainer}>
@@ -210,14 +214,11 @@ export const UserPage: React.FC = () => {
                 ))
               ) : (
                 <div>
-                  {userPersonal?.id === user?.id ? (
-                    <></>
-                  ) : (
+                  {userPersonal?.id === user?.id ? null : (
                     <h3>Навыки не добавлены</h3>
                   )}
                 </div>
               )}
-
               {userPersonal?.id === user?.id ? (
                 <div>
                   <button
@@ -238,9 +239,7 @@ export const UserPage: React.FC = () => {
                     <UserStackAddForm onClose={() => setIsModalOpen(false)} />
                   </ModalWindow>
                 </div>
-              ) : (
-                <></>
-              )}
+              ) : null}
             </div>
           </div>
         </div>
@@ -259,13 +258,14 @@ export const UserPage: React.FC = () => {
                     value={formData[field]}
                     autoSize
                     onChange={(e) => handleInputChange(e, field)}
+                    onKeyDown={(e) => handleKeyDown(e, field)}
                   />
                 ) : (
                   <pre
                     className={styles.secondTitle}
                     style={{ textOverflow: "ellipsis" }}
                   >
-                    {formData[field] }
+                    {formData[field]}
                   </pre>
                 )}
               </div>
