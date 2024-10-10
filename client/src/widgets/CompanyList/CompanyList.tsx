@@ -62,9 +62,9 @@ export const CompanyList: React.FC = () => {
                 value={filter} 
                 onChange={handleRadioChange}
             >
-                <Radio.Button value="all">Показать все компании</Radio.Button>
-                <Radio.Button value="user">Показать мои компании</Radio.Button>
-                <Radio.Button value="favorites">Показать избранные</Radio.Button>
+                <Radio.Button value="all">Все компании</Radio.Button>
+                <Radio.Button value="user">Мои компании</Radio.Button>
+                <Radio.Button value="favorites">Избранное</Radio.Button>
             </Radio.Group>
         </div>
             )}

@@ -31,7 +31,7 @@ exports.createCompany = async (req, res) => {
       email,
     });
     if (findCompany) {
-      return res.status(400).json({ message: "Company already exists" });
+      return res.status(400).json({ message: "Такая компания уже существует!" });
     }
     const company = await CompanyServices.createCompany({
       userId: res.locals.user.id,

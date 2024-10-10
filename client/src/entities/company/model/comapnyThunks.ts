@@ -48,8 +48,10 @@ export const createCompany = createAsyncThunk<
       return await CompanyServices.createCompany({ name, email, phone });
     } catch (error) {
       const err = error as AxiosError<{ message: string }>;
+      
       return rejectWithValue({
         message: err.response?.data.message || err.message,
+
       });
     }
   }

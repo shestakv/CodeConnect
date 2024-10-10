@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Company } from ".";
 import { createCompany, deleteCompany, getAllCompanies, getCompanyById, updateCompany, updateCompanyLogo } from "./comapnyThunks";
-
+import { message } from "antd";
 
 type CompanyState = {
     company: Company | null;
@@ -56,8 +56,10 @@ export const companySlice = createSlice({
                 state.companies.push(action.payload.company);
                 state.error = null;
             })
-            .addCase(createCompany.rejected, (state) => {
+            .addCase(createCompany.rejected, (state, action) => {
                 state.loading = false;
+                state.error = action.payload?.message || "Failed to sign in";
+                message.warning(action.payload?.message || "Failed to sign in");
             })
 
             .addCase(updateCompany.pending, (state) => {
