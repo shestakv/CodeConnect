@@ -15,19 +15,19 @@ exports.getTestingResultById = async (id) => {
   }
 };
 
-exports.createTestingResult = async (req, res) => {
+exports.createTestingResult = async (data) => {
   try {
-    const { stackId } = req.body;
+    const { stackId, userId } = data;
 
     const testingResult = await TestingResultServices.createTestingResult({
-      userId: res.locals.user.id,
+      userId,
       stackId,
       quantityTrue: 0,
       quantityFalse: 0,
-      currentStackId: 1,
+      currentStackTaskId: 0,
     });
 
-    res.status(201).json({ message: "success", testingResult });
+    return true;
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -43,9 +43,16 @@ exports.updateTestingResult = async (data, res) => {
       quantityFalse,
       currentStackTaskId,
     } = data;
-console.log(id, stackId, userId, quantityTrue, quantityFalse, currentStackTaskId);
+    console.log(
+      id,
+      stackId,
+      userId,
+      quantityTrue,
+      quantityFalse,
+      currentStackTaskId
+    );
     let testingResult = await TestingResultServices.getTestingResultById(id);
-   
+
     if (testingResult) {
       testingResult = await TestingResultServices.updateTestingResult({
         id,
@@ -56,27 +63,18 @@ console.log(id, stackId, userId, quantityTrue, quantityFalse, currentStackTaskId
         currentStackTaskId,
       });
       return;
-      //   res.status(200).json({ message: "success", testingResult });
-      // } else {
-      //   res.status(404).json({ message: "Testing Result not found" });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-exports.deleteTestingResult = async (req, res) => {
+exports.deleteTestingResult = async (data) => {
   try {
-    const { id } = req.params;
-    const userId = res.locals.user.id;
-
-    let testingResult = await TestingResultServices.getTestingResultById(id);
-    if (testingResult) {
-      await TestingResultServices.deleteTestingResult(id, userId);
-      res.status(200).json({ message: "success" });
-    } else {
-      res.status(404).json({ message: "Testing Result not found" });
-    }
+    const { userId, stackId } = data;
+    console.log(stackId, userId);
+    await TestingResultServices.deleteTestingResult({ userId, stackId });
+    return;
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

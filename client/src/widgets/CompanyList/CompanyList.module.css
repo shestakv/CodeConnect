@@ -11,12 +11,14 @@
 }
 
 .cardContainer {
-    display: grid;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     transition: opacity 0.3s ease-in-out;
     opacity: 1;
-    width: 70%;
+    width: 70vw;
     margin: 0 auto;
 }
 

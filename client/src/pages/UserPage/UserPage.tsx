@@ -188,15 +188,15 @@ export const UserPage: React.FC = () => {
             </div>
             <div className={styles.userStacksContainer}>
               {userStacks && userStacks.length > 0 ? (
-                userStacks.map((userStack) => (
-                  <div key={userStack.id} className={styles.stackCard}>
+                userStacks?.map((userStack) => (
+                  <div key={userStack?.id} className={styles.stackCard}>
                     <div className={styles.stackCardContent}>
                       <div className={styles.stackCardTitle}>
-                        {userStack.Stack.title}
+                        {userStack?.Stack.title}
                       </div>
                       <img
                         src={`${import.meta.env.VITE_IMG}${
-                          userStack.Stack.image
+                          userStack?.Stack.image
                         }`}
                         alt="Stack Icon"
                         className={styles.stackIcon}
