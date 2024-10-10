@@ -19,9 +19,9 @@
 }
 
 .modal__content {
-  padding: 50px;
-  border-radius: 12px;
-  background-color: #fafafb;
+  padding: 30px;
+  border-radius: 30px;
+  background-color: #fff;
   max-width: 380px;
   font-size: 16px;
   font-weight: 600;

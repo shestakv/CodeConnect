@@ -8,10 +8,11 @@ import ModalWindow from "@/shared/ui/ModalWindow/Modal";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./CompanyDetails.module.css";
-import { DownOutlined, SettingOutlined, UserOutlined } from "@ant-design/icons";
+import { CloseOutlined, DownOutlined, SettingOutlined, UserOutlined } from "@ant-design/icons";
 import { ClientCompany } from "@/entities/company/model";
 import { Button, Dropdown, MenuProps, Space } from "antd";
 import { updateCompanyLogo } from "@/entities/company/model/comapnyThunks";
+import TextArea from "antd/es/input/TextArea";
 
 enum FIELDS {
   NAME = "name",
@@ -77,7 +78,7 @@ const CompanyDetails = () => {
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
     field: string
   ) => {
     setFormData({ ...formData, [field]: e.target.value });
@@ -112,7 +113,7 @@ const CompanyDetails = () => {
     {
       label: "Удалить группу",
       key: "1",
-      icon: <UserOutlined />,
+      icon: <CloseOutlined />,
       danger: true,
     },
     {
@@ -191,24 +192,35 @@ const CompanyDetails = () => {
               <h3 className={styles.fieldTitle}>
                 {`${RUSSIAN_FIELDS[field]}:`}
               </h3>
+              <div className={styles.inputWrapper}>
               {isEditing[field] ? (
                 <>
-                  <input
-                    type="text"
-                    className={styles.inputField}
-                    value={formData[field]}
-                    onChange={(e) => handleInputChange(e, field)}
-                  />
-                  <button
+                  <TextArea
+                  className={styles.input}
+                  value={formData[field]}
+                  size="large"
+                  autoSize
+                  onChange={(e) => handleInputChange(e, field)}
+                />
+                <div className={styles.button}>
+                  <Button
                     className={styles.buttonSave}
+                    style={{ marginLeft: 'auto' }}
                     onClick={() => handleSave(field)}
                   >
                     Сохранить
-                  </button>
+                  </Button>
+                  </div>
                 </>
-              ) : (
-                <h3 className={styles.secondTitle}>{formData[field]}</h3>
+              ) : ( 
+                <pre
+                className={styles.secondTitle}
+                style={{ textOverflow: "ellipsis" }}
+              >
+                {formData[field] }
+              </pre>
               )}
+              </div>
             </div>
             {user && user.id === company.userId && (
               <div className={styles.iconContainer}>
@@ -227,13 +239,13 @@ const CompanyDetails = () => {
       {user && user.id === company.userId && (
         <>
           <ModalWindow active={deleteActive} setActive={setDeleteActive}>
-            <div className="modal__content">
+            <div className={styles.modal__content}>
               <h3>Вы уверены, что хотите удалить эту компанию?</h3>
-              <div className="modalButtons">
-                <Button shape="round" color="primary" variant="outlined" onClick={toggleDeleteModal}>
+              <div className={styles.modalButtons}>
+                <Button shape="round" color="primary" variant="solid" onClick={toggleDeleteModal}>
                   Нет
                 </Button>
-                <Button shape="round"  color="danger" variant="outlined" onClick={handleDeleteCompany}>
+                <Button shape="round"  color="danger" variant="solid" onClick={handleDeleteCompany}>
                   Да
                 </Button>
               </div>
