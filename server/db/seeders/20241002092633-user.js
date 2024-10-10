@@ -12,7 +12,7 @@ module.exports = {
           surname: "Аванесян",
           patronymic: "Игоревич",
           phone: 89117755666,
-          email: "AvanesyanArsen@gmail.com",
+          email: "1@1.ru",
           location: "Russia",
           workExperience:
             "3 годв в разработке веб-приложений (JavaScript, React)",
@@ -47,7 +47,7 @@ module.exports = {
           workExperience: "3 года в фронтенд-разработке (Vue.js, HTML, CSS)",
           education:
             "Новосибирский государственный университет, Факультет математики",
-          avatar: "/images/dima.jpg",
+          avatar: "/images/dima.jpeg",
           bio: "Фронтенд-разработчик с опытом работы в различных проектах.",
           password: await bcrypt.hash("123", 8),
         },
@@ -64,7 +64,7 @@ module.exports = {
             "Московский государственный университет, Факультет информатики",
           bio: "Фронтенд-разработчик с опытом создания интерактивных интерфейсов.",
           password: await bcrypt.hash("123", 8),
-          avatar: "/images/ivan.jpg",
+          avatar: "/images/ivan.jpeg",
         },
         {
           firstname: "Мария",
@@ -77,7 +77,7 @@ module.exports = {
           education:
             "Санкт-Петербургский государственный университет, Факультет информатики",
           bio: "Бэкенд-разработчик с акцентом на создание RESTful API.",
-          avatar: "/images/maria.jpg",
+          avatar: "/images/maria.jpeg",
           password: await bcrypt.hash("123", 8),
         },
         {
@@ -104,7 +104,7 @@ module.exports = {
           education:
             "Российская академия народного хозяйства и государственной службы",
           bio: "Фронтенд-разработчик с акцентом на UX/UI.",
-          avatar: "/images/elena.jpg",
+          avatar: "/images/elena.jpeg",
           password: await bcrypt.hash("123", 8),
         },
         {
@@ -146,7 +146,7 @@ module.exports = {
           education:
             "Новосибирский государственный университет, Факультет математики",
           bio: "Бэкенд-разработчик с опытом работы в крупных проектах.",
-          avatar: "/images/oleg.jpg",
+          avatar: "/images/oleg.jpeg",
           password: await bcrypt.hash("123", 8),
         },
         {
