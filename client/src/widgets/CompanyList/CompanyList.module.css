@@ -10,22 +10,14 @@
     margin-bottom: 20px;
 }
 
-.secondGroup {
-    display: flex;
-    align-items: center;
-}
-
-.secondButton {
-    border-radius: 30px;
-}
-
 .cardContainer {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     transition: opacity 0.3s ease-in-out;
     opacity: 1;
-    width: 70%;
+    width: 70vw;
     margin: 0 auto;
 }
 

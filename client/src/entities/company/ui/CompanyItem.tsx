@@ -45,7 +45,7 @@ const CompanyItem: React.FC<Props> = ({ company }) => {
   };
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       <button onClick={handleCardClick} className={styles.companyCard}>
         <div className={styles.avatarContainer}>
           <img
