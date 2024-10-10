@@ -204,6 +204,7 @@ const CompanyDetails = () => {
                 <div className={styles.button}>
                   <Button
                     className={styles.buttonSave}
+                    style={{ marginLeft: 'auto' }}
                     onClick={() => handleSave(field)}
                   >
                     Сохранить
@@ -217,7 +218,6 @@ const CompanyDetails = () => {
               >
                 {formData[field] }
               </pre>
-                // <h3 className={styles.secondTitle}>{formData[field]}</h3>
               )}
               </div>
             </div>
