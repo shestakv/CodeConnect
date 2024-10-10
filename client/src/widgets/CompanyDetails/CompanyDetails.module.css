@@ -8,8 +8,6 @@
 }
 
 .fieldContainer {
-  /* display: flex; */
-  /* justify-content: flex-end; */
   width: 60vw;
   height: auto;
   margin-top: 15px;
@@ -24,7 +22,6 @@
 }
 
 .button {
-  /* margin-left: auto; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,7 +49,6 @@
 }
 
 .buttonSave {
-  /* margin-left: 10px; */
   width: 150px;
   height: 30px;
   border-radius: 30px;
@@ -180,10 +176,9 @@ margin-bottom: 40px;
   font-family: 'Gill Sans', Calibri, 'Trebuchet MS', sans-serif;
   display: flex;
   text-wrap: wrap;
-  margin: 0px 0px 0px 50px;
+  margin: 20px 0px 20px 0px;
   width: 55vw;
   border-radius: 10px;
-  padding: 2vw;
   font-size: 20px;
 }
 

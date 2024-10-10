@@ -198,6 +198,7 @@ const CompanyDetails = () => {
                   <TextArea
                   className={styles.input}
                   value={formData[field]}
+                  size="large"
                   autoSize
                   onChange={(e) => handleInputChange(e, field)}
                 />
