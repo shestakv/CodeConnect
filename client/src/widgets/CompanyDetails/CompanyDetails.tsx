@@ -211,7 +211,7 @@ const CompanyDetails = () => {
                   </Button>
                   </div>
                 </>
-              ) : (
+              ) : ( 
                 <pre
                 className={styles.secondTitle}
                 style={{ textOverflow: "ellipsis" }}
