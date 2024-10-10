@@ -56,27 +56,18 @@ export const CompanyList: React.FC = () => {
     void dispatch(getFavoriteCompanies());
   }, [dispatch]);
 
-  return (
-    <div className={styles.container}>
-      {!user ? (
-        <></>
-      ) : (
-        <div className={styles.radioGroup}>
-          <Radio.Group
-            className={styles.secondGroup}
-            value={filter}
-            onChange={handleRadioChange}
-          >
-            <Radio.Button className={styles.secondButton} value="all">
-              Показать все компании
-            </Radio.Button>
-            <Radio.Button className={styles.secondButton} value="user">
-              Показать мои компании
-            </Radio.Button>
-            <Radio.Button className={styles.secondButton} value="favorites">
-              Показать избранные
-            </Radio.Button>
-          </Radio.Group>
+    return (
+        <div className={styles.container}>
+            {!user ? (<></>) : (
+            <div className={styles.radioGroup}>
+            <Radio.Group 
+                value={filter} 
+                onChange={handleRadioChange}
+            >
+                <Radio.Button value="all">Все компании</Radio.Button>
+                <Radio.Button value="user">Мои компании</Radio.Button>
+                <Radio.Button value="favorites">Избранное</Radio.Button>
+            </Radio.Group>
         </div>
       )}
       <div

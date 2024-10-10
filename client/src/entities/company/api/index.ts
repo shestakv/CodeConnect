@@ -23,7 +23,13 @@ export class CompanyServices {
         const uniqueEmail = await this.getCompanyByEmail( email );
         if (!uniqueEmail) {
             throw new Error("Email уже занят. Пожалуйста, используйте другой email.") 
-        }   
+        }
+        const companiesResponse  = await this.getAllCompanies();
+        const companies = companiesResponse .companies;
+        const uniqueName = companies.find((company) => company.name === name);
+        if (uniqueName) {
+            throw new Error("Компания с таким именем уже существует.");
+        }
         const response = await axiosInstance.post("/companies",{  name, email, phone });
         return response.data;
     }

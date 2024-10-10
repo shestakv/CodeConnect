@@ -17,9 +17,25 @@
     transform: translateY(0);
 }
 
-.companyCard:hover {
-    border: 3px solid #578cec;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+.companyName {
+    flex-grow: 1;
+    margin: 0;
+    font-size: 1.5em;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; 
+}
+
+.avatar {
+    margin-right: 10px;
+    width: 70px;
+    border-radius: 50%;
+}
+
+.avatar img {
+    width: 70px;
+    height: 70px;
 }
 
 .avatarContainer {
@@ -28,26 +44,17 @@
     flex-wrap: wrap;
 }
 
-.avatar {
-    margin-right: 10px;
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    overflow: hidden;
-}
 
-.companyName {
-    flex-grow: 1;
-    margin: 0;
-    font-size: 1.5em;
-    text-align: left;
-}
 
+.companyCard:hover {
+    border: 3px solid #578cec;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
 
 .favoriteButton {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 10px;
+    right: 15px;
     font-size: 24px;
     cursor: pointer;
 }
@@ -64,14 +71,14 @@
     opacity: 0;
     transition: opacity 0.2s;
     pointer-events: none;
-    font-size: 1.0rem;
+    font-size: 12px;
+    width: 75px;
     z-index: 1;
 }
 
 .favoriteButton:hover .tooltip {
     opacity: 1;
+    transition-delay: 0.2s;
 }
 
   
-
-

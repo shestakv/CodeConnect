@@ -94,7 +94,14 @@ const CompanyForm: React.FC = () => {
             name="email"
             hasFeedback
             validateDebounce={800}
-            rules={[{ required: true, message: "Введите почту!" }]}
+            rules={[
+              { required: true, message: "Введите почту!" },
+              {
+                type: "email",
+                message:
+                  "Введенный адрес электронной почты не является действительным!",
+              },
+            ]}
             className={styles.formItem}
             noStyle
           >
