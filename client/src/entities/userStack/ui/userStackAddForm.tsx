@@ -74,7 +74,11 @@ export const UserStackAddForm: React.FC<UserStackAddFormProps> = ({
                   </option>
                 ))}
             </select>
-            <Button className={styles.button} onClick={handleAddSkill} disabled={!selectedStack}>
+            <Button
+              className={styles.button}
+              onClick={handleAddSkill}
+              disabled={!selectedStack}
+            >
               Добавить
             </Button>
           </>
