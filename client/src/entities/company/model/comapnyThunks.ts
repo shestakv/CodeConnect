@@ -110,11 +110,11 @@ export const deleteCompany = createAsyncThunk<
 
 export const updateCompanyLogo = createAsyncThunk<
   CompanyResponse,
-  { companyData: FormData },
+  { companyData: FormData, companyId: number },
   { rejectValue: RejectValue }
->("company/updateCompanyLogo", async ({ companyData }, { rejectWithValue }) => {
+>("company/updateCompanyLogo", async ({ companyId,companyData }, { rejectWithValue }) => {
   try {
-    return await CompanyServices.updateCompanyLogo(companyData);
+    return await CompanyServices.updateCompanyLogo(companyId, companyData);
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;
     return rejectWithValue({

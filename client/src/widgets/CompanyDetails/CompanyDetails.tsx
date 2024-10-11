@@ -137,7 +137,7 @@ const CompanyDetails = () => {
       const companyData = new FormData();
       companyData.append("logo", file);
 
-      dispatch(updateCompanyLogo({ companyData }));
+      dispatch(updateCompanyLogo({ companyData, companyId: company.id }));
     }
   };
 

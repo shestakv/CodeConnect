@@ -3,7 +3,7 @@ const companyController = require('../controllers/companyController')
 const verifyAccessToken = require("../middleware/verifyAccessToken");
 const { upload } = require("../utils/upload");
 
-router.route('/logo')
+router.route('/logo/:id')
     .put(verifyAccessToken,
       upload.single("logo"), companyController.updateCompanyLogo)
 

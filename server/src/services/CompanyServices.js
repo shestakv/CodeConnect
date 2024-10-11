@@ -39,6 +39,8 @@ class CompanyServices {
   static getCompanyById = async (id) => {
     try{
     const company = await Company.findByPk(id);
+    console.log(company.get());
+    
     return company ? company.get() : null;
     } catch ({ message }) {
     console.log(message);
@@ -60,6 +62,8 @@ class CompanyServices {
       throw new Error("Компания не найдена");
     }
     company.logo = logoPath;
+    console.log("Логотип компании обновлен:", company);
+    
     await company.save();
     return company;
   }
