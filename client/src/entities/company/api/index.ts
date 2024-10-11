@@ -59,9 +59,9 @@ export class CompanyServices {
         return response.data;
     }
 
-    static async updateCompanyLogo( companyData: FormData) {
+    static async updateCompanyLogo( companyId: number, companyData: FormData) {
         try {
-          const response = await axiosInstance.put(`/companies/logo`, companyData, {
+          const response = await axiosInstance.put(`/companies/logo/${companyId}`, companyData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },

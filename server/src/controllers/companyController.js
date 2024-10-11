@@ -77,21 +77,22 @@ exports.updateCompanyId = async (req, res) => {
 exports.updateCompanyLogo = async (req, res) => {
   try {
     const userId = res.locals.user.id;
-
+    const { id } = req.params;
     if (!req.file) {
       return res.status(400).json({ message: "Файл не загружен" });
     }
 
-    const avatarPath = await processImages(req.file.buffer);
+    const logoPath = await processImages(req.file.buffer);
 
-    const company = await CompanyServices.getCompanyById(userId);
-
+    const company = await CompanyServices.getCompanyById(id);
+    
     if (!company) {
       return res.status(404).json({ message: "Компания не найдена" });
     }
+console.log(logoPath);
 
-    const updatedCompany = await CompanyServices.updateLogo(company.id, `/images/${avatarPath}`);
-    
+    const updatedCompany = await CompanyServices.updateLogo(id, `/images/${logoPath}`);
+    console.log("Логотип компании обновлен:", updatedCompany);
     res.status(200).json({ company: updatedCompany });
   } catch (error) {
     console.error("Ошибка при обновлении логотипа компании:", error);
