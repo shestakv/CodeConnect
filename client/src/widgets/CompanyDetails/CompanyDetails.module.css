@@ -1,0 +1,184 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  margin-top: 25px;
+}
+
+.fieldContainer {
+  width: 60vw;
+  height: auto;
+  margin-top: 15px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.inputWrapper {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+}
+
+.fieldTitle {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.inputField {
+  flex: 1;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 30px;
+}
+
+.input {
+  border-radius: 10px;
+  margin: 10px 0px 10px 0px;
+}
+
+.buttonSave {
+  width: 150px;
+  height: 30px;
+  border-radius: 30px;
+  border: 1px solid #00000043;
+  font-size: 15px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.fieldContainer {
+  position: relative;
+}
+
+.iconContainer {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.iconContainer button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+.fieldContainer:hover .iconContainer {
+  opacity: 1;
+}
+
+.companyName {
+  font-size: 28px;
+  margin-top: 10px;
+}
+
+.centeredContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 30px;
+  margin-top: 15px;
+  width: 60vw;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+
+
+.buttonImg {
+  border: #ffffff00;
+  background-color: #ffffff00;
+  display: flex;
+  font-size: 30px;
+  align-items: start;
+}
+
+.buttonImg:hover {
+  color: #578cec;
+}
+
+.buttonImg:active {
+  transform: scale(0.9);
+}
+
+.settingIconImg {
+  opacity: 0;
+  position: absolute;
+  font-size: 30px;
+  margin: 110px 0px 0px 120px;
+  transition: opacity 0.3s ease;
+}
+
+.settingIcon:active {
+  transform: scale(0.9);
+}
+
+.settingIcon:hover {
+  color: #578cec;
+}
+
+.avatarContainer:hover .settingIcon,
+.avatarContainer:hover .settingIconImg,
+.secondContainer:hover .settingIcon,
+.secondContainer:hover .settingIconImg {
+  opacity: 1;
+}
+
+.avatar {
+  position: relative;
+  margin-right: 10px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.avatarContainer {
+  position: relative;
+  display: flex;
+}
+
+.dropdownContainer {
+  margin-bottom: auto;
+}
+
+.modal__content h3 {
+font-size: 20px;
+margin-bottom: 20px;
+text-align: center;
+margin-bottom: 40px;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.secondTitle {
+  font-family: 'Gill Sans', Calibri, 'Trebuchet MS', sans-serif;
+  display: flex;
+  text-wrap: wrap;
+  margin: 20px 0px 20px 0px;
+  width: 55vw;
+  border-radius: 10px;
+  font-size: 20px;
+}
+

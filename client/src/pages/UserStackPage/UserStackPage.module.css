@@ -1,0 +1,168 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15px;
+  width: 100vw;
+}
+
+.secondContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.secondTitle {
+  margin-left: 120px;
+  margin-bottom: 10px;
+}
+
+.settingIconImg {
+  display: none;
+  position: absolute;
+  font-size: 30px;
+  margin: 110px 0px 0px 120px;
+}
+
+.avatarContainer {
+  position: relative;
+}
+
+.settingIconImg {
+  position: absolute;
+  /* Подкорректируйте по желанию */
+  right: 15px;
+  /* Подкорректируйте по желанию */
+  font-size: 30px;
+  /* Размер иконки */
+}
+
+.settingIcon {
+  margin-left: 10px;
+  /* Отступ между текстом и иконкой */
+}
+
+.avatarContainer {
+  display: flex;
+}
+
+.avatar {
+  position: relative;
+  margin-right: 10px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.titleHeader {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+  width: 60vw;
+  margin-top: 25px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  border-radius: 10px;
+}
+
+.title {
+  margin: 15px 10px 10px 15px;
+  font-size: 24px;
+}
+
+.userStacks {
+  display: flex;
+  justify-content: space-between;
+  width: 60vw;
+  min-height: 250px;
+  background-color: #fff;
+  margin-top: 25px;
+  border-radius: 10px;
+  padding-bottom: 8px;
+}
+
+.divider {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+}
+
+.topContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: auto;
+  margin: 8px, 8px, 0, 8px;
+}
+
+.stackTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.testResults {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.stackCardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центрирование содержимого */
+}
+
+.stackIcon {
+  margin-left: 10px;
+  width: 30px;
+  height: auto; /* Автоматическая высота */
+  border-radius: 4px; /* Закругление углов изображения */
+}
+
+.titleStack {
+  display: flex;
+  background-color: #fff; /* Цвет фона карточки */
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  border-radius: 30px;
+  margin-top: 25px;
+  width: 60vw;
+  height: 60px;
+}
+
+.stackCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* justify-content: space-around; */
+  border: 6px solid #d9d9d900;
+  border-radius: 30px; /* Закругление углов */
+  padding: 8px; /* Уменьшенные внутренние отступы */
+  margin: 8px; /* Уменьшенные внешние отступы */
+  background-color: #fff; /* Цвет фона карточки */
+  /* box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); Уменьшенная тень */
+  /* transition: transform 0.2s; Плавный эффект при наведении */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: 0.35s ease-in-out;
+  width: 40%; /* Уменьшенная ширина карточки */
+  min-width: 200px;
+  height: 180px; /* Уменьшенная высота карточки */
+}
+
+.stackCard:hover {
+  transform: scale(1.02); /* Уменьшенный эффект увеличения при наведении */
+  border: 3px solid #578cec;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}

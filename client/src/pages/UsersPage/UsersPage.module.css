@@ -1,0 +1,178 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+
+.button {
+    border: #ffffff00;
+    background-color: #ffffff00;
+    /* display: flex; */
+    font-size: 20px;
+    align-items: start;
+    
+}
+
+.button:active {
+    transform: scale(0.9);
+}
+
+.buttonImg:active {
+    transform: scale(0.9);
+}
+
+.buttonImg {
+    border: #ffffff00;
+    background-color: #ffffff00;
+    display: flex;
+    font-size: 30px;
+    align-items: start;
+}
+
+.secondContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.secondTitle {
+    margin-left: 120px;
+    margin-bottom: 10px;
+}
+
+.settingIcon {
+    display: flex;
+    font-size: 20px;
+    margin: 15px;
+    align-items: start;
+
+}
+
+
+.settingIconImg {
+    display: none;
+    position: absolute;
+    font-size: 30px;
+    margin: 110px 0px 0px 120px;
+}
+
+.settingIcon,
+.settingIconImg {
+    display: none;
+    /* Скрываем элементы по умолчанию */
+}
+
+.avatarContainer:hover .settingIconImg,
+.secondContainer:hover .settingIcon {
+    display: block;
+    /* Показываем элементы при наведении */
+}
+
+.avatarContainer {
+    position: relative;
+    /* Чтобы иконка могла позиционироваться относительно аватара */
+}
+
+.settingIconImg {
+    position: absolute;
+    /* Подкорректируйте по желанию */
+    right: 15px;
+    /* Подкорректируйте по желанию */
+    font-size: 30px;
+    /* Размер иконки */
+}
+
+.settingIcon {
+    margin-left: 10px;
+    /* Отступ между текстом и иконкой */
+}
+
+
+.avatarContainer {
+    display: flex;
+}
+
+.avatar {
+    position: relative;
+    margin-right: 10px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.titleHeader {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+    width: 80vw;
+    margin-top: 25px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    border-radius: 10px;
+}
+
+.title {
+    margin: 15px 10px 10px 15px;
+    font-size: 24px;
+}
+
+.workExperience {
+    display: flex;
+    justify-content: space-between;
+    width: 80vw;
+    min-height: 150px;
+    background-color: #fff;
+    margin-top: 25px;
+    border-radius: 10px;
+}
+
+.education{
+    display: flex;
+    justify-content: space-between;
+    width: 80vw;
+    min-height: 150px;
+    background-color: #fff;
+    margin-top: 25px;
+    border-radius: 10px;
+}
+
+.bio {
+    display: flex;
+    justify-content: space-between;
+    width: 80vw;
+    min-height: 100px;
+    background-color: #fff;
+    margin-top: 25px;
+    border-radius: 10px;
+}
+
+.divider {
+    display: flex;
+    flex-direction: column;
+}
+
+.phone {
+    display: flex;
+    justify-content: space-between;
+    width: 80vw;
+    min-height: 50px;
+    background-color: #fff;
+    margin-top: 25px;
+    border-radius: 10px;
+}
+
+.location {
+    display: flex;
+    justify-content: space-between;
+    width: 80vw;
+    min-height: 50px;
+    background-color: #fff;
+    margin-top: 25px;
+    border-radius: 10px;
+}

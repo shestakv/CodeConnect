@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15px;
+  width: 100vw;
+}
+
+.titleTest {
+  display: flex;
+  background-color: #fff; 
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  margin-top: 25px;
+  width: 60vw;
+  height: 60px;
+}
+
+.textTest {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff; 
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  margin: 25px 0;
+  width: 60vw;
+  padding: 30px;
+}
+
+.textTest ol {
+  padding-left: 20px; /* Отступ слева для списка */
+}
+
+.textTest li {
+  margin: 10px 0; /* Отступы между пунктами списка */
+  line-height: 1.5; /* Высота строки для лучшей читаемости */
+}
+
+.textTest h2 {
+  color: #007BFF; /* Цвет заголовка (если добавите заголовок) */
+}
+
+.textTest .highlight {
+  background-color: #fae0e0; /* Цвет выделения */
+  padding: 2px 4px; /* Отступы вокруг выделения */
+  border-radius: 4px; /* Закругленные углы для выделения */
+}

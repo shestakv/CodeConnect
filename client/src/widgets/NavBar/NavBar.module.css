@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    margin-top: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70vw;
+    border-radius: 30px;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.menuItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navButton {
+    width: 100px;
+    margin-top: 5px;
+}

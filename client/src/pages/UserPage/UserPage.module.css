@@ -1,0 +1,309 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+.button {
+  width: 40px;
+  /* Увеличиваем ширину кнопки */
+  height: 40px;
+  /* Установите высоту, чтобы кнопка была более заметной */
+  border: none;
+  /* Убираем ненужную границу */
+  background-color: transparent;
+  /* Прозрачный фон */
+  font-size: 20px;
+  display: flex;
+  /* Для центрирования содержимого */
+  justify-content: center;
+  /* Центрируем содержимое */
+  align-items: center;
+  /* Центрируем содержимое */
+  transition: transform 0.1s ease;
+  /* Плавный переход */
+}
+
+.button:active {
+  transform: scale(0.99);
+}
+
+.buttonImg:active {
+  transform: scale(0.9);
+}
+
+.buttonImg:hover {
+  color: #578cec;
+}
+
+.buttonImg {
+  border: #ffffff00;
+  background-color: #ffffff00;
+  display: flex;
+  font-size: 30px;
+  align-items: start;
+}
+
+.secondContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.secondTitle {
+  font-family: 'Gill Sans', Calibri, 'Trebuchet MS', sans-serif;
+  display: flex;
+  text-wrap: wrap;
+  margin: 0px 0px 0px 50px;
+  width: 55vw;
+  border-radius: 10px;
+  padding: 2vw;
+  font-size: 20px;
+}
+
+.inputWrapper {
+  width: 100% !important;
+}
+
+.settingIcon {
+  opacity: 0;
+  /* Скрываем элемент по умолчанию */
+  font-size: 20px;
+  position: absolute;
+  /* Устанавливаем абсолютное позиционирование */
+  top: 40px;
+  /* Отступ от верхнего края */
+  right: 15px;
+  /* Отступ от правого края */
+  transition: opacity 0.35s ease;
+  /* Плавный переход */
+}
+
+.settingIconImg {
+  opacity: 0;
+  /* Скрываем элемент по умолчанию */
+  position: absolute;
+  font-size: 30px;
+  margin: 110px 0px 0px 120px;
+  transition: opacity 0.3s ease;
+  /* Плавный переход */
+}
+
+.avatarContainer:hover .settingIcon,
+.avatarContainer:hover .settingIconImg,
+.secondContainer:hover .settingIcon,
+.secondContainer:hover .settingIconImg {
+  opacity: 1;
+  /* Показываем элементы при наведении */
+}
+
+.avatarContainer {
+  position: relative;
+  display: flex;
+}
+
+.avatar {
+  position: relative;
+  margin-right: 10px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.titleHeader {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+  width: 60vw;
+  margin-top: 25px;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 30px;
+  border-radius: 10px;
+}
+
+.title {
+  margin: 15px 10px 0px 15px;
+  font-size: 24px;
+}
+
+.topContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 8px;
+}
+
+.userStacksContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}
+
+.stackCard {
+  border: 1px solid #d9d9d9; /* Цвет рамки */
+  border-radius: 10px; /* Закругление углов */
+  padding: 8px; /* Уменьшенные внутренние отступы */
+  margin: 8px; /* Уменьшенные внешние отступы */
+  background-color: #fff; /* Цвет фона карточки */
+  /* box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); Уменьшенная тень */
+  transition: transform 0.2s; /* Плавный эффект при наведении */
+  width: 100px; /* Уменьшенная ширина карточки */
+}
+
+.stackCard:hover {
+  transform: scale(1.03); /* Уменьшенный эффект увеличения при наведении */
+}
+
+.stackCardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центрирование содержимого */
+}
+
+.stackCardTitle {
+  /* font-size: 14px; Меньший размер шрифта для названия */
+  /* font-weight: bold; Выделение названия стека */
+  margin-bottom: 4px; /* Уменьшенный отступ между названием и изображением */
+}
+
+.stackIcon {
+  max-width: 80%; /* Уменьшенная ширина изображения */
+  height: auto; /* Автоматическая высота */
+  border-radius: 4px; /* Закругление углов изображения */
+}
+
+.divIcon {
+  display: flex;
+  height: 65px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.plusIcon {
+  font-size: 40px;
+}
+
+.workExperience,
+.education,
+.bio,
+.phone,
+.location,
+.userStacks {
+  display: flex;
+  justify-content: space-between;
+  width: 60vw;
+  min-height: 150px;
+  background-color: #fff;
+  margin-top: 25px;
+  border-radius: 10px;
+}
+
+.phone,
+.location {
+  min-height: 50px;
+}
+
+.divider,
+.dividerStacks {
+  display: flex;
+  flex-direction: column;
+}
+
+.dividerStacks{
+  width: 100%;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 1px;
+}
+
+.secondButtonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+}
+
+.inputContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0px 10px 50px;
+}
+
+.input {
+  display: flex;
+    margin: 10px 0px 10px 50px;
+    width: 55vw;
+    min-height: 30vw;
+    border-radius: 10px;
+    border: 1px solid #00000043;
+    padding-left: 1vw;
+    font-size: 20px;
+}
+
+.inputButton {
+  margin-left: 10px;
+  width: 150px;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid #00000043;
+  font-size: 15px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.ButtonCloseIcon{
+    margin-top: 8px;
+    border: none;
+}
+
+.closeIcon {
+    color: #0000005d;
+}
+
+.closeIcon:hover {
+    color: red;
+}
+
+.userStacksButton {
+  margin-left: 10px;
+}
+
+.stackSettingIcon {
+    margin-right: 7px;
+    font-size: 20px;
+}
+
+.stackSettingIcon:hover {
+    color: #578cec;
+}
+
+.stackSettingIcon:active {
+    scale: 0.9;
+}
+
+.settingIcon:hover {
+    color: #578cec;
+}
+
+.settingIcon:active {
+    scale: 0.9;
+}
